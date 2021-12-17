@@ -1,4 +1,8 @@
 {
   "home-page-toolbar-label": "Home",
-  "settings-page-toolbar-label": "Settings"
+  "settings-page-toolbar-label": "Settings",
+  "home-tab-label": "Home",
+  "search-tab-label": "Search",
+  "bookmarks-tab-label": "Bookmarks",
+  "settings-tab-label": "Settings"
 }

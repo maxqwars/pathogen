@@ -15,9 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { IonCard, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react'
 
+import { BookmarksWidget } from '../../components'
 import React from 'react'
+import placeholderImage from '../../assets/placeholder.svg'
 import { useTranslation } from 'react-i18next'
 
 interface IHomePageProps {
@@ -41,6 +43,44 @@ const HomePage = (props: IHomePageProps) => {
             <IonTitle size="large">{t('home-page-toolbar-label')}</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonSearchbar value={''} onIonChange={e => console.log(e.detail.value!)} />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        <IonGrid>
+          <IonRow>
+            <IonCol sizeXs="3">
+              <IonCard>
+                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
+              </IonCard>
+            </IonCol>
+            <IonCol sizeXs="3">
+              <IonCard>
+                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
+              </IonCard>
+            </IonCol>
+            <IonCol sizeXs="3">
+              <IonCard>
+                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
+              </IonCard>
+            </IonCol>
+            <IonCol sizeXs="3">
+              <IonCard>
+                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        <IonGrid>
+          <IonRow>
+            <IonCol sizeXs="12">
+              <BookmarksWidget />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   )

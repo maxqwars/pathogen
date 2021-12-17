@@ -15,6 +15,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './i18n'
 
+import { HomePage, SettingsPage } from './pages'
 import {
   IonApp,
   IonIcon,
@@ -25,11 +26,11 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
-import { albumsOutline, cogOutline, homeOutline, searchOutline } from 'ionicons/icons';
+import { Redirect, Route } from 'react-router';
+import { albumsOutline, appsOutline, cogOutline, folderOutline, homeOutline, searchOutline } from 'ionicons/icons';
 
-import APP_ROUTES from './constants/APP_ROUTES'
-import { AppRoutes } from './components';
 import { IonReactRouter } from '@ionic/react-router';
+import { useTranslation } from 'react-i18next'
 
 (() => {
   if (process.env.NODE_ENV === 'development') {
@@ -40,45 +41,55 @@ import { IonReactRouter } from '@ionic/react-router';
 // ???
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
+const App: React.FC = () => {
 
-        {/*  */}
-        <IonRouterOutlet>
-          <AppRoutes appRoutes={APP_ROUTES} />
-        </IonRouterOutlet>
+  const { t } = useTranslation()
 
-        {/*  */}
-        <IonTabBar slot="bottom">
-          {/*  */}
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={homeOutline} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
 
           {/*  */}
-          <IonTabButton tab="search" href="/search">
-            <IonIcon icon={searchOutline} />
-            <IonLabel>Search</IonLabel>
-          </IonTabButton>
+          <IonRouterOutlet>
+            {/* <AppRoutes appRoutes={APP_ROUTES} /> */}
+            <Route path="/home" component={HomePage} />
+            <Route path="/settings" component={SettingsPage} />
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          </IonRouterOutlet>
 
           {/*  */}
-          <IonTabButton tab="bookmarks" href="/bookmarks">
-            <IonIcon icon={albumsOutline} />
-            <IonLabel>Bookmarks</IonLabel>
-          </IonTabButton>
+          <IonTabBar slot="bottom">
+            {/*  */}
+            <IonTabButton tab="home" href="/home">
+              <IonIcon icon={appsOutline} />
+              <IonLabel>{t('home-tab-label')}</IonLabel>
+            </IonTabButton>
 
-          {/*  */}
-          <IonTabButton tab="settings" href="/settings">
-            <IonIcon icon={cogOutline} />
-            <IonLabel>Settings</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+            {/*  */}
+            <IonTabButton tab="search" href="/search">
+              <IonIcon icon={searchOutline} />
+              <IonLabel>{t('search-tab-label')}</IonLabel>
+            </IonTabButton>
+
+            {/*  */}
+            <IonTabButton tab="bookmarks" href="/bookmarks">
+              <IonIcon icon={folderOutline} />
+              <IonLabel>{t('bookmarks-tab-label')}</IonLabel>
+            </IonTabButton>
+
+            {/*  */}
+            <IonTabButton tab="settings" href="/settings">
+              <IonIcon icon={cogOutline} />
+              <IonLabel>{t('settings-tab-label')}</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  )
+};
 
 export default App;

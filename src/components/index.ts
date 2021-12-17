@@ -15,4 +15,4 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as AppRoutes } from "./AppRoutes";
+export { default as BookmarksWidget } from "./BookmarksWidget";
