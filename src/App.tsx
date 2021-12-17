@@ -27,22 +27,21 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { Redirect, Route } from 'react-router';
-import { albumsOutline, appsOutline, cogOutline, folderOutline, homeOutline, searchOutline } from 'ionicons/icons';
+import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
 
 import { IonReactRouter } from '@ionic/react-router';
 import { useTranslation } from 'react-i18next'
 
+// ! DEBUG
 (() => {
   if (process.env.NODE_ENV === 'development') {
     console.log(process.env)
   }
 })();
 
-// ???
 setupIonicReact();
 
 const App: React.FC = () => {
-
   const { t } = useTranslation()
 
   return (
