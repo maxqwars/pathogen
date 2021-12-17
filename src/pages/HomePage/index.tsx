@@ -15,27 +15,31 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 
-import App from './App';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+interface IHomePageProps {
 
-
-// ! Disable service workers in development mode
-process.env.NODE_ENV === 'development'
-  ? serviceWorkerRegistration.unregister()
-  : serviceWorkerRegistration.register()
-
-// ! Enable web-vitals
-if (process.env.NODE_ENV === 'development') {
-  reportWebVitals()
 }
+
+const HomePage = (props: IHomePageProps) => {
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Home</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">Home</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+      </IonContent>
+    </IonPage>
+  )
+}
+
+export default HomePage

@@ -15,27 +15,4 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-
-import App from './App';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-
-// ! Disable service workers in development mode
-process.env.NODE_ENV === 'development'
-  ? serviceWorkerRegistration.unregister()
-  : serviceWorkerRegistration.register()
-
-// ! Enable web-vitals
-if (process.env.NODE_ENV === 'development') {
-  reportWebVitals()
-}
+export { default as HomePage } from './HomePage'
