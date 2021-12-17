@@ -25,11 +25,11 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
+import { albumsOutline, cogOutline, homeOutline, searchOutline } from 'ionicons/icons';
 
 import APP_ROUTES from './constants/APP_ROUTES'
 import { AppRoutes } from './components';
 import { IonReactRouter } from '@ionic/react-router';
-import { home } from 'ionicons/icons';
 
 (() => {
   if (process.env.NODE_ENV === 'development') {
@@ -52,9 +52,28 @@ const App: React.FC = () => (
 
         {/*  */}
         <IonTabBar slot="bottom">
+          {/*  */}
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
+            <IonIcon icon={homeOutline} />
             <IonLabel>Home</IonLabel>
+          </IonTabButton>
+
+          {/*  */}
+          <IonTabButton tab="search" href="/search">
+            <IonIcon icon={searchOutline} />
+            <IonLabel>Search</IonLabel>
+          </IonTabButton>
+
+          {/*  */}
+          <IonTabButton tab="bookmarks" href="/bookmarks">
+            <IonIcon icon={albumsOutline} />
+            <IonLabel>Bookmarks</IonLabel>
+          </IonTabButton>
+
+          {/*  */}
+          <IonTabButton tab="settings" href="/settings">
+            <IonIcon icon={cogOutline} />
+            <IonLabel>Settings</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

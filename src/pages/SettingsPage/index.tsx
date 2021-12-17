@@ -1,60 +1,49 @@
 // Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
-//
+// 
 // This file is part of @maxqwars/pathogen.
-//
+// 
 // @maxqwars/pathogen is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-//
+// 
 // @maxqwars/pathogen is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-//
+// 
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { HomePage, SettingsPage } from "../pages";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 
-import IRoute from "../typings/IRoute";
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
-const APP_ROUTES: IRoute[] = [
-  {
-    path: "/home",
-    exact: true,
-    component: HomePage,
-  },
-  {
-    path: "/settings",
-    exact: true,
-    component: SettingsPage,
-  },
-  {
-    path: "/",
-    exact: true,
-    redirect: "/home",
-  },
-  // {
-  //   path: "/settings",
-  //   exact: true,
-  //   component: SettingsPage,
-  // },
-  // {
-  //   path: "/search",
-  //   exact: true,
-  //   component: SearchPage,
-  // },
-  // {
-  //   path: "/bookmarks",
-  //   exact: true,
-  //   component: BookmarksPage,
-  // },
-  // {
-  //   path: "/release/:id",
-  //   exact: true,
-  //   component: ReleasePage,
-  // }
-];
+interface ISettingsPageProps {
 
-export default APP_ROUTES;
+}
+
+const SettingsPage = (props: ISettingsPageProps) => {
+
+  const { t } = useTranslation()
+
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>{t('settings-page-toolbar-label')}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">{t('settings-page-toolbar-label')}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+      </IonContent>
+    </IonPage>
+  )
+}
+
+export default SettingsPage
