@@ -18,23 +18,27 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface IHomePageProps {
 
 }
 
 const HomePage = (props: IHomePageProps) => {
+
+  const { t } = useTranslation()
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonTitle>{t('home-page-toolbar-label')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
+            <IonTitle size="large">{t('home-page-toolbar-label')}</IonTitle>
           </IonToolbar>
         </IonHeader>
       </IonContent>

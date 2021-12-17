@@ -15,40 +15,38 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { HomePage } from "../pages";
-import IRoute from "../typings/IRoute";
+import LanguageDetector from "i18next-browser-languagedetector";
+import en from "./en.json";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-const APP_ROUTES: IRoute[] = [
-  {
-    path: "/home",
-    exact: true,
-    component: HomePage,
-  },
-  {
-    path: "/",
-    exact: true,
-    redirect: "/home",
-  },
-  // {
-  //   path: "/settings",
-  //   exact: true,
-  //   component: SettingsPage,
-  // },
-  // {
-  //   path: "/search",
-  //   exact: true,
-  //   component: SearchPage,
-  // },
-  // {
-  //   path: "/bookmarks",
-  //   exact: true,
-  //   component: BookmarksPage,
-  // },
-  // {
-  //   path: "/release/:id",
-  //   exact: true,
-  //   component: ReleasePage,
-  // }
-];
+// import ru from "./ru.json";
+// import ja from "./ja.json";
+// import fr from "./fr.json";
 
-export default APP_ROUTES;
+const resources = {
+  en: { translation: en },
+  // ru: { translation: ru },
+  // ja: { translation: ja },
+  // fr: { translation: fr },
+};
+
+export const DEFAULT_LANGUAGE = "en";
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: DEFAULT_LANGUAGE,
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+
+export enum SUPPORTED_LANGUAGES {
+  EN = "en",
+  RU = "ru",
+}
+
+export default i18n;

@@ -13,6 +13,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
+import './i18n'
 
 import {
   IonApp,
@@ -29,6 +30,12 @@ import APP_ROUTES from './constants/APP_ROUTES'
 import { AppRoutes } from './components';
 import { IonReactRouter } from '@ionic/react-router';
 import { home } from 'ionicons/icons';
+
+(() => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(process.env)
+  }
+})();
 
 // ???
 setupIonicReact();
