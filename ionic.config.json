@@ -1,0 +1,7 @@
+{
+  "name": "pathogen",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
