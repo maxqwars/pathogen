@@ -24,38 +24,30 @@ import {
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
-import { Redirect, Route } from 'react-router-dom';
-import { ellipse, square, triangle } from 'ionicons/icons';
 
-import { HomePage } from './pages'
+import APP_ROUTES from './constants/APP_ROUTES'
+import { AppRoutes } from './components';
 import { IonReactRouter } from '@ionic/react-router';
+import { home } from 'ionicons/icons';
 
+// ???
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
+
+        {/*  */}
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <HomePage />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
+          <AppRoutes appRoutes={APP_ROUTES} />
         </IonRouterOutlet>
+
+        {/*  */}
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
