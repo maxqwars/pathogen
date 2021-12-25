@@ -28,8 +28,12 @@ import {
 } from '@ionic/react';
 import { Redirect, Route } from 'react-router';
 import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 
 import { IonReactRouter } from '@ionic/react-router';
+import appConfigService from './services/appConfigService';
+import { setBaseUrl } from './slices/appConfig'
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 
 // ! DEBUG
@@ -43,6 +47,15 @@ setupIonicReact();
 
 const App: React.FC = () => {
   const { t } = useTranslation()
+  const appConfigBaseUrl = useAppSelector(state => state.appConfig.baseUrl)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    if (appConfigBaseUrl === null) {
+      appConfigService.getBaseUrl()
+        .then(value => dispatch(setBaseUrl(value === null ? '' : value)))
+    }
+  }, [appConfigBaseUrl, dispatch])
 
   return (
     <IonApp>
