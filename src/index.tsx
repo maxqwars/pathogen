@@ -24,14 +24,11 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store'
 
-// ! DEBUG
-(() => {
-  if (process.env.NODE_ENV === 'development') {
-    store.subscribe(() => {
-      console.log(store.getState());
-    })
-  }
-})()
+if (process.env.NODE_ENV !== 'production') {
+  store.subscribe(() => {
+    console.log(store.getState());
+  })
+}
 
 ReactDOM.render(
   <React.StrictMode>
@@ -44,11 +41,11 @@ ReactDOM.render(
 
 
 // ! Disable service workers in development mode
-process.env.NODE_ENV === 'development'
+process.env.NODE_ENV !== 'production'
   ? serviceWorkerRegistration.unregister()
   : serviceWorkerRegistration.register()
 
 // ! Enable web-vitals
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   reportWebVitals()
 }

@@ -37,11 +37,9 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 
 // ! DEBUG
-(() => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(process.env)
-  }
-})();
+if (process.env.NODE_ENV !== 'production') {
+  console.log(process.env)
+}
 
 setupIonicReact();
 
