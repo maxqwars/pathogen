@@ -16,4 +16,6 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 export { default as BookmarksWidget } from "./BookmarksWidget";
-export { default as APIServerControl } from './APIServerControl'
+export { default as APIServerControl } from "./APIServerControl";
+export { default as AboutApp } from "./AboutApp";
+export { default as SettingsSection } from "./SettingsSection";

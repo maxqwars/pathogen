@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { AboutApp, SettingsSection } from '../../components'
+import { IonContent, IonGrid, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 
 import React from 'react'
 import { SettingsAppConfig } from '../../containers'
@@ -43,8 +44,15 @@ const SettingsPage = (props: ISettingsPageProps) => {
           </IonToolbar>
         </IonHeader>
 
-        {/* Page content */}
-        <SettingsAppConfig />
+        <IonGrid>
+          
+          <SettingsSection title={t('config-settings-section-label')} />
+          <SettingsAppConfig />
+          
+          <SettingsSection title={t('config-about-app-section-label')} />
+          <AboutApp />
+
+        </IonGrid>
 
       </IonContent>
     </IonPage>

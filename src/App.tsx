@@ -41,7 +41,9 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('NODE_ENV_VARIABLES', process.env)
 }
 
-setupIonicReact();
+setupIonicReact({
+  mode: 'md'
+});
 
 const App: React.FC = () => {
   const { t } = useTranslation()

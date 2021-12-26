@@ -16,37 +16,26 @@
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import { IonCol, IonRow } from '@ionic/react'
-import React, { useCallback } from 'react'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
-import { APIServerControl } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
-import appConfigService from '../../services/appConfigService'
-import { setBaseUrl } from '../../slices/appConfig'
+import React from 'react'
 
-interface ISettingsAppConfigProps {
-
+interface ISettingsSectionProps {
+  title: string
 }
 
-const SettingsAppConfig = (props: ISettingsAppConfigProps) => {
-  const baseUrl = useAppSelector(state => state.appConfig.baseUrl)
-  const dispatch = useAppDispatch()
-
-  const defineBaseUrl = (url: string) => {
-    appConfigService.setBaseUrl(url)
-    dispatch(setBaseUrl(url))
-  }
+const SettingsSection = (props: ISettingsSectionProps) => {
+  const { title } = props
 
   return (
     <IonRow>
       <IonCol {...CENTERED_COLUMN}>
-        <APIServerControl
-          url={baseUrl === null ? '' : baseUrl}
-          onUrlChanged={(url) => defineBaseUrl(url)}
-        />
+        <h2 className="ion-text-center">
+          {title}
+        </h2>
       </IonCol>
-    </ IonRow>
+    </IonRow>
   )
 }
 
-export default SettingsAppConfig
+export default SettingsSection
