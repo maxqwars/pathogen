@@ -4,5 +4,7 @@
   "home-tab-label": "Home",
   "search-tab-label": "Search",
   "bookmarks-tab-label": "Bookmarks",
-  "settings-tab-label": "Settings"
+  "settings-tab-label": "Settings",
+  "apply-label": "Apply",
+  "api-server-control-placeholder": "Connect to API"
 }

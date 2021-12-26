@@ -26,7 +26,7 @@ import store from './redux/store'
 
 if (process.env.NODE_ENV !== 'production') {
   store.subscribe(() => {
-    console.log(store.getState());
+    console.log('REDUX_STORE_VALUES', store.getState());
   })
 }
 

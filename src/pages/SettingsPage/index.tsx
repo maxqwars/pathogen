@@ -18,6 +18,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 
 import React from 'react'
+import { SettingsAppConfig } from '../../containers'
 import { useTranslation } from 'react-i18next'
 
 interface ISettingsPageProps {
@@ -41,6 +42,10 @@ const SettingsPage = (props: ISettingsPageProps) => {
             <IonTitle size="large">{t('settings-page-toolbar-label')}</IonTitle>
           </IonToolbar>
         </IonHeader>
+
+        {/* Page content */}
+        <SettingsAppConfig />
+
       </IonContent>
     </IonPage>
   )
