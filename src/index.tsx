@@ -17,19 +17,47 @@
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
+import { setAppReady, setIsFirstLaunch } from './slices/appGuard'
+
 import App from './App';
+import AppGuardService from './services/AppGuardService'
 import { Provider } from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
+import appConfigService from './services/appConfigService'
 import reportWebVitals from './reportWebVitals';
+import { setBaseUrl } from './slices/appConfig'
 import store from './redux/store'
 
+/* ------------------------------- Debug redux ------------------------------ */
 if (process.env.NODE_ENV !== 'production') {
   store.subscribe(() => {
     console.log('REDUX_STORE_VALUES', store.getState());
   })
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  Init app                                  */
+/* -------------------------------------------------------------------------- */
+(async () => {
+  // ! Set app not ready state
+  store.dispatch(setAppReady(false))
+
+  // ! Load required values
+  const url = await appConfigService.getBaseUrl()
+  const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
+
+  // ! Set required values
+  store.dispatch(setBaseUrl(url === null ? '' : url))
+  store.dispatch(setIsFirstLaunch(isFirstLaunch))
+
+  // ! Make app ready for work
+  store.dispatch(setAppReady(true))
+})()
+
+/* -------------------------------------------------------------------------- */
+/*                                     App                                    */
+/* -------------------------------------------------------------------------- */
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -40,12 +68,12 @@ ReactDOM.render(
 );
 
 
-// ! Disable service workers in development mode
+/* ----------------------------- service-workers ---------------------------- */
 process.env.NODE_ENV !== 'production'
   ? serviceWorkerRegistration.unregister()
   : serviceWorkerRegistration.register()
 
-// ! Enable web-vitals
+/* ------------------------------- web-vitals ------------------------------- */
 if (process.env.NODE_ENV !== 'production') {
   reportWebVitals()
 }

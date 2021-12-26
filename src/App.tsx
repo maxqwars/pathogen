@@ -20,42 +20,55 @@ import {
   IonApp,
   IonIcon,
   IonLabel,
+  IonPage,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  setupIonicReact,
+  useIonLoading
 } from '@ionic/react';
 import { Redirect, Route } from 'react-router';
 import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
-import { useAppDispatch, useAppSelector } from './redux/hooks';
 
 import { IonReactRouter } from '@ionic/react-router';
-import appConfigService from './services/appConfigService';
-import { setBaseUrl } from './slices/appConfig'
-import { useEffect } from 'react';
+import { useAppSelector } from './redux/hooks';
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-// ! DEBUG
+/* ---------------------------------- Debug --------------------------------- */
 if (process.env.NODE_ENV !== 'production') {
   console.log('NODE_ENV_VARIABLES', process.env)
 }
 
+/* -------------------------------------------------------------------------- */
+/*                            Configure Ionic React                           */
+/* -------------------------------------------------------------------------- */
 setupIonicReact({
   mode: 'md'
 });
 
+/* -------------------------------------------------------------------------- */
+/*                                 Application                                */
+/* -------------------------------------------------------------------------- */
 const App: React.FC = () => {
   const { t } = useTranslation()
-  const appConfigBaseUrl = useAppSelector(state => state.appConfig.baseUrl)
-  const dispatch = useAppDispatch()
+  const appReady = useAppSelector(state => state.appGuard.appReady)
+  const isFirstLaunch = useAppSelector(state => state.appGuard.isFirstLaunch)
+  const [present, dismiss] = useIonLoading()
 
   useEffect(() => {
-    if (appConfigBaseUrl === null) {
-      appConfigService.getBaseUrl()
-        .then(value => dispatch(setBaseUrl(value === null ? '' : value)))
-    }
-  }, [appConfigBaseUrl, dispatch])
+    if (appReady) { dismiss() } else { present() }
+  }, [appReady])
+
+  // ? Show empty page if app not ready
+  if (!appReady) {
+    return (
+      <IonApp>
+        <IonPage></IonPage>
+      </IonApp>
+    )
+  }
 
   return (
     <IonApp>
@@ -68,7 +81,7 @@ const App: React.FC = () => {
             <Route path="/home" component={HomePage} />
             <Route path="/settings" component={SettingsPage} />
             <Route exact path="/">
-              <Redirect to="/home" />
+              {appReady ? <Redirect to="/home" /> : null}
             </Route>
           </IonRouterOutlet>
 

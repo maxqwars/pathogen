@@ -16,11 +16,13 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import appConfig from "../slices/appConfig";
+import appGuard from "../slices/appGuard";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     appConfig,
+    appGuard,
   },
   devTools: process.env.NODE_ENV === "development",
 });
