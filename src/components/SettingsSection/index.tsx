@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonCol, IonRow } from '@ionic/react'
+import { IonCol, IonRow, IonText } from '@ionic/react'
 
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
@@ -30,9 +30,11 @@ const SettingsSection = (props: ISettingsSectionProps) => {
   return (
     <IonRow>
       <IonCol {...CENTERED_COLUMN}>
-        <h2 className="ion-text-center">
-          {title}
-        </h2>
+        <IonText>
+          <h2 className="ion-text-center">
+            {title}
+          </h2>
+        </IonText>
       </IonCol>
     </IonRow>
   )

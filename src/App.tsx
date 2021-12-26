@@ -61,7 +61,9 @@ const App: React.FC = () => {
     if (appReady) { dismiss() } else { present() }
   }, [appReady])
 
-  // ? Show empty page if app not ready
+  /* 
+  * If app not ready, show blank page
+  */
   if (!appReady) {
     return (
       <IonApp>
@@ -70,6 +72,20 @@ const App: React.FC = () => {
     )
   }
 
+  /* 
+  * If app ready and not configured, show welcome page
+  */
+  if (appReady && isFirstLaunch) {
+    return (
+      <IonApp>
+        <IonPage>Configure you app</IonPage>
+      </IonApp>
+    )
+  }
+
+  /* 
+  * Run app in `normal` mode
+  */
   return (
     <IonApp>
       <IonReactRouter>
