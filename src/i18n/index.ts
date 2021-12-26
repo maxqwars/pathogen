@@ -19,14 +19,14 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import en from "./en.json";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import ru from "./ru.json";
 
-// import ru from "./ru.json";
 // import ja from "./ja.json";
 // import fr from "./fr.json";
 
 const resources = {
   en: { translation: en },
-  // ru: { translation: ru },
+  ru: { translation: ru },
   // ja: { translation: ja },
   // fr: { translation: fr },
 };

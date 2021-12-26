@@ -1,0 +1,13 @@
+{
+  "home-page-toolbar-label": "Главная",
+  "settings-page-toolbar-label": "Настройки",
+  "home-tab-label": "Главная",
+  "search-tab-label": "Поиск",
+  "bookmarks-tab-label": "Закладки",
+  "settings-tab-label": "Настройки",
+  "apply-label": "Применить",
+  "api-server-control-placeholder": "Сервер API",
+  "about-app-card-text": "Pathogen - Свободный клиент для AniLibria",
+  "config-settings-section-label": "Приложение",
+  "config-about-app-section-label": "О приложении" 
+}
