@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next'
 
 interface IAPIServerControlProps {
   url: string
-  onUrlChanged: {(url: string): void}
+  onUrlChanged: { (url: string): void }
 }
 
 const APIServerControl = (props: IAPIServerControlProps) => {
@@ -60,6 +60,7 @@ const APIServerControl = (props: IAPIServerControlProps) => {
         >
           {t('apply-label')}
         </IonButton>
+
         <IonButton fill="clear">
           <IonIcon icon={qrCode} />
         </IonButton>

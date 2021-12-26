@@ -16,11 +16,12 @@
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import { IonCol, IonGrid, IonRow } from '@ionic/react'
+import React, { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
 import { APIServerControl } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
-import React from 'react'
+import appConfigService from '../../services/appConfigService'
 import { setBaseUrl } from '../../slices/appConfig'
 
 interface ISettingsAppConfigProps {
@@ -31,13 +32,18 @@ const SettingsAppConfig = (props: ISettingsAppConfigProps) => {
   const baseUrl = useAppSelector(state => state.appConfig.baseUrl)
   const dispatch = useAppDispatch()
 
+  const defineBaseUrl = (url: string) => {
+    appConfigService.setBaseUrl(url)
+    dispatch(setBaseUrl(url))
+  }
+
   return (
     <IonGrid>
       <IonRow>
         <IonCol {...CENTERED_COLUMN}>
           <APIServerControl
             url={baseUrl === null ? '' : baseUrl}
-            onUrlChanged={(url) => dispatch(setBaseUrl(url))}
+            onUrlChanged={(url) => defineBaseUrl(url)}
           />
         </IonCol>
       </IonRow>
