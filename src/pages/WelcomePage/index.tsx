@@ -15,19 +15,25 @@
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+import '../../../node_modules/swiper/swiper.min.css';
+import '@ionic/react/css/ionic-swiper.css';
+
 import { IonContent, IonPage } from '@ionic/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 import React from 'react'
 
-interface IWelcomePageProps {
-
-}
+interface IWelcomePageProps { }
 
 const WelcomePage = (props: IWelcomePageProps) => {
   return (
     <IonPage>
       <IonContent>
-        <h1>WelcomePage</h1>
+        <Swiper>
+          <SwiperSlide>Slide 1</SwiperSlide>
+          <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide>
+        </Swiper>
       </IonContent>
     </IonPage>
   )
