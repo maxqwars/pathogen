@@ -18,10 +18,13 @@
 import '../../../node_modules/swiper/swiper.min.css';
 import '@ionic/react/css/ionic-swiper.css';
 
-import { IonContent, IonPage } from '@ionic/react'
+import { IonButton, IonContent, IonPage, IonText } from '@ionic/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import AppGuard from '../../services/AppGuardService'
+import AppGuardService from '../../services/AppGuardService';
 import React from 'react'
+import styles from './index.module.css'
 
 interface IWelcomePageProps { }
 
@@ -29,10 +32,36 @@ const WelcomePage = (props: IWelcomePageProps) => {
   return (
     <IonPage>
       <IonContent>
-        <Swiper>
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
+        <Swiper
+          style={{ height: "100%", width: "100%" }}
+          keyboard={true}
+        >
+
+          <SwiperSlide className={styles['slide']}>
+            <div className={styles['slide__illustration']}>
+              <img src="https://via.placeholder.com/350x150" alt="" />
+            </div>
+            <div className={styles['slide__actions']}>
+              <IonText>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi similique mollitia at corrupti, eveniet rerum ea dignissimos libero dolorem velit autem a repudiandae voluptates! Non est dicta molestias aliquam facere laboriosam laborum.
+              </IonText>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide className={styles['slide']}>
+            <div className={styles['slide__illustration']}>
+              <img src="https://via.placeholder.com/350x150" alt="" />
+            </div>
+            <div className={styles['slide__actions']}>
+              <IonButton onClick={() => { AppGuardService.setIsFirstLaunch(false) }}>
+                complete Setup
+              </IonButton>
+            </div>
+          </SwiperSlide>
+
+
+          {/* <SwiperSlide>Slide 2</SwiperSlide>
+          <SwiperSlide>Slide 3</SwiperSlide> */}
         </Swiper>
       </IonContent>
     </IonPage>

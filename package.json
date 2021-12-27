@@ -57,7 +57,11 @@
     "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "npm run build",
+    "preversion": "npm run test",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "eslintConfig": {
     "extends": [
