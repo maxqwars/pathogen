@@ -16,12 +16,12 @@
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import { IonCol, IonRow } from '@ionic/react'
-import React, { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
 import { APIServerControl } from '../../components'
+import AppConfigService from '../../services/AppConfigService'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
-import appConfigService from '../../services/appConfigService'
+import React from 'react'
 import { setBaseUrl } from '../../slices/appConfig'
 
 interface ISettingsAppConfigProps {
@@ -33,7 +33,7 @@ const SettingsAppConfig = (props: ISettingsAppConfigProps) => {
   const dispatch = useAppDispatch()
 
   const defineBaseUrl = (url: string) => {
-    appConfigService.setBaseUrl(url)
+    AppConfigService.setApiServerUrl(url)
     dispatch(setBaseUrl(url))
   }
 

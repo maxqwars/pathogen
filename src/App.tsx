@@ -18,6 +18,7 @@ import './i18n'
 import { HomePage, SettingsPage } from './pages'
 import {
   IonApp,
+  IonButton,
   IonIcon,
   IonLabel,
   IonPage,
@@ -31,6 +32,7 @@ import {
 import { Redirect, Route } from 'react-router';
 import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
 
+import AppGuardService from './services/AppGuardService';
 import { IonReactRouter } from '@ionic/react-router';
 import { useAppSelector } from './redux/hooks';
 import { useEffect } from 'react'
@@ -59,7 +61,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (appReady) { dismiss() } else { present() }
-  }, [appReady])
+  }, [appReady, present, dismiss])
 
   /* 
   * If app not ready, show blank page
@@ -78,7 +80,11 @@ const App: React.FC = () => {
   if (appReady && isFirstLaunch) {
     return (
       <IonApp>
-        <IonPage>Configure you app</IonPage>
+        <IonPage>
+          <IonButton size="large" onClick={() => { AppGuardService.setIsFirstLaunch(false) }}>
+            SET AS NOT FIRST LAUNCH
+          </IonButton>
+        </IonPage>
       </IonApp>
     )
   }

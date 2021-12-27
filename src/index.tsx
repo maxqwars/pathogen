@@ -20,11 +20,11 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { setAppReady, setIsFirstLaunch } from './slices/appGuard'
 
 import App from './App';
+import AppConfigService from './services/AppConfigService'
 import AppGuardService from './services/AppGuardService'
 import { Provider } from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import appConfigService from './services/appConfigService'
 import reportWebVitals from './reportWebVitals';
 import { setBaseUrl } from './slices/appConfig'
 import store from './redux/store'
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV !== 'production') {
   store.dispatch(setAppReady(false))
 
   // ! Load required values
-  const url = await appConfigService.getBaseUrl()
+  const url = await AppConfigService.getApiServerUrl()
   const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
 
   // ! Set required values

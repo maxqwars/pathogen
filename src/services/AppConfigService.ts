@@ -18,23 +18,23 @@
 import { Storage } from "@capacitor/storage";
 
 enum CONFIG_KEYS_ENUM {
-  BASE_URL = "BASE_URL",
+  API_SERVER_URL = "API_SERVER_URL",
 }
 
-class appConfigService {
-  async getBaseUrl() {
+class AppConfigService {
+  async getApiServerUrl() {
     const { value } = await Storage.get({
-      key: CONFIG_KEYS_ENUM.BASE_URL,
+      key: CONFIG_KEYS_ENUM.API_SERVER_URL,
     });
     return value;
   }
 
-  async setBaseUrl(value: string) {
+  async setApiServerUrl(value: string) {
     await Storage.set({
-      key: CONFIG_KEYS_ENUM.BASE_URL,
+      key: CONFIG_KEYS_ENUM.API_SERVER_URL,
       value: value,
     });
   }
 }
 
-export default new appConfigService();
+export default new AppConfigService();
