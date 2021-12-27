@@ -15,10 +15,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './i18n'
 
-import { HomePage, SettingsPage } from './pages'
+import { HomePage, SettingsPage, SetupPage, WelcomePage } from './pages'
 import {
   IonApp,
-  IonButton,
   IonIcon,
   IonLabel,
   IonPage,
@@ -32,7 +31,6 @@ import {
 import { Redirect, Route } from 'react-router';
 import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
 
-import AppGuardService from './services/AppGuardService';
 import { IonReactRouter } from '@ionic/react-router';
 import { useAppSelector } from './redux/hooks';
 import { useEffect } from 'react'
@@ -80,11 +78,12 @@ const App: React.FC = () => {
   if (appReady && isFirstLaunch) {
     return (
       <IonApp>
-        <IonPage>
-          <IonButton size="large" onClick={() => { AppGuardService.setIsFirstLaunch(false) }}>
-            SET AS NOT FIRST LAUNCH
-          </IonButton>
-        </IonPage>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route path="/" component={WelcomePage} />
+            <Route path="/setup:url" component={WelcomePage} />
+          </IonRouterOutlet>
+        </IonReactRouter>
       </IonApp>
     )
   }
@@ -97,37 +96,35 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
 
-          {/*  */}
           <IonRouterOutlet>
-            {/* <AppRoutes appRoutes={APP_ROUTES} /> */}
             <Route path="/home" component={HomePage} />
             <Route path="/settings" component={SettingsPage} />
+            <Route path="/setup:url" component={SetupPage} />
             <Route exact path="/">
-              {appReady ? <Redirect to="/home" /> : null}
+              {
+                appReady
+                  ? <Redirect to="/home" />
+                  : null
+              }
             </Route>
           </IonRouterOutlet>
 
-          {/*  */}
           <IonTabBar slot="bottom">
-            {/*  */}
             <IonTabButton tab="home" href="/home">
               <IonIcon icon={appsOutline} />
               <IonLabel>{t('home-tab-label')}</IonLabel>
             </IonTabButton>
 
-            {/*  */}
             <IonTabButton tab="search" href="/search">
               <IonIcon icon={searchOutline} />
               <IonLabel>{t('search-tab-label')}</IonLabel>
             </IonTabButton>
 
-            {/*  */}
             <IonTabButton tab="bookmarks" href="/bookmarks">
               <IonIcon icon={folderOutline} />
               <IonLabel>{t('bookmarks-tab-label')}</IonLabel>
             </IonTabButton>
 
-            {/*  */}
             <IonTabButton tab="settings" href="/settings">
               <IonIcon icon={cogOutline} />
               <IonLabel>{t('settings-tab-label')}</IonLabel>
