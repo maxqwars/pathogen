@@ -18,17 +18,34 @@
 import '../../../node_modules/swiper/swiper.min.css';
 import '@ionic/react/css/ionic-swiper.css';
 
-import { IonButton, IonContent, IonPage, IonText } from '@ionic/react'
+import { IonButton, IonCard, IonContent, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonText } from '@ionic/react'
+import React, { useCallback, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { arrowForward, checkmark, qrCode, ribbon, settings, shapes } from 'ionicons/icons'
 
-import AppGuard from '../../services/AppGuardService'
+import AppConfigService from '../../services/AppConfigService'
 import AppGuardService from '../../services/AppGuardService';
-import React from 'react'
 import styles from './index.module.css'
+import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface IWelcomePageProps { }
 
 const WelcomePage = (props: IWelcomePageProps) => {
+  const { t } = useTranslation()
+  const history = useHistory()
+  const [inputValue, setInputValue] = useState('')
+
+  const setApiServer = useCallback(async () => {
+    AppConfigService.setApiServerUrl(inputValue)
+  }, [inputValue])
+
+  const completeSetup = useCallback(async () => {
+    await AppGuardService.setIsFirstLaunch(false)
+    history.push('/home')
+    window.location.reload()
+  }, [history])
+
   return (
     <IonPage>
       <IonContent>
@@ -37,31 +54,97 @@ const WelcomePage = (props: IWelcomePageProps) => {
           keyboard={true}
         >
 
+          {/* About app */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <img src="https://via.placeholder.com/350x150" alt="" />
+              <IonIcon
+                icon={shapes}
+                className={styles['slide__illustration__icon']}
+              />
             </div>
-            <div className={styles['slide__actions']}>
-              <IonText>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi similique mollitia at corrupti, eveniet rerum ea dignissimos libero dolorem velit autem a repudiandae voluptates! Non est dicta molestias aliquam facere laboriosam laborum.
-              </IonText>
-            </div>
-          </SwiperSlide>
 
-          <SwiperSlide className={styles['slide']}>
-            <div className={styles['slide__illustration']}>
-              <img src="https://via.placeholder.com/350x150" alt="" />
-            </div>
-            <div className={styles['slide__actions']}>
-              <IonButton onClick={() => { AppGuardService.setIsFirstLaunch(false) }}>
-                complete Setup
+            <div className={styles['slide__content']}>
+              <h1>PATHOGEN</h1>
+              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem aspernatur quas, ratione dolore quasi animi deserunt.</IonText>
+              <IonButton>
+                <IonLabel>{t('next-label')}</IonLabel>
+                <IonIcon icon={arrowForward} />
               </IonButton>
             </div>
           </SwiperSlide>
 
+          {/* License */}
+          <SwiperSlide className={styles['slide']}>
+            <div className={styles['slide__illustration']}>
+              <IonIcon
+                icon={ribbon}
+                className={styles['slide__illustration__icon']}
+              />
+            </div>
+            <div className={styles['slide__content']}>
+              <h1>License</h1>
+              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem aspernatur quas, ratione dolore quasi animi deserunt.</IonText>
+              <IonButton>
+                <IonLabel>{t('next-label')}</IonLabel>
+                <IonIcon icon={arrowForward} />
+              </IonButton>
+            </div>
+          </SwiperSlide>
 
-          {/* <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide> */}
+          {/* Configure */}
+          <SwiperSlide className={styles['slide']}>
+            <div className={styles['slide__illustration']}>
+              <IonIcon
+                icon={settings}
+                className={styles['slide__illustration__icon']}
+              />
+            </div>
+            <div className={styles['slide__content']}>
+              <h1>Setup</h1>
+              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ad animi consequatur esse a maiores minus.</IonText>
+              <IonCard>
+                <IonItem>
+                  <IonInput
+                    placeholder="Enter API server"
+                    onIonChange={e => setInputValue(e.detail.value!)}
+                  />
+                  <IonButton fill="clear" onClick={setApiServer}>Apply</IonButton>
+                  <IonButton fill="clear">
+                    <IonIcon icon={qrCode} />
+                  </IonButton>
+                </IonItem>
+              </IonCard>
+              <div>
+                <IonButton>
+                  <IonLabel>{t('next-label')}</IonLabel>
+                  <IonIcon icon={arrowForward} />
+                </IonButton>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          {/* Complete */}
+          <SwiperSlide className={styles['slide']}>
+            <div className={styles['slide__illustration']}>
+              <IonIcon
+                icon={checkmark}
+                className={styles['slide__illustration__icon']}
+              />
+            </div>
+            <div className={styles['slide__content']}>
+              <b>
+                <h1>All done!</h1>
+              </b>
+              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ad animi consequatur esse a maiores minus.</IonText>
+              <div>
+                <IonButton onClick={completeSetup}>
+                  <IonLabel>Complete</IonLabel>
+                  {/* <IonIcon icon={checkmark} /> */}
+                </IonButton>
+              </div>
+            </div>
+          </SwiperSlide>
+
         </Swiper>
       </IonContent>
     </IonPage>

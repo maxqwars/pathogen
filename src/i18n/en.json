@@ -5,9 +5,10 @@
   "search-tab-label": "Search",
   "bookmarks-tab-label": "Bookmarks",
   "settings-tab-label": "Settings",
-  "apply-label": "Apply",
   "api-server-control-placeholder": "Connect to API",
   "about-app-card-text": "Pathogen - Open Source Anilibria client",
   "config-settings-section-label": "Application",
-  "config-about-app-section-label": "About" 
+  "config-about-app-section-label": "About",
+  "apply-label": "Apply",
+  "next-label": "Next"
 }
