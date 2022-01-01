@@ -1,22 +1,22 @@
 // Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
-// 
+//
 // This file is part of pathogen.
-// 
+//
 // pathogen is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // pathogen is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import '../../../node_modules/swiper/swiper.min.css';
-import '@ionic/react/css/ionic-swiper.css';
+import '../../../node_modules/swiper/swiper.min.css'
+import '@ionic/react/css/ionic-swiper.css'
 
 import { IonButton, IonCard, IonContent, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonText } from '@ionic/react'
 import React, { useCallback, useState } from 'react'
@@ -24,12 +24,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { arrowForward, checkmark, qrCode, ribbon, settings, shapes } from 'ionicons/icons'
 
 import AppConfigService from '../../services/AppConfigService'
-import AppGuardService from '../../services/AppGuardService';
+import AppGuardService from '../../services/AppGuardService'
 import styles from './index.module.css'
-import { useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
-interface IWelcomePageProps { }
+interface IWelcomePageProps {}
 
 const WelcomePage = (props: IWelcomePageProps) => {
   const { t } = useTranslation()
@@ -49,18 +49,11 @@ const WelcomePage = (props: IWelcomePageProps) => {
   return (
     <IonPage>
       <IonContent>
-        <Swiper
-          style={{ height: "100%", width: "100%" }}
-          keyboard={true}
-        >
-
+        <Swiper style={{ height: '100%', width: '100%' }} keyboard={true}>
           {/* About app */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <IonIcon
-                icon={shapes}
-                className={styles['slide__illustration__icon']}
-              />
+              <IonIcon icon={shapes} className={styles['slide__illustration__icon']} />
             </div>
 
             <div className={styles['slide__content']}>
@@ -76,10 +69,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
           {/* License */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <IonIcon
-                icon={ribbon}
-                className={styles['slide__illustration__icon']}
-              />
+              <IonIcon icon={ribbon} className={styles['slide__illustration__icon']} />
             </div>
             <div className={styles['slide__content']}>
               <h1>License</h1>
@@ -94,21 +84,17 @@ const WelcomePage = (props: IWelcomePageProps) => {
           {/* Configure */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <IonIcon
-                icon={settings}
-                className={styles['slide__illustration__icon']}
-              />
+              <IonIcon icon={settings} className={styles['slide__illustration__icon']} />
             </div>
             <div className={styles['slide__content']}>
               <h1>Setup</h1>
               <IonText>{t('welcome-setup-app-text')}</IonText>
               <IonCard>
                 <IonItem>
-                  <IonInput
-                    placeholder="Enter API server"
-                    onIonChange={e => setInputValue(e.detail.value!)}
-                  />
-                  <IonButton fill="clear" onClick={setApiServer}>Apply</IonButton>
+                  <IonInput placeholder="Enter API server" onIonChange={e => setInputValue(e.detail.value!)} />
+                  <IonButton fill="clear" onClick={setApiServer}>
+                    Apply
+                  </IonButton>
                   <IonButton fill="clear">
                     <IonIcon icon={qrCode} />
                   </IonButton>
@@ -126,10 +112,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
           {/* Complete */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <IonIcon
-                icon={checkmark}
-                className={styles['slide__illustration__icon']}
-              />
+              <IonIcon icon={checkmark} className={styles['slide__illustration__icon']} />
             </div>
             <div className={styles['slide__content']}>
               <b>
@@ -144,7 +127,6 @@ const WelcomePage = (props: IWelcomePageProps) => {
               </div>
             </div>
           </SwiperSlide>
-
         </Swiper>
       </IonContent>
     </IonPage>

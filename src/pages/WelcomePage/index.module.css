@@ -20,7 +20,7 @@
 /* 
 * Import theme variables
 */
-@import url("../../theme/variables.css");
+@import url('../../theme/variables.css');
 
 .slide {
   display: flex;

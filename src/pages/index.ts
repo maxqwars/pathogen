@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as HomePage } from "./HomePage";
-export { default as SettingsPage } from "./SettingsPage";
-export { default as WelcomePage } from "./WelcomePage";
-export { default as SetupPage } from "./SetupPage";
+export { default as HomePage } from './HomePage'
+export { default as SettingsPage } from './SettingsPage'
+export { default as WelcomePage } from './WelcomePage'
+export { default as SetupPage } from './SetupPage'

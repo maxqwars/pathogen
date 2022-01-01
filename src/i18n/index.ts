@@ -15,23 +15,23 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import LanguageDetector from "i18next-browser-languagedetector";
-import en from "./en.json";
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import ru from "./ru.json";
+import LanguageDetector from 'i18next-browser-languagedetector'
+import en from './en.json'
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import ru from './ru.json'
 
 // import ja from "./ja.json";
 // import fr from "./fr.json";
 
 const resources = {
   en: { translation: en },
-  ru: { translation: ru },
+  ru: { translation: ru }
   // ja: { translation: ja },
   // fr: { translation: fr },
-};
+}
 
-export const DEFAULT_LANGUAGE = "en";
+export const DEFAULT_LANGUAGE = 'en'
 
 i18n
   .use(LanguageDetector)
@@ -40,13 +40,13 @@ i18n
     resources,
     fallbackLng: DEFAULT_LANGUAGE,
     interpolation: {
-      escapeValue: false,
-    },
-  });
+      escapeValue: false
+    }
+  })
 
 export enum SUPPORTED_LANGUAGES {
-  EN = "en",
-  RU = "ru",
+  EN = 'en',
+  RU = 'ru'
 }
 
-export default i18n;
+export default i18n

@@ -15,27 +15,27 @@
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { Storage } from "@capacitor/storage";
+import { Storage } from '@capacitor/storage'
 
 enum APP_GUARD_KEY_ENUM {
-  IS_FIRST_LAUNCH = "IS_FIRST_LAUNCH",
+  IS_FIRST_LAUNCH = 'IS_FIRST_LAUNCH'
 }
 
 class AppGuardService {
   async getIsFirstLaunch(): Promise<boolean> {
     const { value } = await Storage.get({
-      key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH,
-    });
+      key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH
+    })
 
-    return value === null ? true : (value.length > 0);
+    return value === null ? true : value.length > 0
   }
 
   async setIsFirstLaunch(value: boolean): Promise<void> {
     await Storage.set({
       key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH,
-      value: value ? "_" : "",
-    });
+      value: value ? '_' : ''
+    })
   }
 }
 
-export default new AppGuardService();
+export default new AppGuardService()

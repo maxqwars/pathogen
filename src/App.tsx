@@ -1,18 +1,18 @@
 /* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
+import '@ionic/react/css/core.css'
 /* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
+import '@ionic/react/css/normalize.css'
+import '@ionic/react/css/structure.css'
+import '@ionic/react/css/typography.css'
 /* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
+import '@ionic/react/css/padding.css'
+import '@ionic/react/css/float-elements.css'
+import '@ionic/react/css/text-alignment.css'
+import '@ionic/react/css/text-transformation.css'
+import '@ionic/react/css/flex-utils.css'
+import '@ionic/react/css/display.css'
 /* Theme variables */
-import './theme/variables.css';
+import './theme/variables.css'
 import './i18n'
 
 import { HomePage, SettingsPage, SetupPage, WelcomePage } from './pages'
@@ -27,12 +27,12 @@ import {
   IonTabs,
   setupIonicReact,
   useIonLoading
-} from '@ionic/react';
-import { Redirect, Route } from 'react-router';
-import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons';
+} from '@ionic/react'
+import { Redirect, Route } from 'react-router'
+import { appsOutline, cogOutline, folderOutline, searchOutline } from 'ionicons/icons'
 
-import { IonReactRouter } from '@ionic/react-router';
-import { useAppSelector } from './redux/hooks';
+import { IonReactRouter } from '@ionic/react-router'
+import { useAppSelector } from './redux/hooks'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* -------------------------------------------------------------------------- */
 /*                            Configure Ionic React                           */
 /* -------------------------------------------------------------------------- */
-setupIonicReact();
+setupIonicReact()
 
 /* -------------------------------------------------------------------------- */
 /*                                 Application                                */
@@ -63,9 +63,9 @@ const App: React.FC = () => {
     }
   })
 
-  /* 
-  * If app not ready, show blank page
-  */
+  /*
+   * If app not ready, show blank page
+   */
   if (!appReady) {
     return (
       <IonApp>
@@ -74,9 +74,9 @@ const App: React.FC = () => {
     )
   }
 
-  /* 
-  * If app ready and not configured, show welcome page
-  */
+  /*
+   * If app ready and not configured, show welcome page
+   */
   if (appReady && isFirstLaunch) {
     return (
       <IonApp>
@@ -90,24 +90,19 @@ const App: React.FC = () => {
     )
   }
 
-  /* 
-  * Run app in `normal` mode
-  */
+  /*
+   * Run app in `normal` mode
+   */
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
-
           <IonRouterOutlet>
             <Route path="/home" component={HomePage} />
             <Route path="/settings" component={SettingsPage} />
             <Route path="/setup:url" component={SetupPage} />
             <Route exact path="/">
-              {
-                appReady
-                  ? <Redirect to="/home" />
-                  : null
-              }
+              {appReady ? <Redirect to="/home" /> : null}
             </Route>
           </IonRouterOutlet>
 
@@ -136,6 +131,6 @@ const App: React.FC = () => {
       </IonReactRouter>
     </IonApp>
   )
-};
+}
 
-export default App;
+export default App
