@@ -4,5 +4,19 @@
   "home-tab-label": "Home",
   "search-tab-label": "Search",
   "bookmarks-tab-label": "Bookmarks",
-  "settings-tab-label": "Settings"
+  "settings-tab-label": "Settings",
+  "api-server-control-placeholder": "Connect to API",
+  "about-app-card-text": "Pathogen - Open Source Anilibria client",
+  "config-settings-section-label": "Application",
+  "config-about-app-section-label": "About",
+  "apply-label": "Apply",
+  "next-label": "Next",
+  "welcome-about-app-text": "About pathogen",
+  "welcome-open-source-text": "About Free and Open Source",
+  "welcome-setup-app-text": "Setup pathogen",
+  "welcome-all-done-text": "Pathogen ready for work!",
+  "app-need-setup-title": "System warning",
+  "app-need-setup-text": "Before you start working, you need to specify the URL of the API server in the application settings.",
+  "app-need-setup-action-text": "Go to app settings",
+  "go-to-label": "go"
 }

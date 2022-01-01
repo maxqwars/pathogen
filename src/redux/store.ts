@@ -15,16 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import appConfig from "../slices/appConfig";
-import { configureStore } from "@reduxjs/toolkit";
+import appConfig from '../slices/appConfig'
+import appGuard from '../slices/appGuard'
+import { configureStore } from '@reduxjs/toolkit'
 
 const store = configureStore({
   reducer: {
     appConfig,
+    appGuard
   },
-  devTools: process.env.NODE_ENV === "development",
-});
+  devTools: process.env.NODE_ENV === 'development'
+})
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export default store;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+export default store

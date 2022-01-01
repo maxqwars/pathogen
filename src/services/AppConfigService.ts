@@ -15,26 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { Storage } from "@capacitor/storage";
+import { Storage } from '@capacitor/storage'
 
 enum CONFIG_KEYS_ENUM {
-  BASE_URL = "BASE_URL",
+  API_SERVER_URL = 'API_SERVER_URL'
 }
 
-class appConfigService {
-  async getBaseUrl() {
+class AppConfigService {
+  async getApiServerUrl() {
     const { value } = await Storage.get({
-      key: CONFIG_KEYS_ENUM.BASE_URL,
-    });
-    return value;
+      key: CONFIG_KEYS_ENUM.API_SERVER_URL
+    })
+    return value
   }
 
-  async setBaseUrl(value: string) {
+  async setApiServerUrl(value: string) {
     await Storage.set({
-      key: CONFIG_KEYS_ENUM.BASE_URL,
-      value: value,
-    });
+      key: CONFIG_KEYS_ENUM.API_SERVER_URL,
+      value: value
+    })
   }
 }
 
-export default new appConfigService();
+export default new AppConfigService()

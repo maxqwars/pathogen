@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import type { AppDispatch, RootState } from "./store";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from './store'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

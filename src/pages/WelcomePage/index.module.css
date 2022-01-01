@@ -1,0 +1,130 @@
+/**
+ * Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+ * 
+ * This file is part of pathogen.
+ * 
+ * pathogen is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * pathogen is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* 
+* Import theme variables
+*/
+@import url('../../theme/variables.css');
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  width: inherit;
+}
+
+.slide__illustration {
+  /* background: red; */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.slide__illustration__icon {
+  color: var(--ion-color-primary);
+}
+
+.slide__content {
+  /* background: blue; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* 
+* Mobile
+*/
+@media (max-width: 600px) {
+  .slide__illustration {
+    height: 180px;
+    width: 300px;
+  }
+
+  .slide__illustration__icon {
+    font-size: 100px;
+  }
+
+  .slide__content {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+/* 
+* Tablet
+*/
+@media (min-width: 600px) and (max-width: 992px) {
+  .slide__illustration {
+    width: 530px;
+    height: 330px;
+  }
+  .slide__content {
+    width: 530px;
+    height: 330px;
+  }
+}
+
+/* 
+* Small desktop
+*/
+@media (min-width: 992px) and (max-width: 1200px) {
+  .slide {
+    flex-direction: row;
+  }
+
+  .slide__illustration__icon {
+    font-size: 300px;
+  }
+
+  .slide__illustration {
+    height: 400px;
+    width: 400px;
+  }
+  .slide__content {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+/* 
+* Large desktop
+*/
+@media (min-width: 1200px) {
+  .slide {
+    flex-direction: row;
+  }
+
+  .slide__illustration__icon {
+    font-size: 300px;
+  }
+
+  .slide__illustration {
+    height: 400px;
+    width: 400px;
+  }
+
+  .slide__content {
+    height: 400px;
+    width: 400px;
+  }
+}
