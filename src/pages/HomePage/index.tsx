@@ -17,15 +17,16 @@
 
 import { IonCard, IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react'
 
-import { BookmarksWidget } from '../../components'
+import { AppNeedSetup } from '../../components'
+import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
-import placeholderImage from '../../assets/placeholder.svg'
+import { useAppSelector } from '../../redux/hooks'
 import { useTranslation } from 'react-i18next'
 
-interface IHomePageProps {}
+interface IHomePageProps { }
 
 const HomePage = (props: IHomePageProps) => {
-
+  const apiUrl = useAppSelector(state => state.appConfig.baseUrl)
   const { t } = useTranslation()
 
   return (
@@ -43,39 +44,8 @@ const HomePage = (props: IHomePageProps) => {
         </IonHeader>
         <IonGrid>
           <IonRow>
-            <IonCol>
-              <IonSearchbar value={''} onIonChange={e => console.log(e.detail.value!)} />
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-        <IonGrid>
-          <IonRow>
-            <IonCol sizeXs="3">
-              <IonCard>
-                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
-              </IonCard>
-            </IonCol>
-            <IonCol sizeXs="3">
-              <IonCard>
-                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
-              </IonCard>
-            </IonCol>
-            <IonCol sizeXs="3">
-              <IonCard>
-                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
-              </IonCard>
-            </IonCol>
-            <IonCol sizeXs="3">
-              <IonCard>
-                <img src={placeholderImage} alt="" style={{ borderRadius: "5px" }} />
-              </IonCard>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-        <IonGrid>
-          <IonRow>
-            <IonCol sizeXs="12">
-              <BookmarksWidget />
+            <IonCol {...CENTERED_COLUMN}>
+              {apiUrl?.length === 0 ? <AppNeedSetup /> : null}
             </IonCol>
           </IonRow>
         </IonGrid>
