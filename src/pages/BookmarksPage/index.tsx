@@ -31,24 +31,22 @@ import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-interface ISearchPageProps {
-  query?: string
-}
+interface IBookmarksPageProps {}
 
-const SearchPage = (props: ISearchPageProps) => {
+const BookmarksPage = (props: IBookmarksPageProps) => {
   const { t } = useTranslation()
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{t('search-tab-label')}</IonTitle>
+          <IonTitle>{t('bookmarks-tab-label')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">{t('search-tab-label')}</IonTitle>
+            <IonTitle size="large">{t('bookmarks-tab-label')}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -66,4 +64,4 @@ const SearchPage = (props: ISearchPageProps) => {
   )
 }
 
-export default SearchPage
+export default BookmarksPage
