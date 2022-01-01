@@ -20,9 +20,9 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIte
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-interface IAppNeedSetupProps {}
+interface IAppNeedSetupCardProps {}
 
-const AppNeedSetup = (props: IAppNeedSetupProps) => {
+const AppNeedSetupCard = (props: IAppNeedSetupCardProps) => {
   const { t } = useTranslation()
 
   return (
@@ -39,4 +39,4 @@ const AppNeedSetup = (props: IAppNeedSetupProps) => {
   )
 }
 
-export default AppNeedSetup
+export default AppNeedSetupCard

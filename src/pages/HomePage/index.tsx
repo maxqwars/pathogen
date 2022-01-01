@@ -17,7 +17,7 @@
 
 import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react'
 
-import { AppNeedSetup } from '../../components'
+import { AppNeedSetupCard } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
 import { useAppSelector } from '../../redux/hooks'
@@ -44,7 +44,7 @@ const HomePage = (props: IHomePageProps) => {
         </IonHeader>
         <IonGrid>
           <IonRow>
-            <IonCol {...CENTERED_COLUMN}>{apiUrl?.length === 0 ? <AppNeedSetup /> : null}</IonCol>
+            <IonCol {...CENTERED_COLUMN}>{apiUrl?.length === 0 ? <AppNeedSetupCard /> : null}</IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>
