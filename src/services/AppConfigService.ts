@@ -18,18 +18,18 @@
 import { Storage } from '@capacitor/storage'
 
 enum CONFIG_KEYS_ENUM {
-  API_SERVER_URL = 'API_SERVER_URL'
+  API_SERVER_URL = 'API_URL'
 }
 
 class AppConfigService {
-  async getApiServerUrl() {
+  async getApiUrl() {
     const { value } = await Storage.get({
       key: CONFIG_KEYS_ENUM.API_SERVER_URL
     })
     return value
   }
 
-  async setApiServerUrl(value: string) {
+  async setApiUrl(value: string) {
     await Storage.set({
       key: CONFIG_KEYS_ENUM.API_SERVER_URL,
       value: value

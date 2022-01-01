@@ -15,18 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import {
-  IonCard,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonPage,
-  IonRow,
-  IonSearchbar,
-  IonTitle,
-  IonToolbar
-} from '@ionic/react'
+import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react'
 
 import { AppNeedSetup } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
@@ -37,7 +26,7 @@ import { useTranslation } from 'react-i18next'
 interface IHomePageProps {}
 
 const HomePage = (props: IHomePageProps) => {
-  const apiUrl = useAppSelector(state => state.appConfig.baseUrl)
+  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
   const { t } = useTranslation()
 
   return (

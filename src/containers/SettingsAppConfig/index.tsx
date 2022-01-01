@@ -22,23 +22,23 @@ import { APIServerControl } from '../../components'
 import AppConfigService from '../../services/AppConfigService'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
-import { setBaseUrl } from '../../slices/appConfig'
+import { setApiUrl } from '../../slices/appConfig'
 
 interface ISettingsAppConfigProps {}
 
 const SettingsAppConfig = (props: ISettingsAppConfigProps) => {
-  const baseUrl = useAppSelector(state => state.appConfig.baseUrl)
+  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
   const dispatch = useAppDispatch()
 
-  const defineBaseUrl = (url: string) => {
-    AppConfigService.setApiServerUrl(url)
-    dispatch(setBaseUrl(url))
+  const setConfig = (url: string) => {
+    AppConfigService.setApiUrl(url)
+    dispatch(setApiUrl(url))
   }
 
   return (
     <IonRow>
       <IonCol {...CENTERED_COLUMN}>
-        <APIServerControl url={baseUrl === null ? '' : baseUrl} onUrlChanged={url => defineBaseUrl(url)} />
+        <APIServerControl url={apiUrl === null ? '' : apiUrl} onUrlChanged={url => setConfig(url)} />
       </IonCol>
     </IonRow>
   )

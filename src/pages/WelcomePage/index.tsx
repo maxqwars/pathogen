@@ -37,7 +37,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
   const [inputValue, setInputValue] = useState('')
 
   const setApiServer = useCallback(async () => {
-    AppConfigService.setApiServerUrl(inputValue)
+    AppConfigService.setApiUrl(inputValue)
   }, [inputValue])
 
   const completeSetup = useCallback(async () => {

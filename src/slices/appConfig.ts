@@ -18,22 +18,22 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface IAppConfig {
-  baseUrl: string | null
+  apiUrl: string | null
 }
 
 const initialState = {
-  baseUrl: null
+  apiUrl: null
 } as IAppConfig
 
 const appConfig = createSlice({
   name: 'app-config',
   initialState,
   reducers: {
-    setBaseUrl(state, action: PayloadAction<string | null>) {
-      state.baseUrl = action.payload
+    setApiUrl(state, action: PayloadAction<string | null>) {
+      state.apiUrl = action.payload
     }
   }
 })
 
-export const { setBaseUrl } = appConfig.actions
+export const { setApiUrl } = appConfig.actions
 export default appConfig.reducer

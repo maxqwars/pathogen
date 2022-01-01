@@ -26,7 +26,7 @@ import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
-import { setBaseUrl } from './slices/appConfig'
+import { setApiUrl } from './slices/appConfig'
 import store from './redux/store'
 
 /* ------------------------------- Debug redux ------------------------------ */
@@ -44,11 +44,11 @@ if (process.env.NODE_ENV !== 'production') {
   store.dispatch(setAppReady(false))
 
   // ! Load required values
-  const url = await AppConfigService.getApiServerUrl()
+  const url = await AppConfigService.getApiUrl()
   const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
 
   // ! Set required values
-  store.dispatch(setBaseUrl(url === null ? '' : url))
+  store.dispatch(setApiUrl(url === null ? '' : url))
   store.dispatch(setIsFirstLaunch(isFirstLaunch))
 
   // ! Make app ready for work
