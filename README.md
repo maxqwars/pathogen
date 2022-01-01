@@ -1,6 +1,8 @@
-# Pathogen 🎟️ - open app for anime watching
+# Pathogen
 
-### Get Pathogen:
+Free and Open Source app for Anime watching, written on React
+
+<!-- ### Get Pathogen:
 
 | Platform           | Link                                                                                                                                                |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -8,7 +10,7 @@
 | Android            | [FDroid](https://github.com/maxqwars/xconnect) \| [Direct apk download](https://github.com/maxqwars/xconnect)                                       |
 | Linux              | [AppImage](https://github.com/maxqwars/xconnect) \| [Snap](https://github.com/maxqwars/xconnect) \| [Flatpak](https://github.com/maxqwars/xconnect) |
 | Windows            | [Microsoft Store](https://github.com/maxqwars/xconnect) \| [Direct archive download](https://github.com/maxqwars/xconnect)                          |
-| macOS, iOS, iPadOS | **Not supported**                                                                                                                                   |
+| macOS, iOS, iPadOS | **Not supported**                                                                                                                                   | -->
 
 ## 📜 Briefly about the GPLv3 license:
 
@@ -24,7 +26,7 @@
 
 > More information on about the [LICENSE can be found here](/LICENSE)
 
-## ⚠️ Useful links:
+<!-- ## ⚠️ Useful links:
 
 - [XConnect](https://github.com/maxqwars/xconnect) - Basic library for creating AniLibria REST API clients
 
@@ -32,4 +34,4 @@
 
 - [Official VK group (Russian)](https://vk.com/neurotoxinapp) - Public page of the Neurotoxin community
 
-- [Contributors guide](https://maxqwars.github.io/pathogen) - Now contribute to Pathogen
+- [Contributors guide](https://maxqwars.github.io/pathogen) - Now contribute to Pathogen -->

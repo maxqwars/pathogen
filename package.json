@@ -94,5 +94,5 @@
     "lint-staged": "^12.1.4",
     "prettier": "2.5.1"
   },
-  "description": "An Ionic project"
+  "description": "Free and Open Source app for Anime watching, written on React"
 }
