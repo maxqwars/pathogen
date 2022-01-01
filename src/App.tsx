@@ -44,9 +44,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* -------------------------------------------------------------------------- */
 /*                            Configure Ionic React                           */
 /* -------------------------------------------------------------------------- */
-setupIonicReact({
-  mode: 'md'
-});
+setupIonicReact();
 
 /* -------------------------------------------------------------------------- */
 /*                                 Application                                */
@@ -58,8 +56,12 @@ const App: React.FC = () => {
   const [present, dismiss] = useIonLoading()
 
   useEffect(() => {
-    if (appReady) { dismiss() } else { present() }
-  }, [appReady, present, dismiss])
+    if (appReady) {
+      dismiss()
+    } else {
+      present()
+    }
+  })
 
   /* 
   * If app not ready, show blank page

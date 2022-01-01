@@ -19,3 +19,4 @@ export { default as BookmarksWidget } from "./BookmarksWidget";
 export { default as APIServerControl } from "./APIServerControl";
 export { default as AboutApp } from "./AboutApp";
 export { default as SettingsSection } from "./SettingsSection";
+export { default as AppNeedSetup } from './AppNeedSetup'

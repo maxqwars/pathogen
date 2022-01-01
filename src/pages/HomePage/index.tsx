@@ -22,9 +22,7 @@ import React from 'react'
 import placeholderImage from '../../assets/placeholder.svg'
 import { useTranslation } from 'react-i18next'
 
-interface IHomePageProps {
-
-}
+interface IHomePageProps {}
 
 const HomePage = (props: IHomePageProps) => {
 

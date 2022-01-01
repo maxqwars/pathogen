@@ -65,7 +65,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
 
             <div className={styles['slide__content']}>
               <h1>PATHOGEN</h1>
-              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem aspernatur quas, ratione dolore quasi animi deserunt.</IonText>
+              <IonText>{t('welcome-about-app-text')}</IonText>
               <IonButton>
                 <IonLabel>{t('next-label')}</IonLabel>
                 <IonIcon icon={arrowForward} />
@@ -83,7 +83,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
             </div>
             <div className={styles['slide__content']}>
               <h1>License</h1>
-              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem aspernatur quas, ratione dolore quasi animi deserunt.</IonText>
+              <IonText>{t('welcome-open-source-text')}</IonText>
               <IonButton>
                 <IonLabel>{t('next-label')}</IonLabel>
                 <IonIcon icon={arrowForward} />
@@ -101,7 +101,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
             </div>
             <div className={styles['slide__content']}>
               <h1>Setup</h1>
-              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ad animi consequatur esse a maiores minus.</IonText>
+              <IonText>{t('welcome-setup-app-text')}</IonText>
               <IonCard>
                 <IonItem>
                   <IonInput
@@ -135,7 +135,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
               <b>
                 <h1>All done!</h1>
               </b>
-              <IonText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ad animi consequatur esse a maiores minus.</IonText>
+              <IonText>{t('welcome-all-done-text')}</IonText>
               <div>
                 <IonButton onClick={completeSetup}>
                   <IonLabel>Complete</IonLabel>
