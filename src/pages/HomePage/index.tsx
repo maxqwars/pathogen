@@ -31,6 +31,7 @@ import {
 import { AppNeedSetupCard } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
+import { ServerUpdates } from '../../containers'
 import { useAppSelector } from '../../redux/hooks'
 import { useTranslation } from 'react-i18next'
 
@@ -76,8 +77,15 @@ const HomePage = (props: IHomePageProps) => {
     <IonGrid>
       <IonRow>
         <IonCol {...CENTERED_COLUMN}>
+          <ServerUpdates />
+        </IonCol>
+      </IonRow>
+      <IonRow>
+        <IonCol {...CENTERED_COLUMN}>
           <IonCard>
-            <IonCardContent>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, perferendis.</IonCardContent>
+            <IonCardContent>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, praesentium!
+            </IonCardContent>
           </IonCard>
         </IonCol>
       </IonRow>

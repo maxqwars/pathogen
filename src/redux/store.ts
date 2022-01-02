@@ -18,11 +18,13 @@
 import appConfig from '../slices/appConfig'
 import appGuard from '../slices/appGuard'
 import { configureStore } from '@reduxjs/toolkit'
+import serverUpdates from '../slices/serverUpdates'
 
 const store = configureStore({
   reducer: {
     appConfig,
-    appGuard
+    appGuard,
+    serverUpdates
   },
   devTools: process.env.NODE_ENV === 'development'
 })
