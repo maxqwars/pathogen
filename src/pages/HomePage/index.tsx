@@ -75,11 +75,12 @@ const HomePage = (props: IHomePageProps) => {
 
   return page(
     <IonGrid>
-      <IonRow>
-        <IonCol {...CENTERED_COLUMN}>
+      <IonRow className="ion-align-items-start">
+        <IonCol sizeXs="12" sizeSm="12" sizeMd="8" offsetMd="2" sizeLg="6" offsetLg="3" sizeXl="6" offsetXl="3">
           <ServerUpdates />
         </IonCol>
       </IonRow>
+
       <IonRow>
         <IonCol {...CENTERED_COLUMN}>
           <IonCard>

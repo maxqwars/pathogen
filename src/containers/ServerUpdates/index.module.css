@@ -21,6 +21,10 @@
 
 /* --------------------------------- Common --------------------------------- */
 .box {
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  min-height: 120px;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
@@ -28,6 +32,38 @@
   background-color: var(--ion-card-background);
 }
 
+.image {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 /* ---------------------------------- Dark ---------------------------------- */
 
 /* ------------------------------- Media Query ------------------------------ */
+@media (max-width: 600px) {
+  .image {
+    height: 90px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 992px) {
+  .image {
+    height: 120px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .image {
+    height: 120px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .box {
+    height: 220px;
+  }
+
+  .image {
+    height: 200px;
+  }
+}
