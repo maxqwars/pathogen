@@ -64,7 +64,9 @@ const HomePage = (props: IHomePageProps) => {
     return page(
       <IonGrid>
         <IonRow>
-          <IonCol {...CENTERED_COLUMN}>{apiUrl?.length === 0 ? <AppNeedSetupCard /> : null}</IonCol>
+          <IonCol {...CENTERED_COLUMN}>
+            <AppNeedSetupCard />
+          </IonCol>
         </IonRow>
       </IonGrid>
     )

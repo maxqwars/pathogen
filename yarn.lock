@@ -1896,8 +1896,8 @@
     chalk "^4.0.0"
 
 "@maxqwars/xconn@https://github.com/surrogate-logic/xconnect":
-  version "2.0.0"
-  resolved "https://github.com/surrogate-logic/xconnect#987aecc38336728575362aacbf608d7324648a2e"
+  version "2.1.0"
+  resolved "https://github.com/surrogate-logic/xconnect#566f82e2609f84be551e8c3f2fac2ce25039502d"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
