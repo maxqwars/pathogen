@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,10 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as HomePage } from './HomePage'
-export { default as SettingsPage } from './SettingsPage'
-export { default as WelcomePage } from './WelcomePage'
-export { default as SetupPage } from './SetupPage'
-export { default as SearchPage } from './SearchPage'
-export { default as BookmarksPage } from './BookmarksPage'
-export { default as ReleasePage } from './ReleasePage'
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react'
+import React from 'react'
+
+interface IReleasePageProps {}
+
+const ReleasePage = (props: IReleasePageProps) => {
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Release_Page</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle>Release_Page</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+      </IonContent>
+    </IonPage>
+  )
+}
+
+export default ReleasePage

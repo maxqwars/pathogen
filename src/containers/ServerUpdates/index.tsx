@@ -23,6 +23,7 @@ import FeedService from '../../services/FeedService'
 import { ReleasePosterImage } from '../../components'
 import { setUpdates } from '../../slices/serverUpdates'
 import styles from './index.module.css'
+import { useHistory } from 'react-router'
 
 interface IServerUpdatesProps {}
 
@@ -30,6 +31,7 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
   const dispatch = useAppDispatch()
   const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
   const updates = useAppSelector(state => state.serverUpdates.updates)
+  const history = useHistory()
 
   const fetchImage = async (code: string): Promise<DatabaseTypes.ITitle | null> => {
     const X_DATABASE = new Database(apiUrl as string)
@@ -38,6 +40,10 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
       include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
       filter: ['poster']
     })
+  }
+
+  const onCardClick = (code: string) => {
+    history.push(`/release/${code}`)
   }
 
   useEffect(() => {
@@ -49,12 +55,9 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
     return (
       <div className={styles['box']}>
         {updates.map(release => (
-          <ReleasePosterImage
-            key={release.code}
-            fetchImageCb={fetchImage}
-            className={styles['image']}
-            code={release.code as string}
-          />
+          <div onClick={() => onCardClick(release.code as string)} key={release.code}>
+            <ReleasePosterImage fetchImageCb={fetchImage} className={styles['image']} code={release.code as string} />
+          </div>
         ))}
       </div>
     )

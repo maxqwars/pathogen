@@ -15,7 +15,7 @@ import '@ionic/react/css/display.css'
 import './theme/variables.css'
 import './i18n'
 
-import { BookmarksPage, HomePage, SearchPage, SettingsPage, SetupPage, WelcomePage } from './pages'
+import { BookmarksPage, HomePage, SearchPage, SettingsPage, SetupPage, WelcomePage, ReleasePage } from './pages'
 import {
   IonApp,
   IonIcon,
@@ -102,9 +102,13 @@ const App: React.FC = () => {
             <Route path="/settings" component={SettingsPage} />
             <Route path="/setup:url" component={SetupPage} />
             <Route path="/search" component={SearchPage} />
-            <Route path="/search:query" component={SearchPage} />
+            <Route path="/search/:query" component={SearchPage} />
             <Route path="/bookmarks" component={BookmarksPage} />
+            <Route path="/release/:code" component={ReleasePage} />
             <Route exact path="/">
+              {appReady ? <Redirect to="/home" /> : null}
+            </Route>
+            <Route exact path="/release">
               {appReady ? <Redirect to="/home" /> : null}
             </Route>
           </IonRouterOutlet>
