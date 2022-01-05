@@ -34,6 +34,7 @@ import React from 'react'
 import { ServerUpdates } from '../../containers'
 import { useAppSelector } from '../../redux/hooks'
 import { useTranslation } from 'react-i18next'
+import { LARGE_CENTERED_COLUMN } from '../../constants/LARGE_CENTERED_COLUMN'
 
 interface IHomePageProps {}
 
@@ -76,7 +77,7 @@ const HomePage = (props: IHomePageProps) => {
   return page(
     <IonGrid>
       <IonRow className="ion-align-items-start">
-        <IonCol sizeXs="12" sizeSm="12" sizeMd="8" offsetMd="2" sizeLg="6" offsetLg="3" sizeXl="6" offsetXl="3">
+        <IonCol {...LARGE_CENTERED_COLUMN}>
           <ServerUpdates />
         </IonCol>
       </IonRow>
