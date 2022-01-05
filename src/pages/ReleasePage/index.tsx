@@ -16,11 +16,24 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router'
+import { useAppSelector } from '../../redux/hooks'
+import DatabaseService from '../../services/DatabaseService'
 
 interface IReleasePageProps {}
 
 const ReleasePage = (props: IReleasePageProps) => {
+  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+  const params = useParams<{ code: string }>()
+
+  useEffect(() => {
+    DatabaseService.setApiUrl(apiUrl as string)
+    DatabaseService.getTitle(params['code']).then(res => {
+      console.log(res)
+    })
+  }, [apiUrl, params])
+
   return (
     <IonPage>
       <IonHeader>
