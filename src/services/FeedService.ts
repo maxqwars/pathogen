@@ -16,19 +16,14 @@
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import { DatabaseTypes, Updates } from '@maxqwars/xconn'
+import CoreApiService from './CoreApiService'
 
-class FeedService {
-  private __apiUrl: string
+class FeedService extends CoreApiService {
+  public async getUpdates(): Promise<DatabaseTypes.ITitle[] | null> {
+    if (typeof this.__apiUrl === 'undefined') {
+      return null
+    }
 
-  constructor() {
-    this.__apiUrl = ''
-  }
-
-  set apiUrl(url: string) {
-    this.__apiUrl = url
-  }
-
-  async getUpdates(): Promise<DatabaseTypes.ITitle[] | null> {
     const X_UPDATES = new Updates(this.__apiUrl)
 
     try {

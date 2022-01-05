@@ -41,7 +41,7 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
   }
 
   useEffect(() => {
-    FeedService.apiUrl = apiUrl as string
+    FeedService.setApiUrl(apiUrl as string)
     FeedService.getUpdates().then(updates => dispatch(setUpdates(updates)))
   }, [apiUrl, dispatch])
 
