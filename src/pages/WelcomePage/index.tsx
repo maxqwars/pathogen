@@ -57,7 +57,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
             </div>
 
             <div className={styles['slide__content']}>
-              <h1>PATHOGEN</h1>
+              <h1>{t('welcome-about-app-head-text')}</h1>
               <IonText>{t('welcome-about-app-text')}</IonText>
               <IonButton>
                 <IonLabel>{t('next-label')}</IonLabel>
@@ -72,7 +72,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
               <IonIcon icon={ribbon} className={styles['slide__illustration__icon']} />
             </div>
             <div className={styles['slide__content']}>
-              <h1>License</h1>
+              <h1>{t('welcome-open-source-head-text')}</h1>
               <IonText>{t('welcome-open-source-text')}</IonText>
               <IonButton>
                 <IonLabel>{t('next-label')}</IonLabel>
@@ -87,13 +87,16 @@ const WelcomePage = (props: IWelcomePageProps) => {
               <IonIcon icon={settings} className={styles['slide__illustration__icon']} />
             </div>
             <div className={styles['slide__content']}>
-              <h1>Setup</h1>
+              <h1>{t('welcome-setup-app-head-text')}</h1>
               <IonText>{t('welcome-setup-app-text')}</IonText>
               <IonCard>
                 <IonItem>
-                  <IonInput placeholder="Enter API server" onIonChange={e => setInputValue(e.detail.value!)} />
+                  <IonInput
+                    placeholder={t('api-server-control-placeholder')}
+                    onIonChange={e => setInputValue(e.detail.value!)}
+                  />
                   <IonButton fill="clear" onClick={setApiServer}>
-                    Apply
+                    {t('apply-label')}
                   </IonButton>
                   <IonButton fill="clear">
                     <IonIcon icon={qrCode} />
@@ -116,13 +119,12 @@ const WelcomePage = (props: IWelcomePageProps) => {
             </div>
             <div className={styles['slide__content']}>
               <b>
-                <h1>All done!</h1>
+                <h1>{t('welcome-all-done-head-text')}</h1>
               </b>
               <IonText>{t('welcome-all-done-text')}</IonText>
               <div>
                 <IonButton onClick={completeSetup}>
-                  <IonLabel>Complete</IonLabel>
-                  {/* <IonIcon icon={checkmark} /> */}
+                  <IonLabel>{t('complete-label')}</IonLabel>
                 </IonButton>
               </div>
             </div>

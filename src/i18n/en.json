@@ -18,5 +18,10 @@
   "app-need-setup-title": "System warning",
   "app-need-setup-text": "Before you start working, you need to specify the URL of the API server in the application settings.",
   "app-need-setup-action-text": "Go to app settings",
-  "go-to-label": "go"
+  "welcome-about-app-head-text": "Добро пожаловать",
+  "welcome-open-source-head-text": "Открытый код",
+  "welcome-setup-app-head-text": "Первоначальная настройка",
+  "welcome-all-done-head-text": "Всё Готово!",
+  "go-to-label": "go",
+  "complete-label": "Complete"
 }

@@ -50,10 +50,12 @@ setupIonicReact()
 /*                                 Application                                */
 /* -------------------------------------------------------------------------- */
 const App: React.FC = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const appReady = useAppSelector(state => state.appGuard.appReady)
   const isFirstLaunch = useAppSelector(state => state.appGuard.isFirstLaunch)
   const [present, dismiss] = useIonLoading()
+
+  console.log(i18n)
 
   useEffect(() => {
     if (appReady) {

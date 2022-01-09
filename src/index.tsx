@@ -53,6 +53,9 @@ if (process.env.NODE_ENV !== 'production') {
 
   // ! Make app ready for work
   store.dispatch(setAppReady(true))
+
+  // ! Remove lang (fix later)
+  localStorage.removeItem('i18nextLng')
 })()
 
 /* -------------------------------------------------------------------------- */

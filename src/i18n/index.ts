@@ -31,7 +31,7 @@ const resources = {
   // fr: { translation: fr },
 }
 
-export const DEFAULT_LANGUAGE = 'en'
+export const DEFAULT_LANGUAGE = 'ru'
 
 i18n
   .use(LanguageDetector)
