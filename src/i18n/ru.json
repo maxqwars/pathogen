@@ -23,5 +23,6 @@
   "app-need-setup-text": "Для работы Патогена необходимо указать адрес API сервера в настройках.",
   "app-need-setup-action-text": "Перейти к настройкам",
   "go-to-label": "Перейти",
-  "complete-label": "Завершить"
+  "complete-label": "Завершить",
+  "release-page-header-label": "Релиз"
 }
