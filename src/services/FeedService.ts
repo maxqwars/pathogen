@@ -19,17 +19,21 @@ import { DatabaseTypes, Updates } from '@maxqwars/xconn'
 import CoreApiService from './CoreApiService'
 
 class FeedService extends CoreApiService {
-  public async getUpdates(): Promise<DatabaseTypes.ITitle[] | null> {
-    if (typeof this.__apiUrl === 'undefined') {
+  private _updates: Updates | null = null
+
+  init(url: string): void {
+    this._apiUrl = url
+    this._updates = new Updates(this._apiUrl)
+  }
+
+  async getUpdates(): Promise<DatabaseTypes.ITitle[] | null> {
+    if (this._updates === null) {
       return null
     }
 
-    const X_UPDATES = new Updates(this.__apiUrl)
-
     try {
-      return await X_UPDATES.getUpdates({ limit: 4, filter: ['code'] })
+      return await this._updates?.getUpdates({ limit: 4, filter: ['code'] })
     } catch (e) {
-      console.log(e)
       return null
     }
   }

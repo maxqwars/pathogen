@@ -19,16 +19,21 @@ import CoreApiService from './CoreApiService'
 import { Database, DatabaseTypes } from '@maxqwars/xconn'
 
 class DatabaseService extends CoreApiService {
+  private _database: Database | null = null
+
+  init(url: string) {
+    this._apiUrl = url
+    this._database = new Database(this._apiUrl)
+  }
+
   async getTitle(code: string): Promise<DatabaseTypes.ITitle | null> {
-    if (typeof this.__apiUrl === 'undefined') {
+    if (this._database === null) {
       return null
     }
-    const X_DATABASE = new Database(this.__apiUrl)
 
     try {
-      return await X_DATABASE.getTitle({ code })
+      return await this._database.getTitle({ code })
     } catch (e) {
-      console.log(e)
       return null
     }
   }

@@ -15,10 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export default class CoreApiService {
-  protected __apiUrl: string | undefined
+export default abstract class CoreApiService {
+  protected _apiUrl: string | null
+
+  constructor() {
+    this._apiUrl = null
+  }
 
   public setApiUrl(url: string): void {
-    this.__apiUrl = url
+    this._apiUrl = url
   }
+
+  public abstract init(url: string): void
 }
