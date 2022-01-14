@@ -17,24 +17,25 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { DatabaseTypes } from '@maxqwars/xconn'
 import placeholderImage from '../../assets/placeholder.svg'
+import DatabaseService from '../../services/DatabaseService'
 
 interface IReleasePosterImageProps {
   className?: string
   code: string
   height?: string
   width?: string
-  fetchImageCb: { (code: string): Promise<DatabaseTypes.ITitle | null> }
+  apiUrl: string
 }
 
 const ReleasePosterImage = (props: IReleasePosterImageProps) => {
   const [image, setImage] = useState<null | string>(null)
-  const { code, height, width, className, fetchImageCb } = props
+  const { code, height, width, className, apiUrl } = props
 
   useEffect(() => {
-    fetchImageCb(code).then(data => setImage(data?.poster?.rawBase64File as string))
-  }, [code, fetchImageCb])
+    DatabaseService.init(apiUrl)
+    DatabaseService.getPosterImage(code).then(image => setImage(image))
+  }, [code, apiUrl])
 
   return (
     <img

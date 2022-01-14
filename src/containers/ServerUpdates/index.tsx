@@ -15,7 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { Database, DatabaseTypes, INCLUDE_RESOURCE_ENUM } from '@maxqwars/xconn'
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
@@ -33,15 +32,6 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
   const updates = useAppSelector(state => state.serverUpdates.updates)
   const history = useHistory()
 
-  const fetchImage = async (code: string): Promise<DatabaseTypes.ITitle | null> => {
-    const X_DATABASE = new Database(apiUrl as string)
-    return await X_DATABASE.getTitle({
-      code,
-      include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
-      filter: ['poster']
-    })
-  }
-
   const onCardClick = (code: string) => {
     history.push(`/release/${code}`)
   }
@@ -56,7 +46,7 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
       <div className={styles['box']}>
         {updates.map(release => (
           <div onClick={() => onCardClick(release.code as string)} key={release.code}>
-            <ReleasePosterImage fetchImageCb={fetchImage} className={styles['image']} code={release.code as string} />
+            <ReleasePosterImage apiUrl={apiUrl as string} className={styles['image']} code={release.code as string} />
           </div>
         ))}
       </div>

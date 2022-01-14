@@ -16,7 +16,7 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import CoreApiService from './CoreApiService'
-import { Database, DatabaseTypes } from '@maxqwars/xconn'
+import { Database, DatabaseTypes, INCLUDE_RESOURCE_ENUM } from '@maxqwars/xconn'
 
 class DatabaseService extends CoreApiService {
   private _database: Database | null = null
@@ -24,6 +24,19 @@ class DatabaseService extends CoreApiService {
   init(url: string) {
     this._apiUrl = url
     this._database = new Database(this._apiUrl)
+  }
+
+  async getPosterImage(code: string): Promise<string | null> {
+    if (this._database !== null) {
+      const release = await this._database.getTitle({
+        code,
+        include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
+        filter: ['poster']
+      })
+      return release?.poster?.rawBase64File as string
+    }
+
+    return null
   }
 
   async getTitle(code: string): Promise<DatabaseTypes.ITitle | null> {
