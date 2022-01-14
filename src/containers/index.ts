@@ -17,3 +17,4 @@
 
 export { default as SettingsAppConfig } from './SettingsAppConfig'
 export { default as ServerUpdates } from './ServerUpdates'
+export { default as ReleaseView } from './ReleaseView'

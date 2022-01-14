@@ -15,24 +15,36 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react'
-import React, { useEffect } from 'react'
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonProgressBar } from '@ionic/react'
+import { DatabaseTypes } from '@maxqwars/xconn'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { ReleaseView } from '../../containers'
 import { useAppSelector } from '../../redux/hooks'
 import DatabaseService from '../../services/DatabaseService'
 
 interface IReleasePageProps {}
 
 const ReleasePage = (props: IReleasePageProps) => {
+  const [release, setRelease] = useState<DatabaseTypes.ITitle | null>(null)
   const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
   const params = useParams<{ code: string }>()
 
   useEffect(() => {
-    DatabaseService.setApiUrl(apiUrl as string)
-    DatabaseService.getTitle(params['code']).then(res => {
-      console.log(res)
-    })
-  }, [apiUrl, params])
+    DatabaseService.init(apiUrl as string)
+
+    if (release === null) {
+      DatabaseService.getTitle(params['code']).then(res => {
+        setRelease(res)
+      })
+    } else {
+      if (release.code !== params['code']) {
+        DatabaseService.getTitle(params['code']).then(res => {
+          setRelease(res)
+        })
+      }
+    }
+  }, [apiUrl, params, release])
 
   return (
     <IonPage>
@@ -40,6 +52,7 @@ const ReleasePage = (props: IReleasePageProps) => {
         <IonToolbar>
           <IonTitle>Release_Page</IonTitle>
         </IonToolbar>
+        {release === null ? <IonProgressBar type="indeterminate" /> : null}
       </IonHeader>
 
       <IonContent fullscreen>
@@ -47,7 +60,10 @@ const ReleasePage = (props: IReleasePageProps) => {
           <IonToolbar>
             <IonTitle>Release_Page</IonTitle>
           </IonToolbar>
+          {release === null ? <IonProgressBar type="indeterminate" /> : null}
         </IonHeader>
+
+        {release !== null ? <ReleaseView release={release} /> : null}
       </IonContent>
     </IonPage>
   )
