@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+import { IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonTitle } from '@ionic/react'
 import { DatabaseTypes } from '@maxqwars/xconn'
 import React from 'react'
 
@@ -25,7 +26,27 @@ interface IReleaseViewProps {
 const ReleaseView = (props: IReleaseViewProps) => {
   const { release } = props
 
-  return <h1>{release.code}</h1>
+  return (
+    <IonGrid>
+      {/* Info */}
+      <IonRow>
+        <IonCol></IonCol>
+        <IonCol>
+          <IonCard>
+            <IonCardHeader>
+              <IonTitle></IonTitle>
+            </IonCardHeader>
+          </IonCard>
+        </IonCol>
+      </IonRow>
+
+      {/* Player */}
+      <IonRow>
+        <IonCol></IonCol>
+        <IonCol></IonCol>
+      </IonRow>
+    </IonGrid>
+  )
 }
 
 export default ReleaseView
