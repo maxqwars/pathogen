@@ -28,19 +28,67 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
   const { narrowColumn, wideColumn, playerVideoView, playerEpisodeSelector } = props
   return (
     <IonGrid>
-      <IonRow>
-        <IonCol sizeXs="12" sizeXl="2" offsetXl="3">
+      <IonRow className="ion-align-self-center">
+        <IonCol
+          style={{ background: 'green' }}
+          sizeXs="12"
+          sizeSm="12"
+          sizeMd="4"
+          sizeLg="4"
+          sizeXl="2"
+          offsetXs="0"
+          offsetSm="0"
+          offsetMd="1"
+          offsetLg="1"
+          offsetXl="3"
+        >
           {narrowColumn}
         </IonCol>
-        <IonCol sizeXs="12" sizeXl="4">
+        <IonCol
+          style={{ background: 'yellow' }}
+          sizeXs="12"
+          sizeSm="12"
+          sizeMd="6"
+          sizeLg="6"
+          sizeXl="4"
+          offsetXs="0"
+          offsetSm="0"
+          offsetMd=""
+          offsetLg=""
+          offsetXl=""
+        >
           {wideColumn}
         </IonCol>
       </IonRow>
-      <IonRow>
-        <IonCol sizeXs="12" sizeXl="4" offsetXl="3">
+      <IonRow className="ion-align-self-center">
+        <IonCol
+          style={{ background: 'red' }}
+          sizeXs="12"
+          sizeSm="12"
+          sizeMd="6"
+          sizeLg="7"
+          sizeXl="4"
+          offsetXs="0"
+          offsetSm="0"
+          offsetMd="1"
+          offsetLg="1"
+          offsetXl="3"
+        >
           {playerVideoView}
         </IonCol>
-        <IonCol sizeXs="12" sizeXl="2">
+        <IonCol
+          style={{ background: 'blue' }}
+          sizeXs="12"
+          sizeSm="12"
+          sizeMd="4"
+          sizeLg="3"
+          sizeXl="2"
+          offsetXs="0"
+          offsetSm="0"
+          offsetMd="0"
+          offsetLg="0"
+          offsetXl="0"
+        >
           {playerEpisodeSelector}
         </IonCol>
       </IonRow>
