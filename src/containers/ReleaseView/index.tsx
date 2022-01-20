@@ -21,6 +21,8 @@ import { ReleaseBriefly, ReleaseDetails } from '../../components'
 import { useAppSelector } from '../../redux/hooks'
 import DatabaseService from '../../services/DatabaseService'
 import { ReleaseViewLayout } from '../../layout'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface IReleaseViewProps {
   releaseCode: string
@@ -36,10 +38,47 @@ const ReleaseView = (props: IReleaseViewProps) => {
     DatabaseService.getTitle(releaseCode).then(data => setReleaseData(data))
   }, [apiUrl, releaseCode])
 
-  console.log(releaseData)
-
   if (releaseData === null) {
-    return <div>none</div>
+    return (
+      <ReleaseViewLayout
+        narrowColumn={
+          <>
+            <Skeleton height={240} />
+            <br />
+            <Skeleton height={60} />
+            <br />
+            <Skeleton height={100} />
+          </>
+        }
+        wideColumn={
+          <>
+            <Skeleton height={40} />
+            <br />
+            <Skeleton height={80} />
+            <br />
+            <Skeleton height={280} />
+          </>
+        }
+        playerVideoView={
+          <>
+            <Skeleton height={260} />
+          </>
+        }
+        playerEpisodeSelector={
+          <>
+            <Skeleton height={35} />
+            <br />
+            <Skeleton height={25} />
+            <br />
+            <Skeleton height={25} />
+            <br />
+            <Skeleton height={25} />
+            <br />
+            <Skeleton height={25} />
+          </>
+        }
+      />
+    )
   }
 
   return (
