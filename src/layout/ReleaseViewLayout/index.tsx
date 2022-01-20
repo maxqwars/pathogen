@@ -30,7 +30,6 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
     <IonGrid>
       <IonRow className="ion-align-self-center">
         <IonCol
-          style={{ background: 'green' }}
           sizeXs="12"
           sizeSm="12"
           sizeMd="4"
@@ -45,7 +44,6 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
           {narrowColumn}
         </IonCol>
         <IonCol
-          style={{ background: 'yellow' }}
           sizeXs="12"
           sizeSm="12"
           sizeMd="6"
@@ -60,9 +58,9 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
           {wideColumn}
         </IonCol>
       </IonRow>
+
       <IonRow className="ion-align-self-center">
         <IonCol
-          style={{ background: 'red' }}
           sizeXs="12"
           sizeSm="12"
           sizeMd="6"
@@ -77,7 +75,6 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
           {playerVideoView}
         </IonCol>
         <IonCol
-          style={{ background: 'blue' }}
           sizeXs="12"
           sizeSm="12"
           sizeMd="4"

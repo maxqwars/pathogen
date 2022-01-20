@@ -1,3 +1,20 @@
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+//
+// This file is part of @maxqwars/pathogen.
+//
+// @maxqwars/pathogen is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// @maxqwars/pathogen is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 /* Basic CSS for apps built with Ionic */
@@ -13,6 +30,8 @@ import '@ionic/react/css/flex-utils.css'
 import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
+
+/* Import i18n */
 import './i18n'
 
 import { BookmarksPage, HomePage, SearchPage, SettingsPage, SetupPage, WelcomePage, ReleasePage } from './pages'
@@ -50,12 +69,10 @@ setupIonicReact()
 /*                                 Application                                */
 /* -------------------------------------------------------------------------- */
 const App: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const appReady = useAppSelector(state => state.appGuard.appReady)
   const isFirstLaunch = useAppSelector(state => state.appGuard.isFirstLaunch)
   const [present, dismiss] = useIonLoading()
-
-  console.log(i18n)
 
   useEffect(() => {
     if (appReady) {
