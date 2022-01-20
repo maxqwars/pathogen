@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,11 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as BookmarksWidget } from './BookmarksWidget'
-export { default as APIServerControl } from './APIServerControl'
-export { default as AboutApp } from './AboutApp'
-export { default as SettingsSection } from './SettingsSection'
-export { default as AppNeedSetupCard } from './AppNeedSetupCard'
-export { default as ReleasePosterImage } from './ReleasePosterImage'
-export { default as ReleaseBriefly } from './ReleaseBriefly'
-export { default as ReleaseDetails } from './ReleaseDetails'
+import { DatabaseTypes } from '@maxqwars/xconn'
+import styles from './index.module.css'
+
+interface IReleaseDetailsProps {
+  release: DatabaseTypes.ITitle
+}
+
+const ReleaseDetails = (props: IReleaseDetailsProps) => {
+  const { release } = props
+
+  return (
+    <div className={styles['release-details']}>
+      <div className={styles['release-details__box']}>{release.description}</div>
+    </div>
+  )
+}
+
+export default ReleaseDetails
