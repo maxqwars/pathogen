@@ -29,6 +29,11 @@
   width: inherit;
 }
 
+.slide__illustration_image {
+  min-height: 72px;
+  min-width: 72px;
+}
+
 .slide__illustration {
   /* background: red; */
 

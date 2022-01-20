@@ -25,37 +25,17 @@ import {
   IonBackButton,
   IonButtons
 } from '@ionic/react'
-import { DatabaseTypes } from '@maxqwars/xconn'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import { ReleaseView } from '../../containers'
-import { useAppSelector } from '../../redux/hooks'
-import DatabaseService from '../../services/DatabaseService'
 
 interface IReleasePageProps {}
 
 const ReleasePage = (props: IReleasePageProps) => {
-  const [release, setRelease] = useState<DatabaseTypes.ITitle | null>(null)
-  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
   const { t } = useTranslation()
   const params = useParams<{ code: string }>()
-
-  useEffect(() => {
-    DatabaseService.init(apiUrl as string)
-
-    if (release === null) {
-      DatabaseService.getTitle(params['code']).then(res => {
-        setRelease(res)
-      })
-    } else {
-      if (release.code !== params['code']) {
-        DatabaseService.getTitle(params['code']).then(res => {
-          setRelease(res)
-        })
-      }
-    }
-  }, [apiUrl, params, release])
+  const releaseCode = params['code'] || null
 
   return (
     <IonPage>
@@ -66,10 +46,12 @@ const ReleasePage = (props: IReleasePageProps) => {
           </IonButtons>
           <IonTitle>{t('release-page-header-label')}</IonTitle>
         </IonToolbar>
-        {release === null ? <IonProgressBar type="indeterminate" /> : null}
+        {releaseCode === null ? <IonProgressBar type="indeterminate" /> : null}
       </IonHeader>
 
-      <IonContent fullscreen>{release !== null ? <ReleaseView release={release} /> : null}</IonContent>
+      <IonContent fullscreen>
+        {releaseCode !== null ? <ReleaseView releaseCode={params['code'] as string} /> : null}
+      </IonContent>
     </IonPage>
   )
 }

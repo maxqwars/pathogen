@@ -21,7 +21,8 @@ import '@ionic/react/css/ionic-swiper.css'
 import { IonButton, IonCard, IonContent, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonText } from '@ionic/react'
 import React, { useCallback, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { arrowForward, checkmark, qrCode, ribbon, settings, shapes } from 'ionicons/icons'
+import { arrowForward, checkmark, qrCode, ribbon, settings } from 'ionicons/icons'
+import AppLogoImage from '../../assets/pathogen.svg'
 
 import AppConfigService from '../../services/AppConfigService'
 import AppGuardService from '../../services/AppGuardService'
@@ -53,7 +54,13 @@ const WelcomePage = (props: IWelcomePageProps) => {
           {/* About app */}
           <SwiperSlide className={styles['slide']}>
             <div className={styles['slide__illustration']}>
-              <IonIcon icon={shapes} className={styles['slide__illustration__icon']} />
+              <img
+                src={AppLogoImage}
+                className={styles['slide__illustration_image']}
+                alt=""
+                height="512px"
+                width="512px"
+              />
             </div>
 
             <div className={styles['slide__content']}>
@@ -89,7 +96,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
             <div className={styles['slide__content']}>
               <h1>{t('welcome-setup-app-head-text')}</h1>
               <IonText>{t('welcome-setup-app-text')}</IonText>
-              <IonCard>
+              {/* <IonCard>
                 <IonItem>
                   <IonInput
                     placeholder={t('api-server-control-placeholder')}
@@ -102,7 +109,7 @@ const WelcomePage = (props: IWelcomePageProps) => {
                     <IonIcon icon={qrCode} />
                   </IonButton>
                 </IonItem>
-              </IonCard>
+              </IonCard> */}
               <div>
                 <IonButton>
                   <IonLabel>{t('next-label')}</IonLabel>

@@ -17,24 +17,42 @@
 
 import { IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonTitle } from '@ionic/react'
 import { DatabaseTypes } from '@maxqwars/xconn'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useAppSelector } from '../../redux/hooks'
+import DatabaseService from '../../services/DatabaseService'
+import styles from './index.module.css'
 
 interface IReleaseViewProps {
-  release: DatabaseTypes.ITitle
+  releaseCode: string
 }
 
 const ReleaseView = (props: IReleaseViewProps) => {
-  const { release } = props
+  const [releaseData, setReleaseData] = useState<null | DatabaseTypes.ITitle>()
+  const { releaseCode } = props
+  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+
+  useEffect(() => {
+    DatabaseService.init(apiUrl as string)
+    DatabaseService.getTitle(releaseCode).then(data => setReleaseData(data))
+  }, [apiUrl, releaseCode])
+
+  console.log(releaseData)
 
   return (
     <IonGrid>
       {/* Info */}
       <IonRow>
-        <IonCol></IonCol>
         <IonCol>
           <IonCard>
             <IonCardHeader>
-              <IonTitle></IonTitle>
+              <IonTitle>Data</IonTitle>
+            </IonCardHeader>
+          </IonCard>
+        </IonCol>
+        <IonCol>
+          <IonCard>
+            <IonCardHeader>
+              <IonTitle>Data</IonTitle>
             </IonCardHeader>
           </IonCard>
         </IonCol>

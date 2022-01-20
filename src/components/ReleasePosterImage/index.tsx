@@ -34,7 +34,8 @@ const ReleasePosterImage = (props: IReleasePosterImageProps) => {
 
   useEffect(() => {
     DatabaseService.init(apiUrl)
-    DatabaseService.getPosterImage(code).then(image => setImage(image))
+    // DatabaseService.getPosterImage(code).then(image => setImage(image))
+    setImage(null)
   }, [code, apiUrl])
 
   return (

@@ -26,14 +26,18 @@ class DatabaseService extends CoreApiService {
     this._database = new Database(this._apiUrl)
   }
 
+  async getPosterImageAlt(code: string): Promise<string | null> {
+    throw Error('Not implemented!')
+  }
+
   async getPosterImage(code: string): Promise<string | null> {
     if (this._database !== null) {
       const release = await this._database.getTitle({
         code,
         include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
-        filter: ['poster']
+        filter: ['posters']
       })
-      return release?.poster?.rawBase64File as string
+      return release?.poster?.medium?.rawBase64File as string
     }
 
     return null
