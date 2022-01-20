@@ -18,22 +18,22 @@
 import { IonGrid, IonRow, IonCol } from '@ionic/react'
 
 interface IReleaseViewProps {
-  leftColumn: React.ReactNode
-  rightColumn: React.ReactNode
+  narrowColumn: React.ReactNode
+  wideColumn: React.ReactNode
   playerVideoView?: React.ReactNode
   playerEpisodeSelector?: React.ReactNode
 }
 
 const ReleaseViewLayout = (props: IReleaseViewProps) => {
-  const { leftColumn, rightColumn, playerVideoView, playerEpisodeSelector } = props
+  const { narrowColumn, wideColumn, playerVideoView, playerEpisodeSelector } = props
   return (
     <IonGrid>
       <IonRow>
         <IonCol sizeXs="12" sizeXl="2" offsetXl="3">
-          {leftColumn}
+          {narrowColumn}
         </IonCol>
         <IonCol sizeXs="12" sizeXl="4">
-          {rightColumn}
+          {wideColumn}
         </IonCol>
       </IonRow>
       <IonRow>

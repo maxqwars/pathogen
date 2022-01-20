@@ -18,7 +18,7 @@
 import { IonGrid, IonRow, IonCol, IonCard, IonChip, IonIcon, IonText } from '@ionic/react'
 import { DatabaseTypes } from '@maxqwars/xconn'
 import React, { useEffect, useState } from 'react'
-import { ReleasePosterImage } from '../../components'
+import { ReleaseBriefly, ReleasePosterImage } from '../../components'
 import { useAppSelector } from '../../redux/hooks'
 import DatabaseService from '../../services/DatabaseService'
 import styles from './index.module.css'
@@ -45,8 +45,8 @@ const ReleaseView = (props: IReleaseViewProps) => {
 
   return (
     <ReleaseViewLayout
-      leftColumn={<h1>Left column</h1>}
-      rightColumn={<h2>Right column</h2>}
+      narrowColumn={<ReleaseBriefly release={releaseData as DatabaseTypes.ITitle} />}
+      wideColumn={<h2>Right column</h2>}
       playerVideoView={<h1>VideoView</h1>}
       playerEpisodeSelector={<h2>Episode selector</h2>}
     />
