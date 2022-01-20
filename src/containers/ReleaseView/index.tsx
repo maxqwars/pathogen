@@ -30,7 +30,7 @@ interface IReleaseViewProps {
 }
 
 const ReleaseView = (props: IReleaseViewProps) => {
-  const [releaseData, setReleaseData] = useState<null | DatabaseTypes.ITitle>()
+  const [releaseData, setReleaseData] = useState<null | DatabaseTypes.ITitle>(null)
   const { releaseCode } = props
   const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
 
@@ -39,13 +39,15 @@ const ReleaseView = (props: IReleaseViewProps) => {
     DatabaseService.getTitle(releaseCode).then(data => setReleaseData(data))
   }, [apiUrl, releaseCode])
 
+  console.log(releaseData)
+
   if (releaseData === null) {
     return <div>none</div>
   }
 
   return (
     <ReleaseViewLayout
-      narrowColumn={<ReleaseBriefly release={releaseData as DatabaseTypes.ITitle} />}
+      narrowColumn={<ReleaseBriefly release={releaseData} />}
       wideColumn={<h2>Right column</h2>}
       playerVideoView={<h1>VideoView</h1>}
       playerEpisodeSelector={<h2>Episode selector</h2>}

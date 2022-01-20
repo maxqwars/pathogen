@@ -43,7 +43,7 @@ const ReleaseBriefly = (props: IReleaseBrieflyProps) => {
       </div>
 
       <div className={styles['release-briefly__genres-container']}>
-        {release.genres !== null ? release.genres.map(genre => <IonChip>{genre}</IonChip>) : null}
+        {release.genres !== null ? release?.genres.map(genre => <IonChip key={genre}>{genre}</IonChip>) : null}
       </div>
     </div>
   )
