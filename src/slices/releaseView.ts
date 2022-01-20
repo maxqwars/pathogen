@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,22 +15,25 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import appConfig from '../slices/appConfig'
-import appGuard from '../slices/appGuard'
-import releaseView from '../slices/releaseView'
-import { configureStore } from '@reduxjs/toolkit'
-import serverUpdates from '../slices/serverUpdates'
+import { DatabaseTypes } from '@maxqwars/xconn'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const store = configureStore({
-  reducer: {
-    appConfig,
-    appGuard,
-    serverUpdates,
-    releaseView
-  },
-  devTools: process.env.NODE_ENV !== 'production'
+interface IReleaseView {
+  releaseData: DatabaseTypes.ITitle | null
+}
+
+const initialState = {
+  releaseData: null
+} as IReleaseView
+
+const releaseView = createSlice({
+  name: 'release-view',
+  initialState,
+  reducers: {
+    setRelease(state, action: PayloadAction<DatabaseTypes.ITitle | null>) {
+      state.releaseData = action.payload
+    }
+  }
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export default store
+export default releaseView.reducer
