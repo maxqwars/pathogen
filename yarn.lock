@@ -1897,8 +1897,8 @@
     chalk "^4.0.0"
 
 "@maxqwars/xconn@https://github.com/maxqwars/xconnect":
-  version "3.0.1"
-  resolved "https://github.com/maxqwars/xconnect#15c4ddc4c46194342fa2630e88a984c4fbc51ec6"
+  version "3.0.3"
+  resolved "https://github.com/maxqwars/xconnect#94eccf1f78cf74779c769cef9e4714f290ed1f1e"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

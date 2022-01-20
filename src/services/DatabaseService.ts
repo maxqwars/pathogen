@@ -37,7 +37,7 @@ class DatabaseService extends CoreApiService {
         include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
         filter: ['posters']
       })
-      return release?.poster?.medium?.rawBase64File as string
+      return release?.posters?.medium?.rawBase64File as string
     }
 
     return null
