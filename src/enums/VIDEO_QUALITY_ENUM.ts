@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,24 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import appConfig from '../slices/appConfig'
-import appGuard from '../slices/appGuard'
-import releaseView from '../slices/releaseView'
-import { configureStore } from '@reduxjs/toolkit'
-import serverUpdates from '../slices/serverUpdates'
-import videoPlayer from '../slices/videoPlayer'
-
-const store = configureStore({
-  reducer: {
-    appConfig,
-    appGuard,
-    serverUpdates,
-    releaseView,
-    videoPlayer
-  },
-  devTools: process.env.NODE_ENV !== 'production'
-})
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export default store
+export enum VIDEO_QUALITY_ENUM {
+  FULL_HD = 'fhd',
+  HD = 'hd',
+  SD = 'sd'
+}
