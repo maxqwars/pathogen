@@ -17,9 +17,13 @@
 
 import CoreApiService from './CoreApiService'
 import { Database, DatabaseTypes, INCLUDE_RESOURCE_ENUM } from '@maxqwars/xconn'
+import { Storage } from '@capacitor/storage'
 
+/* TODO */
+// TODO: Add cache
 class DatabaseService extends CoreApiService {
   private _database: Database | null = null
+  private readonly _RELEASE_CACHE_KEY_PREFIX = 'RELEASE_CACHE_'
 
   init(url: string) {
     this._apiUrl = url
@@ -43,6 +47,39 @@ class DatabaseService extends CoreApiService {
     return null
   }
 
+  async getRelease(code: string): Promise<DatabaseTypes.ITitle | null> {
+    // ! If XDatabase not init, return null
+    if (this._database === null) {
+      return null
+    }
+
+    const rawCache = (await (await Storage.get({ key: this._RELEASE_CACHE_KEY_PREFIX + code })).value) as string | null
+    const cacheData: DatabaseTypes.ITitle | null =
+      rawCache === null ? null : (JSON.parse(rawCache) as DatabaseTypes.ITitle)
+
+    // ? Check cache results
+    if (cacheData === null) {
+      const release = await this._database.getTitle({ code, include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER] })
+      if (release !== null) {
+        await Storage.set({ key: this._RELEASE_CACHE_KEY_PREFIX + code, value: JSON.stringify(release) })
+        return release
+      }
+    }
+
+    // try {
+    //   const updated = await this._database.getTitle({ code, filter: ['updated'] })
+    //   if (updated !== null && cacheData !== null && cacheData.updated !== null) {
+    //     if (((updated?.updated as unknown as number) > cacheData.updated) as unknown as number) {
+    //       console.log('Cache require update')
+    //     }
+    //   }
+    // } catch {
+    //   return cacheData
+    // }
+
+    return cacheData
+  }
+
   async getTitle(code: string): Promise<DatabaseTypes.ITitle | null> {
     if (this._database === null) {
       return null
@@ -54,6 +91,8 @@ class DatabaseService extends CoreApiService {
       return null
     }
   }
+
+  // getTitle = this.getRelease
 }
 
 export default new DatabaseService()
