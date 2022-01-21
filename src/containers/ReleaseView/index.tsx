@@ -59,24 +59,24 @@ const ReleaseView = (props: IReleaseViewProps) => {
             <Skeleton height={280} />
           </>
         }
-        playerVideoView={
-          <>
-            <Skeleton height={260} />
-          </>
-        }
-        playerEpisodeSelector={
-          <>
-            <Skeleton height={35} />
-            <br />
-            <Skeleton height={25} />
-            <br />
-            <Skeleton height={25} />
-            <br />
-            <Skeleton height={25} />
-            <br />
-            <Skeleton height={25} />
-          </>
-        }
+        // playerVideoView={
+        //   <>
+        //     <Skeleton height={260} />
+        //   </>
+        // }
+        // playerEpisodeSelector={
+        //   <>
+        //     <Skeleton height={35} />
+        //     <br />
+        //     <Skeleton height={25} />
+        //     <br />
+        //     <Skeleton height={25} />
+        //     <br />
+        //     <Skeleton height={25} />
+        //     <br />
+        //     <Skeleton height={25} />
+        //   </>
+        // }
       />
     )
   }
@@ -85,8 +85,6 @@ const ReleaseView = (props: IReleaseViewProps) => {
     <ReleaseViewLayout
       narrowColumn={<ReleaseBriefly release={releaseData} />}
       wideColumn={<ReleaseDetails release={releaseData} />}
-      playerVideoView={<h1>VideoView</h1>}
-      playerEpisodeSelector={<h2>Episode selector</h2>}
     />
   )
 }

@@ -16,3 +16,4 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 export { default as ReleaseViewLayout } from './ReleaseViewLayout'
+export { default as VideoPlayerLayout } from './VideoPlayerLayout'

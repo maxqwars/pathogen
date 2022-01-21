@@ -17,13 +17,14 @@
 
 import { IonGrid, IonRow, IonCol } from '@ionic/react'
 
-interface IReleaseViewProps {
+interface IVideoPlayerLayoutProps {
   narrowColumn: React.ReactNode
   wideColumn: React.ReactNode
 }
 
-const ReleaseViewLayout = (props: IReleaseViewProps) => {
+const VideoPlayerLayout = (props: IVideoPlayerLayoutProps) => {
   const { narrowColumn, wideColumn } = props
+
   return (
     <IonGrid>
       <IonRow className="ion-align-self-center">
@@ -31,8 +32,22 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
           sizeXs="12"
           sizeSm="12"
           sizeMd="4"
-          sizeLg="4"
+          sizeLg="3"
           sizeXl="2"
+          offsetXs="0"
+          offsetSm="0"
+          offsetMd="0"
+          offsetLg="0"
+          offsetXl="0"
+        >
+          {wideColumn}
+        </IonCol>
+        <IonCol
+          sizeXs="12"
+          sizeSm="12"
+          sizeMd="6"
+          sizeLg="7"
+          sizeXl="4"
           offsetXs="0"
           offsetSm="0"
           offsetMd="1"
@@ -41,23 +56,9 @@ const ReleaseViewLayout = (props: IReleaseViewProps) => {
         >
           {narrowColumn}
         </IonCol>
-        <IonCol
-          sizeXs="12"
-          sizeSm="12"
-          sizeMd="6"
-          sizeLg="6"
-          sizeXl="4"
-          offsetXs="0"
-          offsetSm="0"
-          offsetMd=""
-          offsetLg=""
-          offsetXl=""
-        >
-          {wideColumn}
-        </IonCol>
       </IonRow>
     </IonGrid>
   )
 }
 
-export default ReleaseViewLayout
+export default VideoPlayerLayout
