@@ -24,5 +24,14 @@
   "app-need-setup-action-text": "Перейти к настройкам",
   "go-to-label": "Перейти",
   "complete-label": "Завершить",
-  "release-page-header-label": "Релиз"
+  "release-page-header-label": "Релиз",
+  "saves-label": "Сохранений",
+  "type-label": "Тип",
+  "episodes-label": "Серий",
+  "year-label": "Год",
+  "season-label": "Сезон",
+  "season-autumn-label": "Осень",
+  "season-spring-label": "Весна",
+  "season-summer-label": "Лето",
+  "season-winter-label": "Зима"
 }
