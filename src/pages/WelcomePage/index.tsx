@@ -18,13 +18,12 @@
 import '../../../node_modules/swiper/swiper.min.css'
 import '@ionic/react/css/ionic-swiper.css'
 
-import { IonButton, IonCard, IonContent, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonText } from '@ionic/react'
-import React, { useCallback, useState } from 'react'
+import { IonButton, IonContent, IonIcon, IonLabel, IonPage, IonText } from '@ionic/react'
+import React, { useCallback } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { arrowForward, checkmark, qrCode, ribbon, settings } from 'ionicons/icons'
+import { arrowForward, checkmark, ribbon, settings } from 'ionicons/icons'
 import AppLogoImage from '../../assets/pathogen.svg'
 
-import AppConfigService from '../../services/AppConfigService'
 import AppGuardService from '../../services/AppGuardService'
 import styles from './index.module.css'
 import { useHistory } from 'react-router-dom'
@@ -35,11 +34,11 @@ interface IWelcomePageProps {}
 const WelcomePage = (props: IWelcomePageProps) => {
   const { t } = useTranslation()
   const history = useHistory()
-  const [inputValue, setInputValue] = useState('')
+  // const [inputValue, setInputValue] = useState('')
 
-  const setApiServer = useCallback(async () => {
-    AppConfigService.setApiUrl(inputValue)
-  }, [inputValue])
+  // const setApiServer = useCallback(async () => {
+  //   AppConfigService.setApiUrl(inputValue)
+  // }, [inputValue])
 
   const completeSetup = useCallback(async () => {
     await AppGuardService.setIsFirstLaunch(false)

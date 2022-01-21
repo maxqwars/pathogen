@@ -23,6 +23,8 @@ import { ReleasePosterImage } from '../../components'
 import { setUpdates } from '../../slices/serverUpdates'
 import styles from './index.module.css'
 import { useHistory } from 'react-router'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface IServerUpdatesProps {}
 
@@ -41,19 +43,26 @@ const ServerUpdates = (props: IServerUpdatesProps) => {
     FeedService.getUpdates().then(updates => dispatch(setUpdates(updates)))
   }, [apiUrl, dispatch])
 
-  if (updates !== null) {
+  if (updates === null) {
     return (
       <div className={styles['box']}>
-        {updates.map(release => (
-          <div onClick={() => onCardClick(release.code as string)} key={release.code}>
-            <ReleasePosterImage apiUrl={apiUrl as string} className={styles['image']} code={release.code as string} />
-          </div>
-        ))}
+        <Skeleton width={120} height={200} />
+        <Skeleton width={120} height={200} />
+        <Skeleton width={120} height={200} />
+        <Skeleton width={120} height={200} />
       </div>
     )
   }
 
-  return null
+  return (
+    <div className={styles['box']}>
+      {updates.map(release => (
+        <div onClick={() => onCardClick(release.code as string)} key={release.code}>
+          <ReleasePosterImage apiUrl={apiUrl as string} className={styles['image']} code={release.code as string} />
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default ServerUpdates
