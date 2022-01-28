@@ -37,25 +37,19 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                  Init app                                  */
+/*                                 Prepare app                                */
 /* -------------------------------------------------------------------------- */
 ;(async () => {
-  // ! Set app not ready state
   store.dispatch(setAppReady(false))
 
-  // ! Load required values
-  const url = await AppConfigService.getApiUrl()
+  const apiServerUrl = await AppConfigService.getApiUrl()
   const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
 
-  // ! Set required values
-  store.dispatch(setApiUrl(url === null ? '' : url))
+  store.dispatch(setApiUrl(apiServerUrl === null ? '' : null))
   store.dispatch(setIsFirstLaunch(isFirstLaunch))
-
-  // ! Make app ready for work
   store.dispatch(setAppReady(true))
 
-  // ! Remove lang (fix later)
-  localStorage.removeItem('i18nextLng')
+  localStorage.removeItem('118nextLng')
 })()
 
 /* -------------------------------------------------------------------------- */
