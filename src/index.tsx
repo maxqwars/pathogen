@@ -45,7 +45,7 @@ if (process.env.NODE_ENV !== 'production') {
   const apiServerUrl = await AppConfigService.getApiUrl()
   const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
 
-  store.dispatch(setApiUrl(apiServerUrl === null ? '' : null))
+  store.dispatch(setApiUrl(apiServerUrl !== null ? apiServerUrl : null))
   store.dispatch(setIsFirstLaunch(isFirstLaunch))
   store.dispatch(setAppReady(true))
 
