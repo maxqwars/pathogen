@@ -30,11 +30,10 @@ import '@ionic/react/css/flex-utils.css'
 import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
-
 /* Import i18n */
 import './i18n'
 
-import { BookmarksPage, HomePage, SearchPage, SettingsPage, SetupPage, WelcomePage, ReleasePage } from './pages'
+import { BookmarksPage, HomePage, ReleasePage, SearchPage, SettingsPage, SetupPage, WelcomePage } from './pages'
 import {
   IonApp,
   IonIcon,
@@ -60,31 +59,20 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('NODE_ENV_VARIABLES', process.env)
 }
 
-/* -------------------------------------------------------------------------- */
-/*                            Configure Ionic React                           */
-/* -------------------------------------------------------------------------- */
+/* ---------------------------- Setup Ionic React --------------------------- */
 setupIonicReact()
 
-/* -------------------------------------------------------------------------- */
-/*                                 Application                                */
-/* -------------------------------------------------------------------------- */
 const App: React.FC = () => {
   const { t } = useTranslation()
+  const [present, dismiss] = useIonLoading()
   const appReady = useAppSelector(state => state.appGuard.appReady)
   const isFirstLaunch = useAppSelector(state => state.appGuard.isFirstLaunch)
-  const [present, dismiss] = useIonLoading()
 
   useEffect(() => {
-    if (appReady) {
-      dismiss()
-    } else {
-      present()
-    }
-  })
+    appReady ? dismiss() : present()
+  }, [appReady, dismiss, present])
 
-  /*
-   * If app not ready, show blank page
-   */
+  // If app not ready, return empty page
   if (!appReady) {
     return (
       <IonApp>
@@ -93,9 +81,7 @@ const App: React.FC = () => {
     )
   }
 
-  /*
-   * If app ready and not configured, show welcome page
-   */
+  // If app ready and this launch is fist launch, show welcome page
   if (appReady && isFirstLaunch) {
     return (
       <IonApp>
@@ -109,9 +95,7 @@ const App: React.FC = () => {
     )
   }
 
-  /*
-   * Run app in `normal` mode
-   */
+  // Run app in normal mode
   return (
     <IonApp>
       <IonReactRouter>
