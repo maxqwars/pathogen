@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,13 +15,27 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as BookmarksWidget } from './BookmarksWidget'
-export { default as APIServerControl } from './APIServerControl'
-export { default as AboutApp } from './AboutApp'
-export { default as SettingsSection } from './SettingsSection'
-export { default as AppNeedSetupCard } from './AppNeedSetupCard'
-export { default as ReleasePosterImage } from './ReleasePosterImage'
-export { default as ReleaseBriefly } from './ReleaseBriefly'
-export { default as ReleaseDetails } from './ReleaseDetails'
-export { default as AppLinks } from './AppLinks'
-export { default as AppComponentsList } from './AppComponentsList'
+const APP_LINKS_LIST = [
+  {
+    label: 'GitHub',
+    url: 'https://github.com/surrogate-logic/pathogen'
+  },
+  {
+    label: 'Telegram',
+    url: 'https://t.me/surrogate_logic'
+  },
+  {
+    label: 'VK Community',
+    url: 'https://vk.com/surrogate_logic'
+  },
+  {
+    label: 'Developer',
+    url: 'https://maxqwars.github.io/'
+  },
+  {
+    label: 'Twitter (news)',
+    url: 'https://twitter.com/MaxQwars'
+  }
+]
+
+export default APP_LINKS_LIST
