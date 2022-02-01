@@ -15,28 +15,32 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { DatabaseTypes } from '@maxqwars/xconn'
-import React, { useEffect, useState } from 'react'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+import React, { useEffect } from 'react'
 import { ReleaseBriefly, ReleaseDetails } from '../../components'
-import { useAppSelector } from '../../redux/hooks'
+
 import DatabaseService from '../../services/DatabaseService'
 import { ReleaseViewLayout } from '../../layout'
 import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { setRelease } from '../../slices/releaseView'
+import { useAppSelector } from '../../redux/hooks'
+import { useDispatch } from 'react-redux'
 
 interface IReleaseViewProps {
   releaseCode: string
 }
 
 const ReleaseView = (props: IReleaseViewProps) => {
-  const [releaseData, setReleaseData] = useState<null | DatabaseTypes.ITitle>(null)
   const { releaseCode } = props
+  const releaseData = useAppSelector(state => state.releaseView.releaseData)
   const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     DatabaseService.init(apiUrl as string)
-    DatabaseService.getTitle(releaseCode).then(data => setReleaseData(data))
-  }, [apiUrl, releaseCode])
+    DatabaseService.getTitle(releaseCode).then(data => dispatch(setRelease(data)))
+  }, [apiUrl, releaseCode, dispatch])
 
   if (releaseData === null) {
     return (
@@ -59,24 +63,6 @@ const ReleaseView = (props: IReleaseViewProps) => {
             <Skeleton height={280} />
           </>
         }
-        // playerVideoView={
-        //   <>
-        //     <Skeleton height={260} />
-        //   </>
-        // }
-        // playerEpisodeSelector={
-        //   <>
-        //     <Skeleton height={35} />
-        //     <br />
-        //     <Skeleton height={25} />
-        //     <br />
-        //     <Skeleton height={25} />
-        //     <br />
-        //     <Skeleton height={25} />
-        //     <br />
-        //     <Skeleton height={25} />
-        //   </>
-        // }
       />
     )
   }

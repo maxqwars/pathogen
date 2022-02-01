@@ -37,3 +37,4 @@ const releaseView = createSlice({
 })
 
 export default releaseView.reducer
+export const { setRelease } = releaseView.actions
