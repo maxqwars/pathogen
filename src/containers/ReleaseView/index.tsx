@@ -47,12 +47,7 @@ const ReleaseView = (props: IReleaseViewProps) => {
     // Init service
     DatabaseService.init(apiUrl as string)
 
-    // Logs
-    // console.log('CODE', code);
-    // console.log('R_DATA', releaseData);
-    // console.log('API_URL', apiUrl)
-
-    // Change selected release code
+    // Update release code
     if (code !== releaseCode) {
       dispatch(setCode(releaseCode))
       dispatch(setRelease(null))
@@ -66,17 +61,6 @@ const ReleaseView = (props: IReleaseViewProps) => {
           console.log(e)
         })
     }
-
-    // if (releaseCode !== code) {
-
-    //   // Reset state
-    //   dispatch(setCode(releaseCode))
-    //   dispatch(setRelease(null))
-
-    //   // Load release
-    //   DatabaseService.init(apiUrl as string)
-    //   DatabaseService.getTitle(code || releaseCode).then(data => dispatch(setRelease(data)))
-    // }
   }, [apiUrl, releaseCode, dispatch, code, releaseData])
 
   if (releaseData === null || releaseCode !== code) {
