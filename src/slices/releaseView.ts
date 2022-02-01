@@ -15,26 +15,44 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { DatabaseTypes } from '@maxqwars/xconn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { DatabaseTypes } from '@maxqwars/xconn'
+
+/* -------------------------------------------------------------------------- */
+/*                               State interface                              */
+/* -------------------------------------------------------------------------- */
 interface IReleaseView {
   releaseData: DatabaseTypes.ITitle | null
+  code: string | null
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                Initial state                               */
+/* -------------------------------------------------------------------------- */
 const initialState = {
-  releaseData: null
+  releaseData: null,
+  code: null
 } as IReleaseView
 
+/* -------------------------------------------------------------------------- */
+/*                                    Slice                                   */
+/* -------------------------------------------------------------------------- */
 const releaseView = createSlice({
   name: 'release-view',
   initialState,
   reducers: {
     setRelease(state, action: PayloadAction<DatabaseTypes.ITitle | null>) {
       state.releaseData = action.payload
+    },
+    setCode(state, action: PayloadAction<string | null>) {
+      state.code = action.payload
     }
   }
 })
 
+/* -------------------------------------------------------------------------- */
+/*                                   Exports                                  */
+/* -------------------------------------------------------------------------- */
 export default releaseView.reducer
-export const { setRelease } = releaseView.actions
+export const { setRelease, setCode } = releaseView.actions
