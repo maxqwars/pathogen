@@ -19,11 +19,11 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 import React, { useEffect } from 'react'
 import { ReleaseBriefly, ReleaseDetails } from '../../components'
+import { setCode, setRelease } from '../../slices/releaseView'
 
 import DatabaseService from '../../services/DatabaseService'
 import { ReleaseViewLayout } from '../../layout'
 import Skeleton from 'react-loading-skeleton'
-import { setRelease } from '../../slices/releaseView'
 import { useAppSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
 
@@ -33,16 +33,53 @@ interface IReleaseViewProps {
 
 const ReleaseView = (props: IReleaseViewProps) => {
   const { releaseCode } = props
+
+  /* Selectors */
+  const code = useAppSelector(state => state.releaseView.code)
   const releaseData = useAppSelector(state => state.releaseView.releaseData)
   const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+
+  /* Dispatch */
   const dispatch = useDispatch()
 
+  /* Effect */
   useEffect(() => {
+    // Init service
     DatabaseService.init(apiUrl as string)
-    DatabaseService.getTitle(releaseCode).then(data => dispatch(setRelease(data)))
-  }, [apiUrl, releaseCode, dispatch])
 
-  if (releaseData === null) {
+    // Logs
+    // console.log('CODE', code);
+    // console.log('R_DATA', releaseData);
+    // console.log('API_URL', apiUrl)
+
+    // Change selected release code
+    if (code !== releaseCode) {
+      dispatch(setCode(releaseCode))
+      dispatch(setRelease(null))
+    }
+
+    // Fetch release data
+    if (code !== null) {
+      DatabaseService.getTitle(code)
+        .then(data => dispatch(setRelease(data)))
+        .catch(e => {
+          console.log(e)
+        })
+    }
+
+    // if (releaseCode !== code) {
+
+    //   // Reset state
+    //   dispatch(setCode(releaseCode))
+    //   dispatch(setRelease(null))
+
+    //   // Load release
+    //   DatabaseService.init(apiUrl as string)
+    //   DatabaseService.getTitle(code || releaseCode).then(data => dispatch(setRelease(data)))
+    // }
+  }, [apiUrl, releaseCode, dispatch, code, releaseData])
+
+  if (releaseData === null || releaseCode !== code) {
     return (
       <ReleaseViewLayout
         narrowColumn={
