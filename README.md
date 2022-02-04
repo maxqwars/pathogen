@@ -18,7 +18,7 @@
 ## Features
 
 - One codebase. Any platform.
-- Write on TypeScript + React + Ionic Framework
+- Written on TypeScript + React + Ionic Framework
 
 ## Planned
 
