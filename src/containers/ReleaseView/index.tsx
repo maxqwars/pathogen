@@ -44,17 +44,14 @@ const ReleaseView = (props: IReleaseViewProps) => {
 
   /* Effect */
   useEffect(() => {
-    // Init service
     DatabaseService.init(apiUrl as string)
 
-    // Update release code
     if (code !== releaseCode) {
       dispatch(setCode(releaseCode))
       dispatch(setRelease(null))
     }
 
-    // Fetch release data
-    if (code !== null) {
+    if (code !== null && code !== releaseCode) {
       DatabaseService.getTitle(code)
         .then(data => dispatch(setRelease(data)))
         .catch(e => {
