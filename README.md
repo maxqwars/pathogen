@@ -1,16 +1,29 @@
-# Pathogen
+<h1 align="center">
+    <br>
+    <img src=".github/pathogen-logo.svg" height="128px" width="128px" alt="Pathogen logo">
+</h1>
 
-Free and Open Source app for Anime watching, written on React
+<h4 align="center">Open Source <b>AniLibria</b> client</h4>
 
-<!-- ### Get Pathogen:
+<p align="center">
+  Pathogen - Open Source app for search, sort and view anime
+</p>
 
-| Platform           | Link                                                                                                                                                |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Web                | [Firebase deployment](https://github.com/maxqwars/xconnect)                                                                                         |
-| Android            | [FDroid](https://github.com/maxqwars/xconnect) \| [Direct apk download](https://github.com/maxqwars/xconnect)                                       |
-| Linux              | [AppImage](https://github.com/maxqwars/xconnect) \| [Snap](https://github.com/maxqwars/xconnect) \| [Flatpak](https://github.com/maxqwars/xconnect) |
-| Windows            | [Microsoft Store](https://github.com/maxqwars/xconnect) \| [Direct archive download](https://github.com/maxqwars/xconnect)                          |
-| macOS, iOS, iPadOS | **Not supported**                                                                                                                                   | -->
+## Get Pathogen
+
+| Android                                                              | Web                                                            |
+| -------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [![Download it for Android](.github/download-it-for-android.svg)](/) | [![Open it with Browser](.github/open-it-with-browser.svg)](/) |
+
+## Features
+
+- One codebase. Any platform.
+- Write on TypeScript + React + Ionic Framework
+
+## Planned
+
+- Synchronization
+- DoH (DNS-over-HTTPS) out of the box
 
 ## 📜 Briefly about the GPLv3 license:
 
@@ -25,13 +38,3 @@ Free and Open Source app for Anime watching, written on React
 9. The software author or license **can not** be held liable for any damages inflicted by the software.
 
 > More information on about the [LICENSE can be found here](/LICENSE)
-
-<!-- ## ⚠️ Useful links:
-
-- [XConnect](https://github.com/maxqwars/xconnect) - Basic library for creating AniLibria REST API clients
-
-- [Pathogen (Russian)](https://maxqwars.github.io/pathogen) - More information about Pathogen
-
-- [Official VK group (Russian)](https://vk.com/neurotoxinapp) - Public page of the Neurotoxin community
-
-- [Contributors guide](https://maxqwars.github.io/pathogen) - Now contribute to Pathogen -->
