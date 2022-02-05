@@ -33,7 +33,7 @@ import './theme/variables.css'
 /* Import i18n */
 import './i18n'
 
-import { BookmarksPage, HomePage, ReleasePage, SearchPage, SettingsPage, SetupPage, WelcomePage } from './pages'
+import { BookmarksPage, HomePage, ReleasePage, SearchPage, SettingsPage, SetupPage, WelcomePageAlt } from './pages'
 import {
   IonApp,
   IonIcon,
@@ -87,8 +87,8 @@ const App: React.FC = () => {
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet>
-            <Route path="/" component={WelcomePage} />
-            <Route path="/setup:url" component={WelcomePage} />
+            <Route path="/" component={WelcomePageAlt} />
+            <Route path="/setup:url" component={WelcomePageAlt} />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>

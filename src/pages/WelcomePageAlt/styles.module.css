@@ -1,0 +1,113 @@
+/**
+ * Copyright (C) 2022 Maxim "maxqwars" Maximenko
+ * 
+ * This file is part of @maxqwars/pathogen.
+ * 
+ * @maxqwars/pathogen is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * @maxqwars/pathogen is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Import Ionic Theme css */
+@import url('../../theme/variables.css');
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  width: inherit;
+}
+
+.contentContainer {
+  background-color: var(--ion-background-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.containerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.heading {
+  text-decoration: underline;
+  text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  text-align: left;
+  color: var(--ion-text-color);
+  width: inherit;
+  padding: 10px;
+  height: auto;
+  border-radius: 5px;
+  border: 0.09rem solid #bdbdbd;
+  background: #f5f5f5;
+}
+
+.itemActions {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.itemImage {
+  padding: 50px;
+}
+
+/* viewport <= 600px */
+@media (max-width: 600px) {
+  .contentContainer {
+    flex-direction: column;
+    border: none;
+    box-shadow: none;
+    width: inherit;
+    height: inherit;
+    padding: 10px;
+  }
+
+  .containerItem {
+    padding: 10px;
+    height: 300px;
+    width: inherit;
+  }
+}
+
+/* 600px < viewport <= 992px */
+@media (min-width: 600px) and (max-width: 992px) {
+}
+
+/* 992px < viewport <= 1200px */
+@media (min-width: 992px) and (max-width: 1200px) {
+}
+
+/* 1200px < viewport  */
+@media (min-width: 1200px) {
+  .containerItem {
+    height: 500px;
+    width: 500px;
+  }
+
+  .contentContainer {
+    height: 500px;
+    width: 1000px;
+  }
+}
