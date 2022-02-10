@@ -17,20 +17,18 @@
 
 import appConfig from '../slices/appConfig'
 import appGuard from '../slices/appGuard'
-import releaseView from '../slices/releaseView'
 import { configureStore } from '@reduxjs/toolkit'
+import releaseView from '../slices/releaseView'
 import serverUpdates from '../slices/serverUpdates'
-import videoPlayer from '../slices/videoPlayer'
 
 const store = configureStore({
-  reducer: {
-    appConfig,
-    appGuard,
-    serverUpdates,
-    releaseView,
-    videoPlayer
-  },
-  devTools: process.env.NODE_ENV !== 'production'
+	reducer: {
+		appConfig,
+		appGuard,
+		serverUpdates,
+		releaseView,
+	},
+	devTools: process.env.NODE_ENV !== 'production',
 })
 
 export type RootState = ReturnType<typeof store.getState>
