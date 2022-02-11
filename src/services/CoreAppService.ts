@@ -15,20 +15,20 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import CoreAppService from './CoreAppService'
+import { Storage } from '@capacitor/storage'
 
-export default class CoreApiService extends CoreAppService {
-	protected apiUrl: string | null
-
-	constructor() {
-		super()
-		this.apiUrl = null
-	}
-
-	public setApiUrl(url: string): void {
-		this.apiUrl = url
-	}
-
-	// eslint-disable-next-line no-unused-vars, class-methods-use-this
-	public init(url: string): void {}
+/**
+ * The basis for all application services
+ *
+ * @export
+ * @class CoreAppService
+ */
+export default class CoreAppService {
+	/**
+	 * Capacitor storage
+	 *
+	 * @protected
+	 * @memberof CoreAppService
+	 */
+	protected storage = Storage
 }

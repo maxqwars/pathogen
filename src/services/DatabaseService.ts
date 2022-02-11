@@ -15,28 +15,22 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import CoreApiService from './CoreApiService'
 import { Database, DatabaseTypes, INCLUDE_RESOURCE_ENUM } from '@maxqwars/xconn'
-import { Storage } from '@capacitor/storage'
+import CoreApiService from './CoreApiService'
 
-/* TODO */
-// TODO: Add cache
 class DatabaseService extends CoreApiService {
-	private _database: Database | null = null
-	private readonly _RELEASE_CACHE_KEY_PREFIX = 'RELEASE_CACHE_'
+	private database: Database | null = null
+
+	private readonly RELEASE_CACHE_KEY_PREFIX = 'RELEASE_CACHE_'
 
 	init(url: string) {
-		this._apiUrl = url
-		this._database = new Database(this._apiUrl)
-	}
-
-	async getPosterImageAlt(code: string): Promise<string | null> {
-		throw Error('Not implemented!')
+		this.apiUrl = url
+		this.database = new Database(this.apiUrl)
 	}
 
 	async getPosterImage(code: string): Promise<string | null> {
-		if (this._database !== null) {
-			const release = await this._database.getTitle({
+		if (this.database !== null) {
+			const release = await this.database.getTitle({
 				code,
 				include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
 				filter: ['posters'],
@@ -49,25 +43,25 @@ class DatabaseService extends CoreApiService {
 
 	async getRelease(code: string): Promise<DatabaseTypes.ITitle | null> {
 		// ! If XDatabase not init, return null
-		if (this._database === null) {
+		if (this.database === null) {
 			return null
 		}
 
 		const rawCache = (await (
-			await Storage.get({ key: this._RELEASE_CACHE_KEY_PREFIX + code })
+			await this.storage.get({ key: this.RELEASE_CACHE_KEY_PREFIX + code })
 		).value) as string | null
 		const cacheData: DatabaseTypes.ITitle | null =
 			rawCache === null ? null : (JSON.parse(rawCache) as DatabaseTypes.ITitle)
 
 		// ? Check cache results
 		if (cacheData === null) {
-			const release = await this._database.getTitle({
+			const release = await this.database.getTitle({
 				code,
 				include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
 			})
 			if (release !== null) {
-				await Storage.set({
-					key: this._RELEASE_CACHE_KEY_PREFIX + code,
+				await this.storage.set({
+					key: this.RELEASE_CACHE_KEY_PREFIX + code,
 					value: JSON.stringify(release),
 				})
 				return release
@@ -89,18 +83,16 @@ class DatabaseService extends CoreApiService {
 	}
 
 	async getTitle(code: string): Promise<DatabaseTypes.ITitle | null> {
-		if (this._database === null) {
+		if (this.database === null) {
 			return null
 		}
 
 		try {
-			return await this._database.getTitle({ code })
+			return await this.database.getTitle({ code })
 		} catch (e) {
 			return null
 		}
 	}
-
-	// getTitle = this.getRelease
 }
 
 export default new DatabaseService()

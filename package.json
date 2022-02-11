@@ -67,7 +67,7 @@
 		"preversion": "npm run test",
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags",
-		"lint": "eslint . --ext ts --ext tsx --ext js"
+		"lint": "eslint ./src --ext ts --ext tsx --ext js"
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown src/"

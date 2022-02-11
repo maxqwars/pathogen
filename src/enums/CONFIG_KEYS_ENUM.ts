@@ -15,20 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import CoreAppService from './CoreAppService'
-
-export default class CoreApiService extends CoreAppService {
-	protected apiUrl: string | null
-
-	constructor() {
-		super()
-		this.apiUrl = null
-	}
-
-	public setApiUrl(url: string): void {
-		this.apiUrl = url
-	}
-
-	// eslint-disable-next-line no-unused-vars, class-methods-use-this
-	public init(url: string): void {}
+// eslint-disable-next-line import/prefer-default-export, no-shadow
+export enum CONFIG_KEYS_ENUM {
+	// eslint-disable-next-line no-unused-vars
+	API_SERVER_URL = 'API_URL',
 }
