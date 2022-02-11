@@ -15,20 +15,55 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-vars */
+
 import React from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { VideoPlayerLayout } from '../../layout'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 
 type Props = {
-	code: string
+	releaseCode: string
 }
 
 function StreamPlayer(props: Props) {
-	const { code } = props
+	// Props
+	const { releaseCode } = props
+
+	// Dispatch
+	const dispatch = useAppDispatch()
+
+	// Selectors
+	const quality = useAppSelector(state => state.streamPlayer.quality)
+	const code = useAppSelector(state => state.streamPlayer.code)
+	const m3u = useAppSelector(state => state.streamPlayer.m3u)
+	const host = useAppSelector(state => state.streamPlayer.host)
+	const episodeIndex = useAppSelector(state => state.streamPlayer.episodeIndex)
+	const playlist = useAppSelector(state => state.streamPlayer.playlist)
+
+	if (code === null) {
+		return (
+			<VideoPlayerLayout
+				wideColumn={
+					<>
+						<Skeleton height={240} />
+						<br />
+					</>
+				}
+				narrowColumn={
+					<>
+						<Skeleton height={240} />
+						<br />
+					</>
+				}
+			/>
+		)
+	}
 
 	return (
 		<VideoPlayerLayout
-			wideColumn={<div>{code}</div>}
-			narrowColumn={<div>{code}</div>}
+			wideColumn={<div>{releaseCode}</div>}
+			narrowColumn={<div>{releaseCode}</div>}
 		/>
 	)
 }
