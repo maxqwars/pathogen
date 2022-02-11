@@ -18,79 +18,81 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import React, { useEffect } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import { useDispatch } from 'react-redux'
 import { ReleaseBriefly, ReleaseDetails } from '../../components'
-import { setCode, setRelease } from '../../slices/releaseView'
+// import { setCode, setRelease } from '../../slices/releaseView'
+import { setRelease } from '../../slices/releaseView'
 
 import DatabaseService from '../../services/DatabaseService'
 import { ReleaseViewLayout } from '../../layout'
-import Skeleton from 'react-loading-skeleton'
 import { useAppSelector } from '../../redux/hooks'
-import { useDispatch } from 'react-redux'
 
 interface IReleaseViewProps {
-  releaseCode: string
+	releaseCode: string
 }
 
-const ReleaseView = (props: IReleaseViewProps) => {
-  const { releaseCode } = props
+function ReleaseView(props: IReleaseViewProps) {
+	const { releaseCode } = props
 
-  /* Selectors */
-  const code = useAppSelector(state => state.releaseView.code)
-  const releaseData = useAppSelector(state => state.releaseView.releaseData)
-  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+	/* Selectors */
+	const code = useAppSelector(state => state.releaseView.code)
+	const releaseData = useAppSelector(state => state.releaseView.releaseData)
+	const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
 
-  /* Dispatch */
-  const dispatch = useDispatch()
+	/* Dispatch */
+	const dispatch = useDispatch()
 
-  /* Effect */
-  useEffect(() => {
-    DatabaseService.init(apiUrl as string)
+	/* Effect */
+	useEffect(() => {
+		DatabaseService.init(apiUrl as string)
 
-    if (code !== releaseCode) {
-      dispatch(setCode(releaseCode))
-      dispatch(setRelease(null))
-    }
+		// if (code !== releaseCode) {
+		//   dispatch(setCode(releaseCode))
+		//   dispatch(setRelease(null))
+		// }
 
-    if (code !== null && code !== releaseCode) {
-      DatabaseService.getTitle(code)
-        .then(data => dispatch(setRelease(data)))
-        .catch(e => {
-          console.log(e)
-        })
-    }
-  }, [apiUrl, releaseCode, dispatch, code, releaseData])
+		// if (code !== null && code !== releaseCode) {
+		//   DatabaseService.getTitle(code)
+		//     .then(data => dispatch(setRelease(data)))
+		// }
 
-  if (releaseData === null || releaseCode !== code) {
-    return (
-      <ReleaseViewLayout
-        narrowColumn={
-          <>
-            <Skeleton height={240} />
-            <br />
-            <Skeleton height={60} />
-            <br />
-            <Skeleton height={100} />
-          </>
-        }
-        wideColumn={
-          <>
-            <Skeleton height={40} />
-            <br />
-            <Skeleton height={80} />
-            <br />
-            <Skeleton height={280} />
-          </>
-        }
-      />
-    )
-  }
+		DatabaseService.getTitle(code as string).then(data =>
+			dispatch(setRelease(data))
+		)
+	}, [apiUrl, releaseCode, dispatch, code, releaseData])
 
-  return (
-    <ReleaseViewLayout
-      narrowColumn={<ReleaseBriefly release={releaseData} />}
-      wideColumn={<ReleaseDetails release={releaseData} />}
-    />
-  )
+	if (releaseData === null) {
+		return (
+			<ReleaseViewLayout
+				narrowColumn={
+					<>
+						<Skeleton height={240} />
+						<br />
+						<Skeleton height={60} />
+						<br />
+						<Skeleton height={100} />
+					</>
+				}
+				wideColumn={
+					<>
+						<Skeleton height={40} />
+						<br />
+						<Skeleton height={80} />
+						<br />
+						<Skeleton height={280} />
+					</>
+				}
+			/>
+		)
+	}
+
+	return (
+		<ReleaseViewLayout
+			narrowColumn={<ReleaseBriefly release={releaseData} />}
+			wideColumn={<ReleaseDetails release={releaseData} />}
+		/>
+	)
 }
 
 export default ReleaseView

@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Maxim "maxqwars" Maximenko
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //

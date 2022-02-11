@@ -15,87 +15,95 @@
 // You should have received a copy of the GNU General Public License
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+// eslint-disable-next-line import/no-relative-packages
 import '../../../node_modules/swiper/swiper.min.css'
 import '@ionic/react/css/ionic-swiper.css'
 
-import { IonButton, IonContent, IonIcon, IonLabel, IonPage, IonText } from '@ionic/react'
+import {
+	IonButton,
+	IonContent,
+	IonIcon,
+	IonLabel,
+	IonPage,
+	IonText,
+} from '@ionic/react'
 import React, { useCallback } from 'react'
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react'
+// eslint-disable-next-line import/extensions
 import { arrowForward, checkmark, ribbon, settings } from 'ionicons/icons'
+import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import AppLogoImage from '../../assets/pathogen.svg'
 
 import AppGuardService from '../../services/AppGuardService'
 import styles from './index.module.css'
-import { useHistory } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 
-interface IWelcomePageProps {}
+function WelcomePage() {
+	const { t } = useTranslation()
+	const history = useHistory()
+	// const [inputValue, setInputValue] = useState('')
 
-const WelcomePage = (props: IWelcomePageProps) => {
-  const { t } = useTranslation()
-  const history = useHistory()
-  // const [inputValue, setInputValue] = useState('')
+	// const setApiServer = useCallback(async () => {
+	//   AppConfigService.setApiUrl(inputValue)
+	// }, [inputValue])
 
-  // const setApiServer = useCallback(async () => {
-  //   AppConfigService.setApiUrl(inputValue)
-  // }, [inputValue])
+	const completeSetup = useCallback(async () => {
+		await AppGuardService.setIsFirstLaunch(false)
+		history.push('/home')
+		window.location.reload()
+	}, [history])
 
-  const completeSetup = useCallback(async () => {
-    await AppGuardService.setIsFirstLaunch(false)
-    history.push('/home')
-    window.location.reload()
-  }, [history])
+	return (
+		<IonPage>
+			<IonContent>
+				<Swiper style={{ height: '100%', width: '100%' }} keyboard>
+					{/* About app */}
+					<SwiperSlide className={styles.slide}>
+						<div className={styles.slide__illustration}>
+							<img
+								src={AppLogoImage}
+								className={styles.slide__illustration_image}
+								alt=''
+								height='512px'
+								width='512px'
+							/>
+						</div>
 
-  return (
-    <IonPage>
-      <IonContent>
-        <Swiper style={{ height: '100%', width: '100%' }} keyboard={true}>
-          {/* About app */}
-          <SwiperSlide className={styles['slide']}>
-            <div className={styles['slide__illustration']}>
-              <img
-                src={AppLogoImage}
-                className={styles['slide__illustration_image']}
-                alt=""
-                height="512px"
-                width="512px"
-              />
-            </div>
+						<div className={styles.slide__content}>
+							<h1>{t('welcome-about-app-head-text')}</h1>
+							<IonText>{t('welcome-about-app-text')}</IonText>
+							<IonButton>
+								<IonLabel>{t('next-label')}</IonLabel>
+								<IonIcon icon={arrowForward} />
+							</IonButton>
+						</div>
+					</SwiperSlide>
 
-            <div className={styles['slide__content']}>
-              <h1>{t('welcome-about-app-head-text')}</h1>
-              <IonText>{t('welcome-about-app-text')}</IonText>
-              <IonButton>
-                <IonLabel>{t('next-label')}</IonLabel>
-                <IonIcon icon={arrowForward} />
-              </IonButton>
-            </div>
-          </SwiperSlide>
+					{/* License */}
+					<SwiperSlide className={styles.slide}>
+						<div className={styles.slide__illustration}>
+							<IonIcon icon={ribbon} className={styles.slide__illustration__icon} />
+						</div>
+						<div className={styles.slide__content}>
+							<h1>{t('welcome-open-source-head-text')}</h1>
+							<IonText>{t('welcome-open-source-text')}</IonText>
+							<IonButton>
+								<IonLabel>{t('next-label')}</IonLabel>
+								<IonIcon icon={arrowForward} />
+							</IonButton>
+						</div>
+					</SwiperSlide>
 
-          {/* License */}
-          <SwiperSlide className={styles['slide']}>
-            <div className={styles['slide__illustration']}>
-              <IonIcon icon={ribbon} className={styles['slide__illustration__icon']} />
-            </div>
-            <div className={styles['slide__content']}>
-              <h1>{t('welcome-open-source-head-text')}</h1>
-              <IonText>{t('welcome-open-source-text')}</IonText>
-              <IonButton>
-                <IonLabel>{t('next-label')}</IonLabel>
-                <IonIcon icon={arrowForward} />
-              </IonButton>
-            </div>
-          </SwiperSlide>
-
-          {/* Configure */}
-          <SwiperSlide className={styles['slide']}>
-            <div className={styles['slide__illustration']}>
-              <IonIcon icon={settings} className={styles['slide__illustration__icon']} />
-            </div>
-            <div className={styles['slide__content']}>
-              <h1>{t('welcome-setup-app-head-text')}</h1>
-              <IonText>{t('welcome-setup-app-text')}</IonText>
-              {/* <IonCard>
+					{/* Configure */}
+					<SwiperSlide className={styles.slide}>
+						<div className={styles.slide__illustration}>
+							<IonIcon icon={settings} className={styles.slide__illustration__icon} />
+						</div>
+						<div className={styles.slide__content}>
+							<h1>{t('welcome-setup-app-head-text')}</h1>
+							<IonText>{t('welcome-setup-app-text')}</IonText>
+							{/* <IonCard>
                 <IonItem>
                   <IonInput
                     placeholder={t('api-server-control-placeholder')}
@@ -109,36 +117,36 @@ const WelcomePage = (props: IWelcomePageProps) => {
                   </IonButton>
                 </IonItem>
               </IonCard> */}
-              <div>
-                <IonButton>
-                  <IonLabel>{t('next-label')}</IonLabel>
-                  <IonIcon icon={arrowForward} />
-                </IonButton>
-              </div>
-            </div>
-          </SwiperSlide>
+							<div>
+								<IonButton>
+									<IonLabel>{t('next-label')}</IonLabel>
+									<IonIcon icon={arrowForward} />
+								</IonButton>
+							</div>
+						</div>
+					</SwiperSlide>
 
-          {/* Complete */}
-          <SwiperSlide className={styles['slide']}>
-            <div className={styles['slide__illustration']}>
-              <IonIcon icon={checkmark} className={styles['slide__illustration__icon']} />
-            </div>
-            <div className={styles['slide__content']}>
-              <b>
-                <h1>{t('welcome-all-done-head-text')}</h1>
-              </b>
-              <IonText>{t('welcome-all-done-text')}</IonText>
-              <div>
-                <IonButton onClick={completeSetup}>
-                  <IonLabel>{t('complete-label')}</IonLabel>
-                </IonButton>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </IonContent>
-    </IonPage>
-  )
+					{/* Complete */}
+					<SwiperSlide className={styles.slide}>
+						<div className={styles.slide__illustration}>
+							<IonIcon icon={checkmark} className={styles.slide__illustration__icon} />
+						</div>
+						<div className={styles.slide__content}>
+							<b>
+								<h1>{t('welcome-all-done-head-text')}</h1>
+							</b>
+							<IonText>{t('welcome-all-done-text')}</IonText>
+							<div>
+								<IonButton onClick={completeSetup}>
+									<IonLabel>{t('complete-label')}</IonLabel>
+								</IonButton>
+							</div>
+						</div>
+					</SwiperSlide>
+				</Swiper>
+			</IonContent>
+		</IonPage>
+	)
 }
 
 export default WelcomePage

@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,24 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-param-reassign */
+
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface IAppConfig {
-  apiUrl: string | null
+	apiUrl: string | null
 }
 
 const initialState = {
-  apiUrl: null
+	apiUrl: null,
 } as IAppConfig
 
 const appConfig = createSlice({
-  name: 'app-config',
-  initialState,
-  reducers: {
-    setApiUrl(state, action: PayloadAction<string | null>) {
-      state.apiUrl = action.payload
-    }
-  }
+	name: 'app-config',
+	initialState,
+	reducers: {
+		setApiUrl(state, action: PayloadAction<string | null>) {
+			state.apiUrl = action.payload
+		},
+	},
 })
 
 export const { setApiUrl } = appConfig.actions

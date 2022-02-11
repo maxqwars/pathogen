@@ -15,16 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable import/prefer-default-export */
+
 export const LARGE_CENTERED_COLUMN = {
-  sizeXs: '12',
-  sizeSm: '12',
+	sizeXs: '12',
+	sizeSm: '12',
 
-  sizeMd: '8',
-  offsetMd: '2',
+	sizeMd: '8',
+	offsetMd: '2',
 
-  sizeLg: '6',
-  offsetLg: '3',
+	sizeLg: '6',
+	offsetLg: '3',
 
-  sizeXl: '6',
-  offsetXl: '3'
+	sizeXl: '6',
+	offsetXl: '3',
 }

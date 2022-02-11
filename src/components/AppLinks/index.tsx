@@ -15,34 +15,37 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonButton, IonCard, IonCardHeader, IonCardTitle, IonItem, IonLabel } from '@ionic/react'
+import {
+	IonButton,
+	IonCard,
+	IonCardHeader,
+	IonCardTitle,
+	IonItem,
+	IonLabel,
+} from '@ionic/react'
 
-import APP_LINKS_LIST from '../../constants/APP_LINKS_LIST'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import APP_LINKS_LIST from '../../constants/APP_LINKS_LIST'
 
-type Props = {}
+function AppLinks() {
+	const { t } = useTranslation()
 
-const AppLinks = (props: Props) => {
-  const { t } = useTranslation()
-
-  return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Links</IonCardTitle>
-      </IonCardHeader>
-      {APP_LINKS_LIST.map(item => {
-        return (
-          <IonItem key={item.label}>
-            <IonLabel>{item.label}</IonLabel>
-            <IonButton href={item.url} target="_blank">
-              {t('go-to-label')}
-            </IonButton>
-          </IonItem>
-        )
-      })}
-    </IonCard>
-  )
+	return (
+		<IonCard>
+			<IonCardHeader>
+				<IonCardTitle>Links</IonCardTitle>
+			</IonCardHeader>
+			{APP_LINKS_LIST.map(item => (
+				<IonItem key={item.label}>
+					<IonLabel>{item.label}</IonLabel>
+					<IonButton href={item.url} target='_blank'>
+						{t('go-to-label')}
+					</IonButton>
+				</IonItem>
+			))}
+		</IonCard>
+	)
 }
 
 export default AppLinks

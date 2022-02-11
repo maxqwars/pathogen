@@ -16,37 +16,27 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import LanguageDetector from 'i18next-browser-languagedetector'
-import en from './en.json'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import en from './en.json'
 import ru from './ru.json'
 
-// import ja from "./ja.json";
-// import fr from "./fr.json";
-
 const resources = {
-  en: { translation: en },
-  ru: { translation: ru }
-  // ja: { translation: ja },
-  // fr: { translation: fr },
+	en: { translation: en },
+	ru: { translation: ru },
 }
 
 export const DEFAULT_LANGUAGE = 'ru'
 
 i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: DEFAULT_LANGUAGE,
-    interpolation: {
-      escapeValue: false
-    }
-  })
-
-export enum SUPPORTED_LANGUAGES {
-  EN = 'en',
-  RU = 'ru'
-}
+	.use(LanguageDetector)
+	.use(initReactI18next)
+	.init({
+		resources,
+		fallbackLng: DEFAULT_LANGUAGE,
+		interpolation: {
+			escapeValue: false,
+		},
+	})
 
 export default i18n

@@ -15,6 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+import { Provider } from 'react-redux'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 import { setAppReady, setIsFirstLaunch } from './slices/appGuard'
@@ -22,52 +25,37 @@ import { setAppReady, setIsFirstLaunch } from './slices/appGuard'
 import App from './App'
 import AppConfigService from './services/AppConfigService'
 import AppGuardService from './services/AppGuardService'
-import { Provider } from 'react-redux'
-import React from 'react'
-import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 import { setApiUrl } from './slices/appConfig'
 import store from './redux/store'
-
-/* ------------------------------- Debug redux ------------------------------ */
-if (process.env.NODE_ENV !== 'production') {
-  store.subscribe(() => {
-    console.log('REDUX_STORE_VALUES', store.getState())
-  })
-}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Prepare app                                */
 /* -------------------------------------------------------------------------- */
 ;(async () => {
-  store.dispatch(setAppReady(false))
+	store.dispatch(setAppReady(false))
 
-  const apiServerUrl = await AppConfigService.getApiUrl()
-  const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
+	const apiServerUrl = await AppConfigService.getApiUrl()
+	const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
 
-  store.dispatch(setApiUrl(apiServerUrl !== null ? apiServerUrl : null))
-  store.dispatch(setIsFirstLaunch(isFirstLaunch))
-  store.dispatch(setAppReady(true))
+	store.dispatch(setApiUrl(apiServerUrl !== null ? apiServerUrl : null))
+	store.dispatch(setIsFirstLaunch(isFirstLaunch))
+	store.dispatch(setAppReady(true))
 
-  localStorage.removeItem('118nextLng')
+	localStorage.removeItem('118nextLng')
 })()
 
 /* -------------------------------------------------------------------------- */
 /*                                     App                                    */
 /* -------------------------------------------------------------------------- */
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById('root')
 )
 
-/* ----------------------------- service-workers ---------------------------- */
-process.env.NODE_ENV !== 'production' ? serviceWorkerRegistration.unregister() : serviceWorkerRegistration.register()
-
-/* ------------------------------- web-vitals ------------------------------- */
-if (process.env.NODE_ENV !== 'production') {
-  reportWebVitals()
-}
+serviceWorkerRegistration.register()
+reportWebVitals()

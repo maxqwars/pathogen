@@ -18,10 +18,8 @@
 import React from 'react'
 import styles from './index.module.css'
 
-interface IBookmarksWidgetProps {}
-
-const BookmarksWidget = (props: IBookmarksWidgetProps) => {
-  return <div className={styles.box}>none</div>
+function BookmarksWidget() {
+	return <div className={styles.box}>none</div>
 }
 
 export default BookmarksWidget

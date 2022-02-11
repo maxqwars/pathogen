@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,55 +15,67 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { AboutApp, AppComponentsList, AppLinks, SettingsSection } from '../../components'
-import { IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react'
+import {
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonHeader,
+	IonPage,
+	IonRow,
+	IonTitle,
+	IonToolbar,
+} from '@ionic/react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import {
+	AboutApp,
+	AppComponentsList,
+	AppLinks,
+	SettingsSection,
+} from '../../components'
 
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
-import React from 'react'
 import { SettingsAppConfig } from '../../containers'
-import { useTranslation } from 'react-i18next'
 
-interface ISettingsPageProps {}
+function SettingsPage() {
+	const { t } = useTranslation()
 
-const SettingsPage = (props: ISettingsPageProps) => {
-  const { t } = useTranslation()
+	return (
+		<IonPage>
+			<IonHeader>
+				<IonToolbar>
+					<IonTitle>{t('settings-page-toolbar-label')}</IonTitle>
+				</IonToolbar>
+			</IonHeader>
+			<IonContent fullscreen>
+				<IonHeader collapse='condense'>
+					<IonToolbar>
+						<IonTitle size='large'>{t('settings-page-toolbar-label')}</IonTitle>
+					</IonToolbar>
+				</IonHeader>
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>{t('settings-page-toolbar-label')}</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{t('settings-page-toolbar-label')}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+				<IonGrid>
+					<SettingsSection title={t('config-settings-section-label')} />
+					<SettingsAppConfig />
 
-        <IonGrid>
-          <SettingsSection title={t('config-settings-section-label')} />
-          <SettingsAppConfig />
+					<SettingsSection title={t('config-about-app-section-label')} />
+					<AboutApp />
 
-          <SettingsSection title={t('config-about-app-section-label')} />
-          <AboutApp />
+					<IonRow>
+						<IonCol {...CENTERED_COLUMN}>
+							<AppLinks />
+						</IonCol>
+					</IonRow>
 
-          <IonRow>
-            <IonCol {...CENTERED_COLUMN}>
-              <AppLinks />
-            </IonCol>
-          </IonRow>
-
-          <IonRow>
-            <IonCol {...CENTERED_COLUMN}>
-              <AppComponentsList />
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
-    </IonPage>
-  )
+					<IonRow>
+						<IonCol {...CENTERED_COLUMN}>
+							<AppComponentsList />
+						</IonCol>
+					</IonRow>
+				</IonGrid>
+			</IonContent>
+		</IonPage>
+	)
 }
 
 export default SettingsPage

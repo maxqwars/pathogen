@@ -15,23 +15,27 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { IonCard, IonCardHeader, IonCardTitle, IonItem, IonLabel } from '@ionic/react'
+import {
+	IonCard,
+	IonCardHeader,
+	IonCardTitle,
+	IonItem,
+	IonLabel,
+} from '@ionic/react'
 
 import React from 'react'
 
-type Props = {}
-
-const AppComponentsList = (props: Props) => {
-  return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Used components</IonCardTitle>
-      </IonCardHeader>
-      <IonItem>
-        <IonLabel>Ionic Framework</IonLabel>
-      </IonItem>
-    </IonCard>
-  )
+function AppComponentsList() {
+	return (
+		<IonCard>
+			<IonCardHeader>
+				<IonCardTitle>Used components</IonCardTitle>
+			</IonCardHeader>
+			<IonItem>
+				<IonLabel>Ionic Framework</IonLabel>
+			</IonItem>
+		</IonCard>
+	)
 }
 
 export default AppComponentsList

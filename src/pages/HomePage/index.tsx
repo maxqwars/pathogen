@@ -16,83 +16,67 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import {
-  IonCard,
-  IonCardContent,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonHeader,
+	IonPage,
+	IonRow,
+	IonTitle,
+	IonToolbar,
 } from '@ionic/react'
 
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { AppNeedSetupCard } from '../../components'
 import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
-import React from 'react'
 import { ServerUpdates } from '../../containers'
 import { useAppSelector } from '../../redux/hooks'
-import { useTranslation } from 'react-i18next'
 import { LARGE_CENTERED_COLUMN } from '../../constants/LARGE_CENTERED_COLUMN'
 
-interface IHomePageProps {}
+const HomePage = () => {
+	const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
+	const { t } = useTranslation()
 
-const HomePage = (props: IHomePageProps) => {
-  const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
-  const { t } = useTranslation()
+	const page = (content: React.ReactNode) => (
+		<IonPage>
+			<IonHeader>
+				<IonToolbar>
+					<IonTitle>{t('home-page-toolbar-label')}</IonTitle>
+				</IonToolbar>
+			</IonHeader>
+			<IonContent fullscreen>
+				<IonHeader collapse='condense'>
+					<IonToolbar>
+						<IonTitle size='large'>{t('home-page-toolbar-label')}</IonTitle>
+					</IonToolbar>
+				</IonHeader>
+				{content}
+			</IonContent>
+		</IonPage>
+	)
 
-  const page = (content: React.ReactNode) => {
-    return (
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>{t('home-page-toolbar-label')}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen>
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">{t('home-page-toolbar-label')}</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          {content}
-        </IonContent>
-      </IonPage>
-    )
-  }
+	if (apiUrl?.length === 0) {
+		return page(
+			<IonGrid>
+				<IonRow>
+					<IonCol {...CENTERED_COLUMN}>
+						<AppNeedSetupCard />
+					</IonCol>
+				</IonRow>
+			</IonGrid>
+		)
+	}
 
-  if (apiUrl?.length === 0) {
-    return page(
-      <IonGrid>
-        <IonRow>
-          <IonCol {...CENTERED_COLUMN}>
-            <AppNeedSetupCard />
-          </IonCol>
-        </IonRow>
-      </IonGrid>
-    )
-  }
-
-  return page(
-    <IonGrid>
-      <IonRow className="ion-align-items-start">
-        <IonCol {...LARGE_CENTERED_COLUMN}>
-          <ServerUpdates />
-        </IonCol>
-      </IonRow>
-
-      <IonRow>
-        <IonCol {...CENTERED_COLUMN}>
-          <IonCard>
-            <IonCardContent>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, praesentium!
-            </IonCardContent>
-          </IonCard>
-        </IonCol>
-      </IonRow>
-    </IonGrid>
-  )
+	return page(
+		<IonGrid>
+			<IonRow className='ion-align-items-start'>
+				<IonCol {...LARGE_CENTERED_COLUMN}>
+					<ServerUpdates />
+				</IonCol>
+			</IonRow>
+		</IonGrid>
+	)
 }
 
 export default HomePage

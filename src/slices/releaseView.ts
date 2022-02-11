@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-param-reassign */
+
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { DatabaseTypes } from '@maxqwars/xconn'
@@ -23,32 +25,32 @@ import { DatabaseTypes } from '@maxqwars/xconn'
 /*                               State interface                              */
 /* -------------------------------------------------------------------------- */
 interface IReleaseView {
-  releaseData: DatabaseTypes.ITitle | null
-  code: string | null
+	releaseData: DatabaseTypes.ITitle | null
+	code: string | null
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                Initial state                               */
 /* -------------------------------------------------------------------------- */
 const initialState = {
-  releaseData: null,
-  code: null
+	releaseData: null,
+	code: null,
 } as IReleaseView
 
 /* -------------------------------------------------------------------------- */
 /*                                    Slice                                   */
 /* -------------------------------------------------------------------------- */
 const releaseView = createSlice({
-  name: 'release-view',
-  initialState,
-  reducers: {
-    setRelease(state, action: PayloadAction<DatabaseTypes.ITitle | null>) {
-      state.releaseData = action.payload
-    },
-    setCode(state, action: PayloadAction<string | null>) {
-      state.code = action.payload
-    }
-  }
+	name: 'release-view',
+	initialState,
+	reducers: {
+		setRelease(state, action: PayloadAction<DatabaseTypes.ITitle | null>) {
+			state.releaseData = action.payload
+		},
+		setCode(state, action: PayloadAction<string | null>) {
+			state.code = action.payload
+		},
+	},
 })
 
 /* -------------------------------------------------------------------------- */

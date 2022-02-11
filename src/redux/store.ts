@@ -1,4 +1,4 @@
-// Copyright (C) 2021 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
+// Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
 //
@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+import { configureStore } from '@reduxjs/toolkit'
 import appConfig from '../slices/appConfig'
 import appGuard from '../slices/appGuard'
-import { configureStore } from '@reduxjs/toolkit'
 import releaseView from '../slices/releaseView'
 import serverUpdates from '../slices/serverUpdates'
 

@@ -15,8 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 export enum VIDEO_QUALITY_ENUM {
-  FULL_HD = 'fhd',
-  HD = 'hd',
-  SD = 'sd'
+	FULL_HD = 'fhd',
+	HD = 'hd',
+	SD = 'sd',
 }

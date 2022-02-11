@@ -16,52 +16,50 @@
 // along with pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 import {
-  IonCardHeader,
-  IonCol,
-  IonContent,
-  IonGrid,
-  IonHeader,
-  IonPage,
-  IonRow,
-  IonTitle,
-  IonToolbar
+	IonCardHeader,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonHeader,
+	IonPage,
+	IonRow,
+	IonTitle,
+	IonToolbar,
 } from '@ionic/react'
 
-import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { CENTERED_COLUMN } from '../../constants/CENTERED_COLUMN'
 
-interface IBookmarksPageProps {}
+function BookmarksPage() {
+	const { t } = useTranslation()
 
-const BookmarksPage = (props: IBookmarksPageProps) => {
-  const { t } = useTranslation()
+	return (
+		<IonPage>
+			<IonHeader>
+				<IonToolbar>
+					<IonTitle>{t('bookmarks-tab-label')}</IonTitle>
+				</IonToolbar>
+			</IonHeader>
+			<IonContent fullscreen>
+				<IonHeader collapse='condense'>
+					<IonToolbar>
+						<IonTitle size='large'>{t('bookmarks-tab-label')}</IonTitle>
+					</IonToolbar>
+				</IonHeader>
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>{t('bookmarks-tab-label')}</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{t('bookmarks-tab-label')}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonGrid>
-          <IonRow>
-            <IonCol {...CENTERED_COLUMN}>
-              <IonCardHeader>
-                <IonTitle>Not implemented</IonTitle>
-              </IonCardHeader>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
-    </IonPage>
-  )
+				<IonGrid>
+					<IonRow>
+						<IonCol {...CENTERED_COLUMN}>
+							<IonCardHeader>
+								<IonTitle>Not implemented</IonTitle>
+							</IonCardHeader>
+						</IonCol>
+					</IonRow>
+				</IonGrid>
+			</IonContent>
+		</IonPage>
+	)
 }
 
 export default BookmarksPage
