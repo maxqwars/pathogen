@@ -27,7 +27,7 @@ import {
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
-import { ReleaseView } from '../../containers'
+import { ReleaseView, StreamPlayer } from '../../containers'
 
 function ReleasePage() {
 	const { t } = useTranslation()
@@ -47,6 +47,7 @@ function ReleasePage() {
 
 			<IonContent fullscreen>
 				{releaseCode !== null ? <ReleaseView releaseCode={releaseCode} /> : null}
+				{releaseCode !== null ? <StreamPlayer code={releaseCode} /> : null}
 			</IonContent>
 		</IonPage>
 	)

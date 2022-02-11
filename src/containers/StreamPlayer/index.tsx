@@ -15,7 +15,22 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-export { default as SettingsAppConfig } from './SettingsAppConfig'
-export { default as ServerUpdates } from './ServerUpdates'
-export { default as ReleaseView } from './ReleaseView'
-export { default as StreamPlayer } from './StreamPlayer'
+import React from 'react'
+import { VideoPlayerLayout } from '../../layout'
+
+type Props = {
+	code: string
+}
+
+function StreamPlayer(props: Props) {
+	const { code } = props
+
+	return (
+		<VideoPlayerLayout
+			wideColumn={<div>{code}</div>}
+			narrowColumn={<div>{code}</div>}
+		/>
+	)
+}
+
+export default StreamPlayer
