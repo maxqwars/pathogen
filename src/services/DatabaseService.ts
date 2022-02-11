@@ -57,7 +57,7 @@ class DatabaseService extends CoreApiService {
 		if (cacheData === null) {
 			const release = await this.database.getTitle({
 				code,
-				include: [INCLUDE_RESOURCE_ENUM.RAW_POSTER],
+				remove: ['player'],
 			})
 			if (release !== null) {
 				await this.storage.set({

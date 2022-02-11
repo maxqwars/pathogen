@@ -15,6 +15,38 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-class VideoPlayerService {}
+/* eslint-disable class-methods-use-this */
 
-export default new VideoPlayerService()
+import { Database } from '@maxqwars/xconn'
+import CoreApiServer from './CoreApiService'
+
+class StreamPlayerService extends CoreApiServer {
+	private database: Database | null = null
+
+	init(url: string) {
+		this.apiUrl = url
+		this.database = new Database(this.apiUrl)
+	}
+
+	async getPlaylistForRelease() {
+		throw Error('Not implemented')
+	}
+
+	async getQualityPreset() {
+		throw Error('Not implemented')
+	}
+
+	async setQualityPreset() {
+		throw Error('Not implemented')
+	}
+
+	async getEpisodeIndexForRelease() {
+		throw Error('Not implemented')
+	}
+
+	async setEpisodeIndexForRelease() {
+		throw Error('Not implemented')
+	}
+}
+
+export default new StreamPlayerService()
