@@ -20,68 +20,68 @@
 @import '../../theme/variables.css';
 
 .release-details {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .release-details__box {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border-radius: 5px;
-  background: var(--ion-card-background);
-  padding: 10px;
-  margin: 10px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	border-radius: 5px;
+	background: var(--ion-card-background);
+	padding: 10px;
+	margin: 10px;
 }
 
 .release-details__box-with-padding {
-  padding: 10px;
-  margin: 10px;
+	padding: 10px;
+	margin: 10px;
 }
 
 .release-details__stats-box {
-  display: flex;
-  flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .release-details__stat-item {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  background: var(--ion-card-background);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  height: 84px;
-  width: 104px;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	background: var(--ion-card-background);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	height: 84px;
+	width: 104px;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
 }
 
 .release-details__stat-item-value {
-  font-weight: bold;
-  font-size: 1.1rem;
+	font-weight: bold;
+	font-size: 1.1rem;
 }
 
 .release-details__stat_item-sign {
-  font-size: 0.9rem;
+	font-size: 0.9rem;
 }
 
 /* ---------------------------------- media --------------------------------- */
 @media (max-width: 600px) {
-  .release-details__stat-item {
-    width: 94px;
-    height: 74px;
-    padding: 10px;
-    margin: 10px;
-  }
+	.release-details__stat-item {
+		width: 94px;
+		height: 74px;
+		padding: 10px;
+		margin: 10px;
+	}
 
-  .release-details__stat-item-value {
-    font-size: 0.9rem;
-  }
+	.release-details__stat-item-value {
+		font-size: 0.9rem;
+	}
 
-  .release-details__stat_item-sign {
-    font-size: 0.8rem;
-  }
+	.release-details__stat_item-sign {
+		font-size: 0.8rem;
+	}
 }
 
 @media (min-width: 600px) and (max-width: 992px) {

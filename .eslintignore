@@ -1,2 +1,4 @@
-service-worker.ts
-setupTests.ts
+src/serviceWorkerRegistration.ts
+src/service-worker.ts
+src/setupTests.ts
+src/services/*

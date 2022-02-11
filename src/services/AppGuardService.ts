@@ -18,24 +18,24 @@
 import { Storage } from '@capacitor/storage'
 
 enum APP_GUARD_KEY_ENUM {
-  IS_FIRST_LAUNCH = 'IS_FIRST_LAUNCH'
+	IS_FIRST_LAUNCH = 'IS_FIRST_LAUNCH',
 }
 
 class AppGuardService {
-  async getIsFirstLaunch(): Promise<boolean> {
-    const { value } = await Storage.get({
-      key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH
-    })
+	async getIsFirstLaunch(): Promise<boolean> {
+		const { value } = await Storage.get({
+			key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH,
+		})
 
-    return value === null ? true : value.length > 0
-  }
+		return value === null ? true : value.length > 0
+	}
 
-  async setIsFirstLaunch(value: boolean): Promise<void> {
-    await Storage.set({
-      key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH,
-      value: value ? '_' : ''
-    })
-  }
+	async setIsFirstLaunch(value: boolean): Promise<void> {
+		await Storage.set({
+			key: APP_GUARD_KEY_ENUM.IS_FIRST_LAUNCH,
+			value: value ? '_' : '',
+		})
+	}
 }
 
 export default new AppGuardService()

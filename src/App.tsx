@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable import/extensions */
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 
@@ -51,7 +53,6 @@ import {
 } from '@ionic/react'
 import { Redirect, Route } from 'react-router'
 
-// eslint-disable-next-line import/extensions
 import {
 	appsOutline,
 	cogOutline,

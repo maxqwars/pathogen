@@ -32,7 +32,7 @@ import store from './redux/store'
 /* -------------------------------------------------------------------------- */
 /*                                 Prepare app                                */
 /* -------------------------------------------------------------------------- */
-;(async () => {
+async function initApp() {
 	store.dispatch(setAppReady(false))
 
 	const apiServerUrl = await AppConfigService.getApiUrl()
@@ -43,7 +43,9 @@ import store from './redux/store'
 	store.dispatch(setAppReady(true))
 
 	localStorage.removeItem('118nextLng')
-})()
+}
+
+initApp()
 
 /* -------------------------------------------------------------------------- */
 /*                                     App                                    */

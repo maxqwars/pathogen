@@ -18,9 +18,9 @@
  */
 
 .box {
-  background: #eeeeee;
-  height: 300px;
-  width: inherit;
-  margin: 5px;
-  border-radius: 8px;
+	background: #eeeeee;
+	height: 300px;
+	width: inherit;
+	margin: 5px;
+	border-radius: 8px;
 }

@@ -16,26 +16,26 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 const APP_LINKS_LIST = [
-  {
-    label: 'GitHub',
-    url: 'https://github.com/surrogate-logic/pathogen'
-  },
-  {
-    label: 'Telegram',
-    url: 'https://t.me/surrogate_logic'
-  },
-  {
-    label: 'VK Community',
-    url: 'https://vk.com/surrogate_logic'
-  },
-  {
-    label: 'Developer',
-    url: 'https://maxqwars.github.io/'
-  },
-  {
-    label: 'Twitter (news)',
-    url: 'https://twitter.com/MaxQwars'
-  }
+	{
+		label: 'GitHub',
+		url: 'https://github.com/surrogate-logic/pathogen',
+	},
+	{
+		label: 'Telegram',
+		url: 'https://t.me/surrogate_logic',
+	},
+	{
+		label: 'VK Community',
+		url: 'https://vk.com/surrogate_logic',
+	},
+	{
+		label: 'Developer',
+		url: 'https://maxqwars.github.io/',
+	},
+	{
+		label: 'Twitter (news)',
+		url: 'https://twitter.com/MaxQwars',
+	},
 ]
 
 export default APP_LINKS_LIST

@@ -16,15 +16,15 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 export default abstract class CoreApiService {
-  protected _apiUrl: string | null
+	protected _apiUrl: string | null
 
-  constructor() {
-    this._apiUrl = null
-  }
+	constructor() {
+		this._apiUrl = null
+	}
 
-  public setApiUrl(url: string): void {
-    this._apiUrl = url
-  }
+	public setApiUrl(url: string): void {
+		this._apiUrl = url
+	}
 
-  public abstract init(url: string): void
+	public abstract init(url: string): void
 }
