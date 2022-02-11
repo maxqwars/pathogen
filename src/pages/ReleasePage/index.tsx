@@ -21,7 +21,6 @@ import {
 	IonToolbar,
 	IonTitle,
 	IonContent,
-	IonProgressBar,
 	IonBackButton,
 	IonButtons,
 } from '@ionic/react'
@@ -33,7 +32,7 @@ import { ReleaseView } from '../../containers'
 function ReleasePage() {
 	const { t } = useTranslation()
 	const params = useParams<{ code: string }>()
-	const releaseCode = params.code || null
+	const releaseCode = params.code
 
 	return (
 		<IonPage>
@@ -44,13 +43,10 @@ function ReleasePage() {
 					</IonButtons>
 					<IonTitle>{t('release-page-header-label')}</IonTitle>
 				</IonToolbar>
-				{releaseCode === null ? <IonProgressBar type='indeterminate' /> : null}
 			</IonHeader>
 
 			<IonContent fullscreen>
-				{releaseCode !== null ? (
-					<ReleaseView releaseCode={params.code as string} />
-				) : null}
+				{releaseCode !== null ? <ReleaseView releaseCode={releaseCode} /> : null}
 			</IonContent>
 		</IonPage>
 	)

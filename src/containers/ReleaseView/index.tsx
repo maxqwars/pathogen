@@ -21,8 +21,7 @@ import React, { useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { useDispatch } from 'react-redux'
 import { ReleaseBriefly, ReleaseDetails } from '../../components'
-// import { setCode, setRelease } from '../../slices/releaseView'
-import { setRelease } from '../../slices/releaseView'
+import { setCode, setRelease } from '../../slices/releaseView'
 
 import DatabaseService from '../../services/DatabaseService'
 import { ReleaseViewLayout } from '../../layout'
@@ -47,21 +46,23 @@ function ReleaseView(props: IReleaseViewProps) {
 	useEffect(() => {
 		DatabaseService.init(apiUrl as string)
 
-		// if (code !== releaseCode) {
-		//   dispatch(setCode(releaseCode))
-		//   dispatch(setRelease(null))
-		// }
+		if (code !== releaseCode) {
+			dispatch(setCode(releaseCode))
+			dispatch(setRelease(null))
+		}
 
-		// if (code !== null && code !== releaseCode) {
-		//   DatabaseService.getTitle(code)
-		//     .then(data => dispatch(setRelease(data)))
-		// }
+		if (code !== null && code !== releaseCode) {
+			DatabaseService.getTitle(code).then(data => dispatch(setRelease(data)))
+		}
 
 		DatabaseService.getTitle(code as string).then(data =>
 			dispatch(setRelease(data))
 		)
 	}, [apiUrl, releaseCode, dispatch, code, releaseData])
 
+	/*
+	 * If releaseData is empty, show skeleton layout
+	 */
 	if (releaseData === null) {
 		return (
 			<ReleaseViewLayout
@@ -87,6 +88,9 @@ function ReleaseView(props: IReleaseViewProps) {
 		)
 	}
 
+	/*
+	 * Show release info
+	 */
 	return (
 		<ReleaseViewLayout
 			narrowColumn={<ReleaseBriefly release={releaseData} />}
