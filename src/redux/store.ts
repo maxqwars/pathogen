@@ -20,6 +20,7 @@ import appConfig from '../slices/appConfig'
 import appGuard from '../slices/appGuard'
 import releaseView from '../slices/releaseView'
 import serverUpdates from '../slices/serverUpdates'
+import streamPlayer from '../slices/streamPlayer'
 
 const store = configureStore({
 	reducer: {
@@ -27,6 +28,7 @@ const store = configureStore({
 		appGuard,
 		serverUpdates,
 		releaseView,
+		streamPlayer,
 	},
 	devTools: process.env.NODE_ENV !== 'production',
 })
