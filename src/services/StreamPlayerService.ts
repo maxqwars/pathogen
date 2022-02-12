@@ -54,6 +54,10 @@ class StreamPlayerService extends CoreApiService {
 			key: this.QUALITY_PRESET_CONF_KEY,
 		})
 
+		if (value === null) {
+			await this.setQuality(VIDEO_QUALITY_ENUM.FULL_HD)
+		}
+
 		return value === null
 			? VIDEO_QUALITY_ENUM.FULL_HD
 			: (value as VIDEO_QUALITY_ENUM)

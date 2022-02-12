@@ -28,6 +28,8 @@ import AppGuardService from './services/AppGuardService'
 import reportWebVitals from './reportWebVitals'
 import { setApiUrl } from './slices/appConfig'
 import store from './redux/store'
+import StreamPlayerService from './services/StreamPlayerService'
+import { setQuality } from './slices/streamPlayer'
 
 /* -------------------------------------------------------------------------- */
 /*                                 Prepare app                                */
@@ -37,11 +39,13 @@ async function initApp() {
 
 	const apiServerUrl = await AppConfigService.getApiUrl()
 	const isFirstLaunch = await AppGuardService.getIsFirstLaunch()
+	const quality = await StreamPlayerService.getQuality()
 
 	store.dispatch(setApiUrl(apiServerUrl !== null ? apiServerUrl : null))
 	store.dispatch(setIsFirstLaunch(isFirstLaunch))
-	store.dispatch(setAppReady(true))
+	store.dispatch(setQuality(quality))
 
+	store.dispatch(setAppReady(true))
 	localStorage.removeItem('118nextLng')
 }
 
