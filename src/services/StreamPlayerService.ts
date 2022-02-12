@@ -36,12 +36,17 @@ class StreamPlayerService extends CoreApiService {
 
 	async getPlayerForRelease(
 		code: string
-	): Promise<DatabaseTypes.ITitlePlayer | null> {
-		if (this.database !== null) {
+	): Promise<DatabaseTypes.ITitlePlayer | Error> {
+		if (this.database === null) {
+			throw Error('Service not init')
+		}
+
+		try {
 			const release = await this.database.getTitle({ code, filter: ['player'] })
 			return release?.player as DatabaseTypes.ITitlePlayer
+		} catch (e) {
+			throw Error('Failed fetch release player')
 		}
-		return null
 	}
 
 	async getQuality(): Promise<VIDEO_QUALITY_ENUM> {

@@ -46,40 +46,11 @@ class DatabaseService extends CoreApiService {
 		if (this.database === null) {
 			return null
 		}
-
-		const rawCache = (await (
-			await this.storage.get({ key: this.RELEASE_CACHE_KEY_PREFIX + code })
-		).value) as string | null
-		const cacheData: DatabaseTypes.ITitle | null =
-			rawCache === null ? null : (JSON.parse(rawCache) as DatabaseTypes.ITitle)
-
-		// ? Check cache results
-		if (cacheData === null) {
-			const release = await this.database.getTitle({
-				code,
-				remove: ['player'],
-			})
-			if (release !== null) {
-				await this.storage.set({
-					key: this.RELEASE_CACHE_KEY_PREFIX + code,
-					value: JSON.stringify(release),
-				})
-				return release
-			}
-		}
-
-		// try {
-		//   const updated = await this._database.getTitle({ code, filter: ['updated'] })
-		//   if (updated !== null && cacheData !== null && cacheData.updated !== null) {
-		//     if (((updated?.updated as unknown as number) > cacheData.updated) as unknown as number) {
-		//       console.log('Cache require update')
-		//     }
-		//   }
-		// } catch {
-		//   return cacheData
-		// }
-
-		return cacheData
+		const data = await this.database.getTitle({
+			code,
+			remove: ['player'],
+		})
+		return data
 	}
 
 	async getTitle(code: string): Promise<DatabaseTypes.ITitle | null> {

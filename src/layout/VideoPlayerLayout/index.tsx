@@ -33,13 +33,13 @@ function VideoPlayerLayout(props: IVideoPlayerLayoutProps) {
 					sizeXs='12'
 					sizeSm='12'
 					sizeMd='4'
-					sizeLg='3'
+					sizeLg='4'
 					sizeXl='2'
 					offsetXs='0'
 					offsetSm='0'
-					offsetMd='0'
-					offsetLg='0'
-					offsetXl='0'
+					offsetMd='1'
+					offsetLg='1'
+					offsetXl='3'
 				>
 					{wideColumn}
 				</IonCol>
@@ -47,13 +47,13 @@ function VideoPlayerLayout(props: IVideoPlayerLayoutProps) {
 					sizeXs='12'
 					sizeSm='12'
 					sizeMd='6'
-					sizeLg='7'
+					sizeLg='6'
 					sizeXl='4'
 					offsetXs='0'
 					offsetSm='0'
-					offsetMd='1'
-					offsetLg='1'
-					offsetXl='3'
+					offsetMd=''
+					offsetLg=''
+					offsetXl=''
 				>
 					{narrowColumn}
 				</IonCol>
