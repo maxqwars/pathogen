@@ -18,6 +18,7 @@
 import { DatabaseTypes } from '@maxqwars/xconn'
 import React, { useCallback, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
+import { VideoView } from '../../components'
 import { VIDEO_QUALITY_ENUM } from '../../enums/VIDEO_QUALITY_ENUM'
 import { VideoPlayerLayout } from '../../layout'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -45,17 +46,29 @@ function StreamPlayer(props: Props) {
 	const code = useAppSelector(state => state.streamPlayer.code)
 	const episodeIndex = useAppSelector(state => state.streamPlayer.episodeIndex)
 	const playlist = useAppSelector(state => state.streamPlayer.playlist)
+	const quality = useAppSelector(state => state.streamPlayer.quality)
+	const m3u = useAppSelector(state => state.streamPlayer.m3u)
 
 	// Callback
 	const init = useCallback(() => {
-		StreamPlayerService.getPlayerForRelease(releaseCode).then(player => {
-			StreamPlayerService.preparePlaylistForQuality(
-				player as DatabaseTypes.ITitlePlayer,
-				VIDEO_QUALITY_ENUM.FULL_HD
-			).then(list => dispatch(setPlaylist(list)))
-			dispatch(setEpisodeIndex(0))
-			dispatch(setCode(releaseCode))
-		})
+		function fetchRelease() {
+			StreamPlayerService.getPlayerForRelease(releaseCode).then(player => {
+				StreamPlayerService.preparePlaylistForQuality(
+					player as DatabaseTypes.ITitlePlayer,
+					quality as VIDEO_QUALITY_ENUM
+				).then(list => dispatch(setPlaylist(list)))
+				dispatch(setEpisodeIndex(0))
+				dispatch(setCode(releaseCode))
+			})
+		}
+
+		if (code === null) {
+			fetchRelease()
+		}
+
+		if (code !== null && code !== releaseCode) {
+			fetchRelease()
+		}
 	}, [])
 
 	// Effect
@@ -63,13 +76,7 @@ function StreamPlayer(props: Props) {
 		// Init service
 		StreamPlayerService.init(apiUrl as string)
 
-		if (code === null) {
-			init()
-		}
-
-		if (code !== null && code !== releaseCode) {
-			init()
-		}
+		init()
 
 		if (playlist !== null && episodeIndex !== null) {
 			dispatch(setM3U(playlist[episodeIndex]))
@@ -103,7 +110,7 @@ function StreamPlayer(props: Props) {
 	 */
 	return (
 		<VideoPlayerLayout
-			wideColumn={<div>{releaseCode}</div>}
+			wideColumn={<VideoView m3u={m3u as string} />}
 			narrowColumn={<div>{releaseCode}</div>}
 		/>
 	)
