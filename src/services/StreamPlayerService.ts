@@ -17,27 +17,45 @@
 
 /* eslint-disable class-methods-use-this */
 
-import { Database } from '@maxqwars/xconn'
-import CoreApiServer from './CoreApiService'
+import { Database, DatabaseTypes } from '@maxqwars/xconn'
+import { VIDEO_QUALITY_ENUM } from '../enums/VIDEO_QUALITY_ENUM'
+import CoreApiService from './CoreApiService'
 
-class StreamPlayerService extends CoreApiServer {
+class StreamPlayerService extends CoreApiService {
 	private database: Database | null = null
+
+	private QUALITY_PRESET_CONF_KEY = 'QUALITY_PRESET'
 
 	init(url: string) {
 		this.apiUrl = url
 		this.database = new Database(this.apiUrl)
 	}
 
-	async getPlaylistForRelease() {
-		throw Error('Not implemented')
+	async getPlayerForRelease(
+		code: string
+	): Promise<DatabaseTypes.ITitlePlayer | null> {
+		if (this.database !== null) {
+			const release = await this.database.getTitle({ code, filter: ['player'] })
+			return release?.player as DatabaseTypes.ITitlePlayer
+		}
+		return null
 	}
 
-	async getQualityPreset() {
-		throw Error('Not implemented')
+	async getQuality(): Promise<VIDEO_QUALITY_ENUM> {
+		const { value } = await this.storage.get({
+			key: this.QUALITY_PRESET_CONF_KEY,
+		})
+
+		return value === null
+			? VIDEO_QUALITY_ENUM.FULL_HD
+			: (value as VIDEO_QUALITY_ENUM)
 	}
 
-	async setQualityPreset() {
-		throw Error('Not implemented')
+	async setQuality(preset: VIDEO_QUALITY_ENUM): Promise<void> {
+		await this.storage.set({
+			key: this.QUALITY_PRESET_CONF_KEY,
+			value: preset,
+		})
 	}
 
 	async getEpisodeIndexForRelease() {
