@@ -15,8 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
-import { createSlice } from '@reduxjs/toolkit'
-import { DatabaseTypes } from '@maxqwars/xconn'
+/* eslint-disable no-param-reassign */
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { VIDEO_QUALITY_ENUM } from '../enums/VIDEO_QUALITY_ENUM'
 
 /* -------------------------------------------------------------------------- */
@@ -26,9 +27,8 @@ interface IStreamPlayer {
 	quality: VIDEO_QUALITY_ENUM | null
 	code: string | null
 	m3u: string | null
-	host: string | null
 	episodeIndex: number | null
-	playlist: DatabaseTypes.ITitlePlayer | null
+	playlist: string[] | null
 }
 
 /* -------------------------------------------------------------------------- */
@@ -38,7 +38,6 @@ const initialState = {
 	quality: null,
 	code: null,
 	m3u: null,
-	host: null,
 	episodeIndex: null,
 	playlist: null,
 } as IStreamPlayer
@@ -49,11 +48,28 @@ const initialState = {
 const streamPlayer = createSlice({
 	name: 'stream-player',
 	initialState,
-	reducers: {},
+	reducers: {
+		setQuality(state, action: PayloadAction<VIDEO_QUALITY_ENUM | null>) {
+			state.quality = action.payload
+		},
+		setCode(state, action: PayloadAction<string | null>) {
+			state.code = action.payload
+		},
+		setM3U(state, action: PayloadAction<string | null>) {
+			state.m3u = action.payload
+		},
+		setEpisodeIndex(state, action: PayloadAction<number | null>) {
+			state.episodeIndex = action.payload
+		},
+		setPlaylist(state, action: PayloadAction<string[] | null>) {
+			state.playlist = action.payload
+		},
+	},
 })
 
 /* -------------------------------------------------------------------------- */
 /*                                   Exports                                  */
 /* -------------------------------------------------------------------------- */
 export default streamPlayer.reducer
-// export const {} = streamPlayer.actions
+export const { setQuality, setCode, setM3U, setEpisodeIndex, setPlaylist } =
+	streamPlayer.actions
