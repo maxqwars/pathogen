@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-vars */
+
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import React, { useEffect } from 'react'
@@ -35,9 +37,9 @@ function ReleaseView(props: IReleaseViewProps) {
 	const { releaseCode } = props
 
 	/* Selectors */
+	const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
 	const code = useAppSelector(state => state.releaseView.code)
 	const releaseData = useAppSelector(state => state.releaseView.releaseData)
-	const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
 
 	/* Dispatch */
 	const dispatch = useDispatch()
@@ -46,24 +48,25 @@ function ReleaseView(props: IReleaseViewProps) {
 	useEffect(() => {
 		DatabaseService.init(apiUrl as string)
 
-		if (code !== releaseCode) {
-			dispatch(setCode(releaseCode))
-			dispatch(setRelease(null))
+		if (code === null) {
+			DatabaseService.getRelease(releaseCode).then(release => {
+				dispatch(setRelease(release))
+				dispatch(setCode(releaseCode))
+			})
 		}
 
 		if (code !== null && code !== releaseCode) {
-			DatabaseService.getTitle(code).then(data => dispatch(setRelease(data)))
+			DatabaseService.getRelease(releaseCode).then(release => {
+				dispatch(setRelease(release))
+				dispatch(setCode(releaseCode))
+			})
 		}
-
-		DatabaseService.getTitle(code as string).then(data =>
-			dispatch(setRelease(data))
-		)
-	}, [apiUrl, releaseCode, dispatch, code, releaseData])
+	}, [])
 
 	/*
 	 * If releaseData is empty, show skeleton layout
 	 */
-	if (releaseData === null) {
+	if (releaseData === null || code === null || code !== releaseCode) {
 		return (
 			<ReleaseViewLayout
 				narrowColumn={
