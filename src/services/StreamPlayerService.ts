@@ -36,7 +36,7 @@ class StreamPlayerService extends CoreApiService {
 
 	async getPlayerForRelease(
 		code: string
-	): Promise<DatabaseTypes.ITitlePlayer | Error> {
+	): Promise<DatabaseTypes.ITitlePlayer | never> {
 		if (this.database === null) {
 			throw Error('Service not init')
 		}

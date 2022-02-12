@@ -15,10 +15,12 @@
 // You should have received a copy of the GNU General Public License
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-vars */
+
 import { DatabaseTypes } from '@maxqwars/xconn'
 import React, { useCallback, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { VideoView } from '../../components'
+import { EpisodesList, VideoView } from '../../components'
 import { VIDEO_QUALITY_ENUM } from '../../enums/VIDEO_QUALITY_ENUM'
 import { VideoPlayerLayout } from '../../layout'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
@@ -49,44 +51,51 @@ function StreamPlayer(props: Props) {
 	const quality = useAppSelector(state => state.streamPlayer.quality)
 	const m3u = useAppSelector(state => state.streamPlayer.m3u)
 
-	// Callback
-	const init = useCallback(() => {
-		function fetchRelease() {
-			StreamPlayerService.getPlayerForRelease(releaseCode).then(player => {
+	/* -------------------------------------------------------------------------- */
+	/*                                  Callbacks                                 */
+	/* -------------------------------------------------------------------------- */
+	const setEpisode = useCallback((src: string) => {
+		dispatch(setM3U(src))
+	}, [])
+
+	/* -------------------------------------------------------------------------- */
+	/*                                 Side-effect                                */
+	/* -------------------------------------------------------------------------- */
+	useEffect(() => {
+		// ? Init StreamPlayerService
+		StreamPlayerService.init(apiUrl as string)
+
+		// ? Cold init
+		if (code === null) {
+			dispatch(setCode(releaseCode))
+			dispatch(setEpisodeIndex(0))
+		}
+
+		// ? If store code === received code
+		if (code !== null && code === releaseCode) {
+			StreamPlayerService.getPlayerForRelease(code).then(data => {
 				StreamPlayerService.preparePlaylistForQuality(
-					player as DatabaseTypes.ITitlePlayer,
+					data,
 					quality as VIDEO_QUALITY_ENUM
 				).then(list => dispatch(setPlaylist(list)))
-				dispatch(setEpisodeIndex(0))
-				dispatch(setCode(releaseCode))
 			})
 		}
 
-		if (code === null) {
-			fetchRelease()
-		}
-
+		// ? If store code !== received code
 		if (code !== null && code !== releaseCode) {
-			fetchRelease()
+			dispatch(setCode(releaseCode))
+			dispatch(setEpisodeIndex(0))
 		}
-	}, [])
 
-	// Effect
-	useEffect(() => {
-		// Init service
-		StreamPlayerService.init(apiUrl as string)
-
-		init()
-
-		if (playlist !== null && episodeIndex !== null) {
+		if (playlist !== null && m3u === null && episodeIndex !== null) {
 			dispatch(setM3U(playlist[episodeIndex]))
 		}
-	}, [])
+	}, [code, playlist, episodeIndex])
 
-	/*
-	 * Show skeleton if StreamPlayer not ready
-	 */
-	if (code === null) {
+	/* -------------------------------------------------------------------------- */
+	/*                              Show UI skeleton                              */
+	/* -------------------------------------------------------------------------- */
+	if (code === null || playlist === null) {
 		return (
 			<VideoPlayerLayout
 				wideColumn={
@@ -105,13 +114,15 @@ function StreamPlayer(props: Props) {
 		)
 	}
 
-	/*
-	 * Show player video view and episode selector
-	 */
+	/* -------------------------------------------------------------------------- */
+	/*                                   Show UI                                  */
+	/* -------------------------------------------------------------------------- */
 	return (
 		<VideoPlayerLayout
-			wideColumn={<VideoView m3u={m3u as string} />}
-			narrowColumn={<div>{releaseCode}</div>}
+			wideColumn={
+				<EpisodesList setIndex={setEpisode} list={playlist as string[]} />
+			}
+			narrowColumn={<VideoView m3u={m3u as string} />}
 		/>
 	)
 }
