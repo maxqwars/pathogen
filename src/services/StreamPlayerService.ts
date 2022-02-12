@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Copyright (C) 2022 Maxim "maxqwars" Maximenko <maxqwars@gmail.com>
 //
 // This file is part of @maxqwars/pathogen.
@@ -16,6 +17,8 @@
 // along with @maxqwars/pathogen.  If not, see <http://www.gnu.org/licenses/>.
 
 /* eslint-disable class-methods-use-this */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 
 import { Database, DatabaseTypes } from '@maxqwars/xconn'
 import { VIDEO_QUALITY_ENUM } from '../enums/VIDEO_QUALITY_ENUM'
@@ -56,6 +59,37 @@ class StreamPlayerService extends CoreApiService {
 			key: this.QUALITY_PRESET_CONF_KEY,
 			value: preset,
 		})
+	}
+
+	async preparePlaylistForQuality(
+		player: DatabaseTypes.ITitlePlayer,
+		quality: VIDEO_QUALITY_ENUM
+	): Promise<string[]> {
+		const qualityPlaylist = []
+		const { host, playlist } = player
+
+		for (const key in playlist) {
+			const { hls } = playlist[key as unknown as number]
+
+			switch (quality) {
+				case VIDEO_QUALITY_ENUM.FULL_HD:
+					qualityPlaylist.push(`https://${host}${hls?.fhd}`)
+					break
+
+				case VIDEO_QUALITY_ENUM.HD:
+					qualityPlaylist.push(`https://${host}${hls?.hd}`)
+					break
+
+				case VIDEO_QUALITY_ENUM.SD:
+					qualityPlaylist.push(`https://${host}${hls?.sd}`)
+					break
+
+				default:
+					qualityPlaylist.push(`https://${host}${hls?.sd}`)
+			}
+		}
+
+		return qualityPlaylist
 	}
 
 	async getEpisodeIndexForRelease() {
