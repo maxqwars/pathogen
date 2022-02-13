@@ -19,6 +19,7 @@ import React, { useCallback, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { EpisodesList, VideoView } from '../../components'
 import { VIDEO_QUALITY_ENUM } from '../../enums/VIDEO_QUALITY_ENUM'
+import developmentMessage from '../../functions/developmentMessage'
 import { VideoPlayerLayout } from '../../layout'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import StreamPlayerService from '../../services/StreamPlayerService'
@@ -58,11 +59,13 @@ function StreamPlayer(props: Props) {
 			quality as VIDEO_QUALITY_ENUM
 		)
 		dispatch(setPlaylist(list))
+		developmentMessage('PLAYLIST_GENERATED_AND_SET')
 	}
 
 	const resetProgress = () => {
 		dispatch(setEpisodeIndex(0))
 		dispatch(setM3U(null))
+		developmentMessage('STREAM_PLAYER_STATE_RESET')
 	}
 
 	const selectEpisode = useCallback((src: string) => {
@@ -83,7 +86,11 @@ function StreamPlayer(props: Props) {
 		}
 
 		/* Fetch release player data */
-		if (code !== null) {
+		if (code !== null && playlist === null) {
+			fetchReleaseAndPreparePlaylist()
+		}
+
+		if (code !== null && code !== releaseCode) {
 			fetchReleaseAndPreparePlaylist()
 		}
 
@@ -96,7 +103,7 @@ function StreamPlayer(props: Props) {
 	/* -------------------------------------------------------------------------- */
 	/*                              Show UI skeleton                              */
 	/* -------------------------------------------------------------------------- */
-	if (playlist === null) {
+	if (playlist === null || m3u === null || episodeIndex === null) {
 		return (
 			<VideoPlayerLayout
 				wideColumn={
