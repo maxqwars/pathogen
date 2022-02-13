@@ -70,6 +70,7 @@ function StreamPlayer(props: Props) {
 
 	const selectEpisode = useCallback((src: string) => {
 		dispatch(setM3U(src))
+		developmentMessage('DIRECT_SET_M3U8_SRC')
 	}, [])
 
 	/* -------------------------------------------------------------------------- */
@@ -130,7 +131,7 @@ function StreamPlayer(props: Props) {
 			wideColumn={
 				<EpisodesList setIndex={selectEpisode} list={playlist as string[]} />
 			}
-			narrowColumn={<VideoView m3u={m3u as string} />}
+			narrowColumn={<VideoView src={m3u as string} />}
 		/>
 	)
 }
