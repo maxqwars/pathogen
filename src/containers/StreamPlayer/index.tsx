@@ -43,7 +43,7 @@ function StreamPlayer(props: Props) {
 	// Dispatch
 	const dispatch = useAppDispatch()
 
-	// Selectors
+	/* -------------------------------- Selectors ------------------------------- */
 	const apiUrl = useAppSelector(state => state.appConfig.apiUrl)
 	const code = useAppSelector(state => state.streamPlayer.code)
 	const episodeIndex = useAppSelector(state => state.streamPlayer.episodeIndex)
@@ -52,50 +52,9 @@ function StreamPlayer(props: Props) {
 	const m3u = useAppSelector(state => state.streamPlayer.m3u)
 
 	/* -------------------------------------------------------------------------- */
-	/*                                  Callbacks                                 */
-	/* -------------------------------------------------------------------------- */
-	const setEpisode = useCallback((src: string) => {
-		dispatch(setM3U(src))
-	}, [])
-
-	/* -------------------------------------------------------------------------- */
-	/*                                 Side-effect                                */
-	/* -------------------------------------------------------------------------- */
-	useEffect(() => {
-		// ? Init StreamPlayerService
-		StreamPlayerService.init(apiUrl as string)
-
-		// ? Cold init
-		if (code === null) {
-			dispatch(setCode(releaseCode))
-			dispatch(setEpisodeIndex(0))
-		}
-
-		// ? If store code === received code
-		if (code !== null && code === releaseCode) {
-			StreamPlayerService.getPlayerForRelease(code).then(data => {
-				StreamPlayerService.preparePlaylistForQuality(
-					data,
-					quality as VIDEO_QUALITY_ENUM
-				).then(list => dispatch(setPlaylist(list)))
-			})
-		}
-
-		// ? If store code !== received code
-		if (code !== null && code !== releaseCode) {
-			dispatch(setCode(releaseCode))
-			dispatch(setEpisodeIndex(0))
-		}
-
-		if (playlist !== null && m3u === null && episodeIndex !== null) {
-			dispatch(setM3U(playlist[episodeIndex]))
-		}
-	}, [code, playlist, episodeIndex])
-
-	/* -------------------------------------------------------------------------- */
 	/*                              Show UI skeleton                              */
 	/* -------------------------------------------------------------------------- */
-	if (code === null || playlist === null) {
+	if (true) {
 		return (
 			<VideoPlayerLayout
 				wideColumn={
@@ -119,9 +78,7 @@ function StreamPlayer(props: Props) {
 	/* -------------------------------------------------------------------------- */
 	return (
 		<VideoPlayerLayout
-			wideColumn={
-				<EpisodesList setIndex={setEpisode} list={playlist as string[]} />
-			}
+			wideColumn={<EpisodesList setIndex={() => {}} list={playlist as string[]} />}
 			narrowColumn={<VideoView m3u={m3u as string} />}
 		/>
 	)
