@@ -1,0 +1,22 @@
+name: Create GitHub release
+
+on:
+ push:
+  tags:
+   - 'v*.*.*'
+
+jobs:
+ release:
+  name: Create new github release using version tag
+  runs-on: ubuntu-latest
+  steps:
+   - name: Checkout
+     uses: actions/checkout@v2
+   - name: Setup node
+     uses: actions/setup-node@v2
+     with:
+      node-version: 16
+   - run: yarn install
+   - run: yarn test
+   - name: Create release
+     uses: softprops/action-gh-release@v1
