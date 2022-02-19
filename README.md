@@ -9,6 +9,7 @@
     <img src="https://img.shields.io/github/package-json/v/maxqwars/pathogen" alt="">
     <img src="https://img.shields.io/github/contributors/maxqwars/pathogen" alt="">
     <img src="https://img.shields.io/github/release-date/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/last-commit/maxqwars/pathogen" alt="">
 </h1>
 
 <h4 align="center">Open Source <b>AniLibria</b> client</h4>
