@@ -1,6 +1,14 @@
 <h1 align="center">
-    <br>
     <img src=".github/pathogen-logo.svg" height="128px" width="128px" alt="Pathogen logo">
+    <br />
+    <img src="https://img.shields.io/github/languages/count/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/repo-size/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/commit-activity/m/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/issues/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/license/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/package-json/v/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/contributors/maxqwars/pathogen" alt="">
+    <img src="https://img.shields.io/github/release-date/maxqwars/pathogen" alt="">
 </h1>
 
 <h4 align="center">Open Source <b>AniLibria</b> client</h4>
