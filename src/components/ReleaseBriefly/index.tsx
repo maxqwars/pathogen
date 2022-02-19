@@ -41,10 +41,16 @@ function ReleaseBriefly(props: IReleaseBrieflyProps) {
 			</div>
 
 			<div className={styles['release-briefly__actions']}>
-				<button type='button' className={styles['release-briefly__action-button']}>
+				<button
+					type='button'
+					className={styles['release-briefly__action-button']}
+				>
 					<IonIcon icon={heart} />
 				</button>
-				<button type='button' className={styles['release-briefly__action-button']}>
+				<button
+					type='button'
+					className={styles['release-briefly__action-button']}
+				>
 					<IonIcon icon={share} />
 				</button>
 			</div>

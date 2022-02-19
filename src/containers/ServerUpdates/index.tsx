@@ -58,7 +58,10 @@ function ServerUpdates() {
 	return (
 		<div className={styles.box}>
 			{updates.map(release => (
-				<div onClick={() => onCardClick(release.code as string)} key={release.code}>
+				<div
+					onClick={() => onCardClick(release.code as string)}
+					key={release.code}
+				>
 					<ReleasePosterImage
 						apiUrl={apiUrl as string}
 						className={styles.image}

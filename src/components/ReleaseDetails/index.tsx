@@ -135,7 +135,9 @@ function ReleaseDetails(props: IReleaseDetailsProps) {
 				</div>
 			</div>
 
-			<div className={styles['release-details__box']}>{release.description}</div>
+			<div className={styles['release-details__box']}>
+				{release.description}
+			</div>
 		</div>
 	)
 }

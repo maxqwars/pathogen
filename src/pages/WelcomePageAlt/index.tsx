@@ -62,8 +62,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>Welcome to Pathogen</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad quisquam
-									labore cupiditate architecto?
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+									quisquam labore cupiditate architecto?
 								</p>
 								<div className={styles.itemActions}>
 									<IonButton>Next</IonButton>
@@ -81,8 +81,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>Fully functional</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-									molestiae at iusto incidunt.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Provident molestiae at iusto incidunt.
 								</p>
 								<div className={styles.itemActions}>
 									<IonButton>next</IonButton>
@@ -104,8 +104,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>One codebase. Any platform.</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-									molestiae at iusto incidunt.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Provident molestiae at iusto incidunt.
 								</p>
 								<div className={styles.itemActions}>
 									<IonButton>next</IonButton>
@@ -123,8 +123,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>Community</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-									molestiae at iusto incidunt.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Provident molestiae at iusto incidunt.
 								</p>
 								<div className={styles.itemActions}>
 									<IonButton>next</IonButton>
@@ -142,8 +142,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>Configure app</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-									molestiae at iusto incidunt.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Provident molestiae at iusto incidunt.
 								</p>
 								<IonCard>
 									<IonItem>
@@ -167,8 +167,8 @@ function WelcomePageAlt() {
 							<div className={styles.containerItem}>
 								<h1 className={styles.heading}>All done</h1>
 								<p className={styles.paragraph}>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-									molestiae at iusto incidunt.
+									Lorem ipsum dolor sit amet consectetur adipisicing elit.
+									Provident molestiae at iusto incidunt.
 								</p>
 								<div className={styles.itemActions}>
 									<IonButton onClick={finishSetup}>Done</IonButton>

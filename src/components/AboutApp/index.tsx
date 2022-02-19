@@ -51,7 +51,9 @@ function AboutApp() {
 
 						<IonItem>
 							<IonLabel>Channel</IonLabel>
-							<IonLabel>{process.env.REACT_APP_UPDATES_CHANNEL || 'N/D'}</IonLabel>
+							<IonLabel>
+								{process.env.REACT_APP_UPDATES_CHANNEL || 'N/D'}
+							</IonLabel>
 						</IonItem>
 					</IonList>
 				</IonCard>

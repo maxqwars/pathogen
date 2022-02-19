@@ -83,7 +83,10 @@ function WelcomePage() {
 					{/* License */}
 					<SwiperSlide className={styles.slide}>
 						<div className={styles.slide__illustration}>
-							<IonIcon icon={ribbon} className={styles.slide__illustration__icon} />
+							<IonIcon
+								icon={ribbon}
+								className={styles.slide__illustration__icon}
+							/>
 						</div>
 						<div className={styles.slide__content}>
 							<h1>{t('welcome-open-source-head-text')}</h1>
@@ -98,7 +101,10 @@ function WelcomePage() {
 					{/* Configure */}
 					<SwiperSlide className={styles.slide}>
 						<div className={styles.slide__illustration}>
-							<IonIcon icon={settings} className={styles.slide__illustration__icon} />
+							<IonIcon
+								icon={settings}
+								className={styles.slide__illustration__icon}
+							/>
 						</div>
 						<div className={styles.slide__content}>
 							<h1>{t('welcome-setup-app-head-text')}</h1>
@@ -129,7 +135,10 @@ function WelcomePage() {
 					{/* Complete */}
 					<SwiperSlide className={styles.slide}>
 						<div className={styles.slide__illustration}>
-							<IonIcon icon={checkmark} className={styles.slide__illustration__icon} />
+							<IonIcon
+								icon={checkmark}
+								className={styles.slide__illustration__icon}
+							/>
 						</div>
 						<div className={styles.slide__content}>
 							<b>

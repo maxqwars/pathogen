@@ -46,8 +46,12 @@ function ReleasePage() {
 			</IonHeader>
 
 			<IonContent fullscreen>
-				{releaseCode !== null ? <ReleaseView releaseCode={releaseCode} /> : null}
-				{releaseCode !== null ? <StreamPlayer releaseCode={releaseCode} /> : null}
+				{releaseCode !== null ? (
+					<ReleaseView releaseCode={releaseCode} />
+				) : null}
+				{releaseCode !== null ? (
+					<StreamPlayer releaseCode={releaseCode} />
+				) : null}
 			</IonContent>
 		</IonPage>
 	)
