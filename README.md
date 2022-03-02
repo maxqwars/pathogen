@@ -46,4 +46,8 @@
 8. This software is provided without warranty.
 9. The software author or license **can not** be held liable for any damages inflicted by the software.
 
+## Overview
+
+[Pathogen overview (rus)](https://maxqwars.github.io/announce/2022/02/26/pathogen-announce.html)
+
 > More information on about the [LICENSE can be found here](/LICENSE)
